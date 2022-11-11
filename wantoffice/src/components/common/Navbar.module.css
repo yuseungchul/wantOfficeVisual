@@ -1,0 +1,41 @@
+
+.NavbarDiv {
+
+   background-color: #739CA5;
+   /* display: flex; */
+   width: 10%;
+   height: 100%;
+   min-height: 937px;
+   float: left;
+   border-radius: 0px 30px 30px 0px;
+}
+
+.logoDiv {
+   /* background-color: blueviolet; */
+   padding: 28%;
+   padding-bottom: 30px;
+   height: 30%;
+}
+
+
+
+
+.Category{
+   padding-top: 0%;
+   margin-top: 0%;
+   /* background-color: chartreuse; */
+}
+
+ul{
+   list-style:none;
+}
+
+li{
+   padding-bottom: 30px;
+   color: aliceblue;
+   font-weight: bold;
+}
+
+li > img {
+   padding-right: 5px;
+}
