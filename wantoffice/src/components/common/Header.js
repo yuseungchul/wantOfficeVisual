@@ -7,7 +7,7 @@ function Header() {
     return (
         <>
             <div className={ HeaderCSS.HeaderDiv }>
-            <h1>헤더</h1> 
+            <h1>헤dd더</h1> 
             </div>
         </>
     );
