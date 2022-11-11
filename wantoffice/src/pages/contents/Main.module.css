@@ -1,0 +1,10 @@
+.contentDiv {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    min-height: 850px;
+    margin: 0px;
+    background-color: blue;
+    float: right;
+}
+
