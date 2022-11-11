@@ -4,7 +4,14 @@
     height: 100%;
     min-height: 850px;
     margin: 0px;
-    background-color: blue;
+    /* background-color: blue; */
     float: right;
 }
 
+.contentDiv >h1 {
+    /* padding-left: 50px; */
+    margin-left: 50px;
+    background-color: aqua;
+    width: 100%;
+    margin-right: 50px;
+}
