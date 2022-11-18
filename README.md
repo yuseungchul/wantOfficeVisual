@@ -14,18 +14,20 @@ npm install --save @fullcalendar/google-calendar
 
 ※ **만약 실행 오류 시** 
 
-1. npm install react-router-dom
-2. npm install redux
-3. npm install react-redux
-4. npm install redux-actions
-5. npm install redux-thunk
-6. npm install redux-logger
-7. npm install redux-devtools-extension
-8. npm install react-router-dom@6
+```
+npm install react-router-dom
+npm install redux
+npm install react-redux
+npm install redux-actions
+npm install redux-thunk
+npm install redux-logger
+npm install redux-devtools-extension
+npm install react-router-dom@6
+```
 
 **위 명령문 입력 후 npm start 실행**
-npm install하고 동일한 기능 이지만 인스톨이 안되는 경우를 대비해 일일히 사용할 것 
-안될 시 팀원에게 공유 하기!
+npm install과 동일한 기능 이지만 인스톨이 안되는 경우를 대비해 일일히 사용할 것 
+**안될 시 팀원에게 공유 하기!**
 
 # **1. git 사용 Rule**
 
