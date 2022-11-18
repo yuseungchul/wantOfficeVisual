@@ -1,5 +1,6 @@
 
 import NavCSS from "./Navbar.module.css";
+import { NavLink } from 'react-router-dom';
 
 
 function Navbar() {
@@ -14,7 +15,7 @@ function Navbar() {
                 <ul>
                     <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconHome.png'} alt="홈로고"/>Home</li>
                     <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/>Attendance</li>
-                    <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/>Schedule</li>
+                    <li><NavLink to="/calendar"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/>Schedule</NavLink></li>
                     <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="게시판로고"/>Board</li>
                     <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSurvey.png'} alt="설문로고"/>Survey</li>
                     <li><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/>EDSM</li>
