@@ -3,6 +3,10 @@
 ** 리액트 터미널 여는 방법! **
 1. wantoffice 폴더 선택 > 우클릭 > 통합터미널 열기
 2. npm install 후 npm start 로 실행
+3. Calendar용 install List (필수 설치)
+npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
+npm install style-loader css-loader sass-loader node-sass --save
+npm install --save @fullcalendar/google-calendar
 
 ** 만약 실행 오류 시 **
 1. npm install react-router-dom
