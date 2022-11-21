@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Main from "./pages/contents/Main";
 import CalendarLayout from "./layouts/CalendarLayout";
-import Calendar from "./pages/contents/Calendar";
+import Calendar from "./pages/Calendar";
 
 
 function App() {

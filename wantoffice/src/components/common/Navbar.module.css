@@ -2,22 +2,23 @@
 .NavbarDiv {
 
    background-color: #739CA5;
-   /* display: flex; */
-   width: 10%;
+   width: 200px;
    height: 100%;
    min-height: 100vh;
-   float: left;
+   display: inline-block;
    border-radius: 0px 30px 30px 0px;
+   margin-right: 0%;
 }
 
 .logoDiv {
-   /* background-color: blueviolet; */
    padding: 28%;
    padding-bottom: 30px;
    height: 30%;
 }
 
-
+.Log{
+   margin-top: 50px;
+}
 
 
 /* .Category{
