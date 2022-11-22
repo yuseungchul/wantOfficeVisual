@@ -2,8 +2,7 @@
     width: 150px;
     height: 200px;
     margin: 10px;
-    display: flex;
-    flex-direction: column;
+    float: left;
 }
 
 .roomDiv img {
