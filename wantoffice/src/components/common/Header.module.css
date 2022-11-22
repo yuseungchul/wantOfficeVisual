@@ -1,20 +1,35 @@
-
 .HeaderDiv {
-    display: flex;
-    justify-content: flex-start;
-    float: right;
-    border-bottom: 1px solid  #C6C6C6;
-    width: 86%;
-    
- }
+   float: left;
+   border-bottom: 1px solid  #C6C6C6;
+   width: 86%;
+   margin-left: 20px;
+   text-decoration: none;
+}
 
- .HeaderDiv > ul > li {
-    display: inline-block;
-    padding-right: 50px;
-    padding-top: 30px;
-    margin-bottom:-20px;
-    margin-top:-15px;
-    color: #8D8D8D;
+.HeaderDiv > ul > li {
+   
+   float: left;
+   padding-right: 50px;
+   padding-top: 20px;
+   color: #8D8D8D;
 
-    
- }
+}
+
+.SubmenuDiv{
+   float:left;
+   width: 200px;
+   height: 70vh;
+   padding-top: 100px;
+   color: #8D8D8D;
+   text-align: center;
+   
+}
+
+.SubmenuDiv h2{
+   padding-bottom: 16px;
+}
+
+.SubmenuDiv ul li{
+
+   color: #5a5a5a;
+}
