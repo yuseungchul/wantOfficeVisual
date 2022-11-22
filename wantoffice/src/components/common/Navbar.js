@@ -14,7 +14,7 @@ function Navbar() {
              <div className={ NavCSS.Category }>
                 <ul>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconHome.png'} alt="홈로고"/>Home</NavLink></li>
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/>Attendance</NavLink></li>
+                    <li><NavLink to="/attendance"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/>Attendance</NavLink></li>
                     <li><NavLink to="/calendar"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/>Schedule</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="게시판로고"/>Board</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSurvey.png'} alt="설문로고"/>Survey</NavLink></li>

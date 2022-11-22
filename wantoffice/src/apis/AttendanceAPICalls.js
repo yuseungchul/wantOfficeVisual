@@ -1,6 +1,6 @@
 import { POST_IN } from "../modules/AttendanceModule";
 
-export const callInRegistAPI = ({form}) => {
+export const callInRegistAPI = () => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/attendance/in`;
 
