@@ -1,0 +1,18 @@
+.roomDiv{
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.roomDiv img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.roomDiv h6 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

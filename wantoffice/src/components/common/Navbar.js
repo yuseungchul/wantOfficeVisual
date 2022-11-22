@@ -21,8 +21,9 @@ function Navbar() {
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/>EDSM</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/>Library</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/>Business card</NavLink></li>
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/>Reservation</NavLink></li>
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="예약로고"/>Direct Message</NavLink></li>
+                    <li><NavLink to="/room"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/>Reservation</NavLink></li>
+                    {/* { decoded === "ROLE_ADMIN" && <li><NavLink to="/rooms-management">회의실 관리</NavLink></li> } */}
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>Direct Message</NavLink></li>
                     
                     <li className={NavCSS.Log}><NavLink to="/">Login</NavLink></li>
                     <li><NavLink to="/">관리자 로그인</NavLink></li>
