@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
-import { callInRegistAPI } from "../../apis/AttendanceAPICalls";
+import { callInRegistAPI, callOutRegistAPI } from "../../apis/AttendanceAPICalls";
+import Clock from "./Clock";
+import AttendanceCSS from './Attendance.module.css';
 
 
 function Attendance() {
@@ -12,23 +14,30 @@ function Attendance() {
         }));
     }
 
+    const onClickOutHandler = () => {
+        dispatch(callOutRegistAPI({
+
+        }));
+    }
+
     return (
         <>
+            <div><Clock/></div>
             <div>
                 {
-                    <button
+                    <button className={ AttendanceCSS.InOutButton }
                         onClick={ onClickInHandler }
                     >
                         출근하기
                     </button>
                 }
-                {/* {
-                    <button
+                {
+                    <button className={ AttendanceCSS.InOutButton }
                         onClick={ onClickOutHandler }
                     >
                         퇴근하기
                     </button>
-                } */}
+                }
             </div>
         </>
     );
