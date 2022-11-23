@@ -7,6 +7,9 @@ import Calendar from "./pages/Calendar";
 import Error from "./pages/Error";
 import RoomList from "./pages/room/RoomList";
 import Attendance from "./pages/attendance/Attendance";
+import RoomLayout from "./layouts/RoomLayout";
+import RoomDetail from "./pages/room/RoomDetail";
+
 
 function App() {
   return (
@@ -14,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Login/> }/>
           <Route path="/main" element={ <Layout/> }/>
-          <Route index element={ <Main/> }/>
+          <Route path="/" element={ <Main/> }/>
           <Route path="attendance" element={ <Attendance/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
