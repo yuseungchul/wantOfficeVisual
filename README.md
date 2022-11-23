@@ -4,22 +4,13 @@
 
 1. **wantoffice 폴더 선택 > 우클릭 > 통합터미널 열기**
 2. **npm install 후 npm start 로 실행**
-3. **Calendar용 install List (필수 설치)**
+3. **필수 설치 List**
 
 ```
 npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
 npm install style-loader css-loader sass-loader node-sass --save
 npm install --save @fullcalendar/google-calendar
-```
-4. **Login을 위한 명령문 (필수 설치)**
-
-```
 npm install jwt-decode
-```
-
-※ **만약 실행 오류 시** 
-
-```
 npm install react-router-dom
 npm install redux
 npm install react-redux
@@ -31,7 +22,6 @@ npm install react-router-dom@6
 ```
 
 **위 명령문 입력 후 npm start 실행**
-npm install과 동일한 기능 이지만 인스톨이 안되는 경우를 대비해 일일히 사용할 것 
 **안될 시 팀원에게 공유 하기!**
 
 # **1. git 사용 Rule**
