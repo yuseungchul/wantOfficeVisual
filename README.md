@@ -11,6 +11,11 @@ npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
 npm install style-loader css-loader sass-loader node-sass --save
 npm install --save @fullcalendar/google-calendar
 ```
+4. **Login을 위한 명령문 (필수 설치)**
+
+```
+npm install jwt-decode
+```
 
 ※ **만약 실행 오류 시** 
 
