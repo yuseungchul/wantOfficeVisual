@@ -1,28 +1,54 @@
 .DetailDiv{
-
+    float: left;
+    margin: 50px;
+    padding-left: 20px;
+    width: 70%;
 }
 
-/* .DetailTitle{
-    border-top: 1px solid #8d8d8d;
-    border-bottom: 1px solid #8d8d8d;
+.DetailDiv > h2{
     text-align: center;
-    width: 90%;
-} */
+    border-top: 2px solid #8d8d8d;
+    border-bottom: 2px solid #8d8d8d;
+    color:#8d8d8d;
+    margin-bottom: 50px;
+    padding: 20px;
+} 
 
 .imgsDiv{
     float: left;
+    width: 400px;
+    margin-left: 120px;
+}
+
+.imgsDiv > img{
+    width: 500px;
+    height: 320px;
 }
 
 .imgName{
-
+    color:#8d8d8d;
+    text-align: center;
+    margin-left: 120px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .editDiv{
     float: left;
+    width: 340px;
+    margin-left: 280px;
 }
 
 .editTable{
+    width:100%;
+    font-size: 20px;
+    font-weight: bold;
+    color:#353535;
+    padding: 20px;
+}
 
+.editDiv > button {
+    margin-left: 60px;
 }
 
 .roomResBtn{

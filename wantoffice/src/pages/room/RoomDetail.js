@@ -47,8 +47,9 @@ function RoomDetail(){
     return(
         <>
             {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
-            <h2 className={ RoomDetailCSS.DetailTitle }>회의실 상세 보기</h2>
+            
             <div className={ RoomDetailCSS.DetailDiv }>
+            <h2>회의실 상세 보기</h2>
                 <div className={ RoomDetailCSS.imgsDiv }>
                     <img src={ room.roomFileUrl } alt="테스트"/>
                     <p className={ RoomDetailCSS.imgName }
@@ -61,11 +62,7 @@ function RoomDetail(){
                 <table className={ RoomDetailCSS.editTable }>
                     <tbody>
                         <tr>
-                            <th>회의실 번호</th>
-                            <td>{ room.roomNo || '' }</td>
-                        </tr>
-                        <tr>
-                            <th>회의실 명</th>
+                            <th>회의실 명칭</th>
                             <td>{ room.roomName || '' }</td>
                         </tr>
                         <tr>
@@ -74,7 +71,7 @@ function RoomDetail(){
                         </tr>
                         <tr>
                             <th>회의실 수용 인원</th>
-                            <td>{ room.roomCapacity || '' }</td>
+                            <td>최대 { room.roomCapacity || '' } 인</td>
                         </tr>
                     </tbody>
                 </table>
