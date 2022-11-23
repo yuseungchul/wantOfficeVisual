@@ -1,7 +1,8 @@
 .roomListDiv{
     float: left;
     width: 120vh;
-    margin: 10px;
+    margin: 20px;
+    cursor: pointer;
 }
 
 .roomListDiv h2 {
@@ -25,13 +26,13 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: burlywood;
+    background-color: #D34C4C;
 }
 
 .roomPgs{
     text-align: center;
     float: left;
-    margin-top: 350px;
     position: relative;
-    right:550px;
+    left:47%;
+    
 }

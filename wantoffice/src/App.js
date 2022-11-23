@@ -10,7 +10,7 @@ import Attendance from "./pages/attendance/Attendance";
 import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
-
+import ReservationList from "./pages/room/ReservationList";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
+          {/* <Route path="room/rvlist" element={ <ReservationList/> }/> */}
         </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>
