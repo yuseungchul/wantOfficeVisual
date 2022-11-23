@@ -9,6 +9,7 @@ import RoomList from "./pages/room/RoomList";
 import Attendance from "./pages/attendance/Attendance";
 import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
+import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 
 
 function App() {
@@ -18,9 +19,11 @@ function App() {
         <Route path="/" element={ <Login/> }/>
           <Route path="/main" element={ <Layout/> }/>
           <Route path="/" element={ <Main/> }/>
-          <Route path="attendance" element={ <Attendance/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
+        </Route>
+        <Route path="attendance" element={<AttendanceLayout/>}>
+          <Route index element={ <Attendance/> }/>
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
