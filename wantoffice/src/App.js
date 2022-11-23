@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/contents/member/Login";
+import Login from "./pages/contents/Login";
 import Layout from "./layouts/Layout";
-import Main from "./pages/contents/member/Main";
+import Main from "./pages/contents/Main";
 import CalendarLayout from "./layouts/CalendarLayout";
 import Calendar from "./pages/Calendar";
 import Error from "./pages/Error";
