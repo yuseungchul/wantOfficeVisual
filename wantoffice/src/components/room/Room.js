@@ -7,7 +7,7 @@ function Room({ room : {roomNo, roomName, roomLocation, roomCapacity, roomFileUr
     const navigate = useNavigate();
 
     const onClickRoomHandler = (roomNo) => {
-        navigate(`/api/room/room${roomNo}`, { replace : false });
+        navigate(`/room/rooms/${roomNo}`, { replace : false });
     }
 
     return(
@@ -15,7 +15,7 @@ function Room({ room : {roomNo, roomName, roomLocation, roomCapacity, roomFileUr
             className={ RoomCSS.roomDiv }
             onClick={ () => onClickRoomHandler(roomNo) }
         >
-            <img src={ roomImage } alt="예시"/>
+            <img src={ roomFileUrl } alt="예시"/>
             <h6>{ roomName }</h6>
         </div>
     );

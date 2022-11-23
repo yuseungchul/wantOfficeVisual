@@ -24,7 +24,7 @@ function App() {
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
-          <Route path="/rooms/:roomNo" element={ <RoomDetail/> }/>
+          <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
         </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>
