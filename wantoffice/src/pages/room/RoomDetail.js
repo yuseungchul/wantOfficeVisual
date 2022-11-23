@@ -47,6 +47,7 @@ function RoomDetail(){
     return(
         <>
             {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
+            <h2 className={ RoomDetailCSS.DetailTitle }>회의실 상세 보기</h2>
             <div className={ RoomDetailCSS.DetailDiv }>
                 <div className={ RoomDetailCSS.imgsDiv }>
                     <img src={ room.roomFileUrl } alt="테스트"/>
@@ -55,7 +56,7 @@ function RoomDetail(){
                         { room.roomName }
                     </p>
                 </div>
-            </div>
+            
             <div className={ RoomDetailCSS.editDiv }>
                 <table className={ RoomDetailCSS.editTable }>
                     <tbody>
@@ -81,9 +82,10 @@ function RoomDetail(){
                     className={ RoomDetailCSS.roomResBtn }
                     // onClick={ onClickReservationHandler }
                 >
-                    예약 신청 하기
+                    예약 전체 조회
                 </button>
             </div>
+          </div>
         </>
     );
 

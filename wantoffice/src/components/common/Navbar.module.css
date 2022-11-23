@@ -29,15 +29,19 @@ ul{
 }
 
 li{
-   margin-left: -20px;
+
    padding-bottom: 30px;
-   color: aliceblue;
+   color: #ffffff;
    font-weight: bold;
 }
 
-li > img {
-   padding-right: 10px;
-   margin-left: 0%;
-   background-color: re;
+a{
+   text-Decoration: none;
+   color: #ffffff;
+   font-size: 16px;
+}
+
+a:hover{
+   color: #D34C4C;
 }
 

@@ -35,6 +35,7 @@ function RoomList(){
         <>
            
             <div className={RoomListCSS.roomListDiv}>
+                <h2>회의실 시설 안내</h2>
                 {
                     Array.isArray(roomList)
                     && roomList.map((room) => (<Room key={ room.roomNo } room={ room }/>))
