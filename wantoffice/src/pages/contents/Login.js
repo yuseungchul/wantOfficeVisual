@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { callLoginAPI } from '../../../apis/MemberAPICalls';
+import { callLoginAPI } from '../../apis/MemberAPICalls';
 
 function Login() {
 

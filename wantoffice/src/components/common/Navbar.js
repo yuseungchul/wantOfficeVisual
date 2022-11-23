@@ -1,9 +1,23 @@
-
 import NavCSS from "./Navbar.module.css";
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { callLogoutAPI } from "../../apis/MemberAPICalls";
 
 function Navbar() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onClickLogoHandler = () => {
+        navigate("/Main", { replace : true });
+    }
+
+    const onClickLogoutHandler = () => {
+        window.localStorage.removeItem('accessToken');
+        dispatch(callLogoutAPI());
+        alert('로그아웃 되었습니다.');
+        navigate('/', { replace : true });
+    }
 
     return (
         <>
@@ -28,7 +42,7 @@ function Navbar() {
                     {/* { decoded === "ROLE_ADMIN" && <li><NavLink to="/rooms-management">회의실 관리</NavLink></li> } */}
                     <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>Direct Message</NavLink></li>
                     
-                    <li className={NavCSS.Log}><NavLink to="/">Logout</NavLink></li>
+                    <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/">Logout</NavLink></li>
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>관리자 로그인</NavLink></li>
                 </ul>
               </div>

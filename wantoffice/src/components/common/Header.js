@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { callLogoutAPI } from '../../apis/MemberAPICalls';
 import HeaderCSS from "./Header.module.css";
 import { decodeJwt } from "../../utils/tokenUtils";
 
@@ -13,17 +12,6 @@ function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loginModal, setLoginModal] = useState(false);
-
-    const onClickLogoHandler = () => {
-        navigate("/Main", { replace : true });
-    }
-
-    const onClickHandler = () => {
-        window.localStorage.removeItem('accessToken');
-        dispatch(callLogoutAPI());
-        alert('로그아웃 되었습니다.');
-        navigate('/', { replace : true });
-    }
 
     const onClickMyPageHandler = () => {
         
