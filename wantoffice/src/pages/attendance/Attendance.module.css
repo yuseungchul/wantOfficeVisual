@@ -1,0 +1,35 @@
+.DateP {
+    font-size: 25px;
+    color: #505050;
+}
+
+.Hr {
+    width: 20%;
+    margin: 15px 0;
+}
+
+.ClockP {
+    font-size: 75px;
+    font-weight: bold;
+    color: #505050;
+    margin-bottom: 30px;
+}
+
+.InOutButton {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:2px solid #739ca5;
+	display:inline-block;
+	cursor:pointer;
+	color:#739ca5;
+	font-size:17px;
+	font-weight:bold;
+	padding:5px 40px;
+	text-decoration:none;
+    margin: 0 8px;
+}
+
+.InOutButton:active {
+    position:relative;
+	top:1px;
+}
