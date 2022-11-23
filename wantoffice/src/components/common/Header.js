@@ -27,8 +27,8 @@ function Header() {
         <>
             <div className={ HeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>Notice</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>Main board</NavLink></li>
+                    <li><NavLink to="/">Notice</NavLink></li>
+                    <li><NavLink to="/">Main board</NavLink></li>
                 </ul>
 
             </div>
@@ -36,10 +36,10 @@ function Header() {
             <div className={HeaderCSS.SubmenuDiv}>
                 <h2>Sub menu</h2>
                 <ul>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu1</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu2</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu3</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu4</NavLink></li>
+                    <li><NavLink to="/">&#9654; Sub menu1</NavLink></li>
+                    <li><NavLink to="/">&#9654; Sub menu2</NavLink></li>
+                    <li><NavLink to="/">&#9654; Sub menu3</NavLink></li>
+                    <li><NavLink to="/">&#9654; Sub menu4</NavLink></li>
                 </ul>
             </div>
         </>

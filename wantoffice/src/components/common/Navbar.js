@@ -29,21 +29,21 @@ function Navbar() {
                 <ul>
 
 
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconHome.png'} alt="홈로고"/>Home</NavLink></li>
-                    <li><NavLink to="/attendance" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/>Attendance</NavLink></li>
-                    <li><NavLink to="/calendar" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/>Schedule</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="게시판로고"/>Board</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSurvey.png'} alt="설문로고"/>Survey</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/>EDSM</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/>Library</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/>Business card</NavLink></li>
-                    <li><NavLink to="/room" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/>Reservation</NavLink></li>
-
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconHome.png'} alt="홈로고"/>HOME</NavLink></li>
+                    <li><NavLink to="/attendance"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/>ATTENDANCE</NavLink></li>
+                    <li><NavLink to="/calendar"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/>SCHEDULE</NavLink></li>
+                    <li><NavLink to="/room"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/>RESERVATTION</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/>EDSM</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="공지로고"/>NOTICE</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/>LIBRARY</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/>BUSINESS CARD</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>DM</NavLink></li>
                     {/* { decoded === "ROLE_ADMIN" && <li><NavLink to="/rooms-management">회의실 관리</NavLink></li> } */}
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>Direct Message</NavLink></li>
+                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/>MANAGEMENT</NavLink></li>
+                    <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/">LOGOUT</NavLink></li>
                     
-                    <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/">Logout</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}>관리자 로그인</NavLink></li>
+                    
+                    
                 </ul>
               </div>
           

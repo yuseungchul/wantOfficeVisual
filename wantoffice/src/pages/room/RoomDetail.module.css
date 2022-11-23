@@ -1,0 +1,48 @@
+.DetailDiv{
+
+}
+
+/* .DetailTitle{
+    border-top: 1px solid #8d8d8d;
+    border-bottom: 1px solid #8d8d8d;
+    text-align: center;
+    width: 90%;
+} */
+
+.imgsDiv{
+    float: left;
+}
+
+.imgName{
+
+}
+
+.editDiv{
+    float: left;
+}
+
+.editTable{
+
+}
+
+.roomResBtn{
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:24px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.roomResBtn:hover {
+	background-color:#739ca5;
+}
+.roomResBtn:active {
+	position:relative;
+	top:1px;
+}
