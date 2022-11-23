@@ -14,10 +14,14 @@ function App() {
       <Routes>
         <Route path="/" element={ <Login/> }/>
           <Route path="/main" element={ <Layout/> }/>
-          <Route path="room" element={ <RoomList/> }/>
+          <Route index element={ <Main/> }/>
           <Route path="attendance" element={ <Attendance/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
+        </Route>
+        <Route path="/room" element={<RoomLayout/>}>
+          <Route index element={ <RoomList/> }/>
+          <Route path="/rooms/:roomNo" element={ <RoomDetail/> }/>
         </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>
