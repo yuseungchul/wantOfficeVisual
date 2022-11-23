@@ -1,4 +1,4 @@
-import { POST_IN, GET_IN, POST_OUT, GET_OUT } from "../modules/AttendanceModule";
+import { POST_IN, GET_IN_OUT, POST_OUT } from "../modules/AttendanceModule";
 
 export const callInRegistAPI = () => {
 
@@ -24,9 +24,9 @@ export const callInRegistAPI = () => {
 
 }
 
-export const callInAPI = () => {
+export const callInOutAPI = () => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/attendance/in`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/attendance/inout`;
 
     return async (dispatch, getState) => {
 
@@ -42,7 +42,7 @@ export const callInAPI = () => {
 
         if(result.status === 200) {
             console.log('[AttendanceAPICalls] callInAPI result : ', result);
-            dispatch({ type: GET_IN, payload: result.data });
+            dispatch({ type: GET_IN_OUT, payload: result.data });
         }
 
     }
@@ -67,31 +67,6 @@ export const callOutRegistAPI = () => {
         if(result.status === 200) {
             console.log('[AttendanceAPICalls] callOutRegistAPI result : ', result);
             dispatch({ type: POST_OUT, payload: result.data });
-        }
-
-    }
-
-}
-
-export const callOutAPI = () => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/attendance/out`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[AttendanceAPICalls] callOutAPI result : ', result);
-            dispatch({ type: GET_OUT, payload: result.data });
         }
 
     }
