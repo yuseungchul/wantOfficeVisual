@@ -6,7 +6,7 @@ function Main() {
 
     return(
         <>
-            <div className={ MainCSS.HeaderDiv }>
+            {/* <div className={ MainCSS.HeaderDiv }>
                 <ul>
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>Notice</NavLink></li>
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>Main board</NavLink></li>
@@ -22,7 +22,7 @@ function Main() {
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu3</NavLink></li>
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>&#9654; Sub menu4</NavLink></li>
                 </ul>
-            </div>
+            </div> */}
 
             <div className={MainCSS.ContentDiv}></div>
 
