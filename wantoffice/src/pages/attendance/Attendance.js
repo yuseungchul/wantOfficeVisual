@@ -1,17 +1,18 @@
-import { useDispatch } from "react-redux";
-import { callInRegistAPI, callOutRegistAPI } from "../../apis/AttendanceAPICalls";
+import { useDispatch, useSelector } from "react-redux";
+import { callInOutAPI, callInRegistAPI, callOutRegistAPI } from "../../apis/AttendanceAPICalls";
 import Clock from "./Clock";
 import AttendanceCSS from './Attendance.module.css';
+import { useEffect } from "react";
 
 
 function Attendance() {
 
     const dispatch = useDispatch();
+    const attendance = useSelector(state => state.attendanceReducer);
+    const attendanceDetail = attendance.data;
 
     const onClickInHandler = () => {
-        dispatch(callInRegistAPI({
-
-        }));
+        dispatch(callInRegistAPI());
     }
 
     const onClickOutHandler = () => {
@@ -19,6 +20,10 @@ function Attendance() {
 
         }));
     }
+
+    useEffect(() => {
+        dispatch(callInOutAPI());
+    }, [attendanceDetail]);
 
     return (
         <>
@@ -39,6 +44,8 @@ function Attendance() {
                     </button>
                 }
             </div>
+            <h3>{ attendance.attIn }</h3>
+            <h3>{ attendance.attOut || '' }</h3>
         </>
     );
 
