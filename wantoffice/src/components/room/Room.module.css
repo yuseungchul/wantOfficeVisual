@@ -7,9 +7,9 @@
 }
 
 .roomDiv img {
-    width: 260px;
-    height: 180px;
-    /* object-fit: contain; */
+    width: 200px;
+    height: 120px;
+    object-fit: contain;
 }
 
 .roomDiv h6 {

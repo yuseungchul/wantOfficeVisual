@@ -3,7 +3,7 @@
    border-bottom: 1px solid  #C6C6C6;
    width: 86%;
    margin-left: 20px;
-   text-decoration: none;
+   
 }
 
 .HeaderDiv > ul > li {
@@ -13,6 +13,15 @@
    padding-top: 20px;
    color: #8D8D8D;
 
+}
+
+.HeaderDiv > ul > li > a{
+   color: #8D8D8D;
+   text-decoration: none;
+}
+
+.HeaderDiv > ul > li > a:hover{
+   color: #D34C4C;
 }
 
 .SubmenuDiv{
@@ -32,4 +41,13 @@
 .SubmenuDiv ul li{
 
    color: #5a5a5a;
+}
+
+.SubmenuDiv > ul > li > a{
+   color: #5a5a5a;
+   text-decoration: none;
+}
+
+.SubmenuDiv > ul > li > a:hover{
+   color: #D34C4C;
 }

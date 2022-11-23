@@ -27,19 +27,16 @@ function Header() {
         <>
             <div className={ HeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/">Notice</NavLink></li>
-                    <li><NavLink to="/">Main board</NavLink></li>
+                    <li><NavLink to="/">홈</NavLink></li>
+                    <li><NavLink to="/">마이페이지</NavLink></li>
                 </ul>
 
             </div>
 
             <div className={HeaderCSS.SubmenuDiv}>
-                <h2>Sub menu</h2>
+                <h2>내 정보</h2>
                 <ul>
-                    <li><NavLink to="/">&#9654; Sub menu1</NavLink></li>
-                    <li><NavLink to="/">&#9654; Sub menu2</NavLink></li>
-                    <li><NavLink to="/">&#9654; Sub menu3</NavLink></li>
-                    <li><NavLink to="/">&#9654; Sub menu4</NavLink></li>
+                    <li><NavLink to="/">&#9654; 내 정보</NavLink></li>
                 </ul>
             </div>
         </>
