@@ -28,7 +28,7 @@ function Navbar() {
                     {/* { decoded === "ROLE_ADMIN" && <li><NavLink to="/rooms-management">회의실 관리</NavLink></li> } */}
                     <li><NavLink to="/" style={{ textDecoration: "none" }}><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>Direct Message</NavLink></li>
                     
-                    <li className={NavCSS.Log}><NavLink to="/">Login</NavLink></li>
+                    <li className={NavCSS.Log}><NavLink to="/">Logout</NavLink></li>
                     <li><NavLink to="/" style={{ textDecoration: "none" }}>관리자 로그인</NavLink></li>
                 </ul>
               </div>
