@@ -10,7 +10,7 @@ import Attendance from "./pages/attendance/Attendance";
 import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
-import ReservationList from "./pages/room/ReservationList";
+// import ReservationList from "./pages/room/ReservationList";
 
 function App() {
   return (
