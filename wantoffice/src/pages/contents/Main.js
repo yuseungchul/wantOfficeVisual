@@ -5,7 +5,7 @@ function Main() {
 
     return(
         <>
-            <div className={MainCSS.ContentDiv}></div>
+            <div className={MainCSS.ContentDiv}>1</div>
         </>
 
 
