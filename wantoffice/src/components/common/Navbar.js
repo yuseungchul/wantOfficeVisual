@@ -35,7 +35,7 @@ function Navbar() {
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/>BUSINESS CARD</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/>DM</NavLink></li>
                     {/* { decoded === "ROLE_ADMIN" && <li><NavLink to="/rooms-management">회의실 관리</NavLink></li> } */}
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/>MANAGEMENT</NavLink></li>
+                    <li><NavLink to="/member"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/>MANAGEMENT</NavLink></li>
                     <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/">LOGOUT</NavLink></li>
                     
                     
