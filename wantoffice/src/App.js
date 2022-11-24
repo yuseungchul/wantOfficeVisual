@@ -11,6 +11,7 @@ import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 import ReservationList from "./pages/room/ReservationList";
+import MyAttList from "./pages/attendance/MyAttList";
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
         </Route>
-        <Route path="attendance" element={<AttendanceLayout/>}>
+        <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route index element={ <Attendance/> }/>
+          <Route path="/attendance/my" element={ <MyAttList/> }/>
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
