@@ -12,13 +12,16 @@ function ReservationList(){
     const reservationList = reservations.data;
     const [currentPage, setCurrentPage] = useState(1);
 
+    console.log(reservations, reservationList, currentPage);
+
     useEffect(
         () => {
+            console.log('useEffect 동작 확인');
             dispatch(callReservationListAPI({
                 currentPage : currentPage
             }));
         },
-        [currentPage]
+        []
     );
     
     /* 페이징 */
@@ -36,7 +39,7 @@ function ReservationList(){
                 <h2>회의실 예약 안내</h2>
                 {
                     Array.isArray(reservationList)
-                    && reservationList.map((reservation) => (<ReservationList key={ reservation.reservationNo } reservation={ reservation }/>))
+                    && reservationList.map((reservation) => (<Reservation key={ reservation.reservationNo } reservation={ reservation }/>))
                 }
                 
             <div className={ ReservationListCSS.rvPgs }>
