@@ -10,6 +10,8 @@
 npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
 npm install style-loader css-loader sass-loader node-sass --save
 npm install --save @fullcalendar/google-calendar
+npm install react-datepicker --save
+npm install date-fns --save
 npm install jwt-decode
 npm install react-router-dom
 npm install redux
