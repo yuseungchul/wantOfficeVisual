@@ -3,6 +3,7 @@ import Reservation from "../../components/room/Reservation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callReservationListAPI } from '../../apis/RoomAPICalls';
+import { NavLink } from "react-router-dom";
 
 
 function ReservationList(){
@@ -37,6 +38,14 @@ function ReservationList(){
         <>
             <div className={ReservationListCSS.rvListDiv}>
                 <h2>회의실 예약 안내</h2>
+                <table className={ReservationListCSS.rvtblDiv}>
+                    <th>순번</th>
+                    <th style={{"padding-left":"8px"}}>예약 시간</th>
+                    <th style={{"padding-left":"26px"}}>예약 날짜</th>
+                    <th style={{"padding-left":"40px"}}>예약 상태</th>
+                    <th style={{"padding-left":"28px"}}>회의실 이름</th>
+                    <th style={{"padding-left":"8px"}}>사원 ID</th>
+                </table>
                 {
                     Array.isArray(reservationList)
                     && reservationList.map((reservation) => (<Reservation key={ reservation.reservationNo } reservation={ reservation }/>))

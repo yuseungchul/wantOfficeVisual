@@ -1,20 +1,16 @@
-.RvDiv{
-    width: 180px;
-    height: 200px;
-    padding: 30px;
-    text-align: center;
-    
-}
-/* 
-.RvDiv th, tr, td {
-    border: 1px solid #000;
-} */
-
-
-.RvDiv td{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 18px;
+.rvtbdDiv {
+    margin-left: 20%;
+    padding: 4px;
+    font-size: 16px;
     color: #8D8D8D;
-    padding-left: 80px;
+}
+
+.rvtbdDiv > td {
+    color: #8D8D8D;
+    padding: 5px 50px;
+    border-bottom: 1px solid #8d8d8d;
+} 
+
+.rvtbdDiv > td:hover {
+    color: #fd9797;
 }

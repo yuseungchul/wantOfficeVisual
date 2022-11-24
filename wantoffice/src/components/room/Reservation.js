@@ -9,33 +9,23 @@ function Reservation({reservation}){
     }
 
     return(
-        <table
+        <>
+        <div
             className={ ReservationCSS.RvDiv }
             onClick={ () => onClickReservationHandler(reservation.reservationNo) }
         >
-            
-            <tr>
-                <th>예약 시간</th>
-            
-                <td>{ reservation.reservationTime }</td>
-                
-                
-                    <th>예약 날짜</th>
-                    <td>{ reservation.reservationDate }</td>
-             
-                    <th>예약 상태</th>
-                    <td>{ reservation.reservationStatus }</td>
-                
-                
-                    <th>회의실</th>
-                    <td>{ reservation.room.roomNo }</td>
-                
-                
-                    <th>예약 시간</th>
-                    <td>{ reservation.member.memberId }</td>
-                    </tr>
-            
-        </table>
+            <table className={ReservationCSS.rvtbdDiv}> 
+                <td>
+                    { reservation.reservationNo }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.reservationTime } 시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.reservationDate } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.reservationStatus } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.room.roomName } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.member.memberId } 
+                </td>
+            </table>
+        </div>
+        </>
     );
 
 }

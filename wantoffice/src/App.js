@@ -12,6 +12,8 @@ import RoomDetail from "./pages/room/RoomDetail";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 import ReservationList from "./pages/room/ReservationList";
 import MyAttList from "./pages/attendance/MyAttList";
+import ReservDetail from "./pages/room/ReservDetail";
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="room/rvlist" element={ <ReservationList/> }/>
+          <Route path="room/rvlists/:reservationNo" element={ <ReservDetail/> }/>
         </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>
