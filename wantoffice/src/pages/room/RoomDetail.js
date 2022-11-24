@@ -1,9 +1,11 @@
-// import roomReducer from "../../modules/roomModule";
+import roomReducer from "../../modules/roomModule";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import RoomDetailCSS from './RoomDetail.module.css';
 import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
+import LoginModal from '../../components/common/LoginModal';
 
 function RoomDetail(){
     
@@ -12,7 +14,7 @@ function RoomDetail(){
     const room = useSelector(state => state.roomReducer);
     const params = useParams();
     const roomNo = params.roomNo;
-    // const [loginModal, setLoginModal] = useState(false);
+    const [loginModal, setLoginModal] = useState(false);
 
     useEffect(
         () => {
@@ -24,29 +26,29 @@ function RoomDetail(){
     );
 
     /* 예약신청 버튼 이벤트 */    
-    // const onClickReservationHandler = () => {
+    const onClickReservationHandler = () => {
 
-    //     // 로그인 상태 확인
-    //     const token = decodeJwt(window.localStorage.getItem("accessToken"));
-    //     console.log('[onClickReservationHandler] token : ', token);
+        // 로그인 상태 확인
+        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+        console.log('[onClickReservationHandler] token : ', token);
 
-    //     if(!token) {
-    //         alert("신청 전 로그인 확인이 필요합니다.");
-    //         setLoginModal(true);
-    //         return;
-    //     }
+        if(!token) {
+            alert("신청 전 로그인 확인이 필요합니다.");
+            setLoginModal(true);
+            return;
+        }
 
-    //     // 토큰 만료시 재 로그인
-    //     if(token.exp * 1000 < Date.now()) {
-    //         setLoginModal(true);
-    //         return;
-    //     }
-    //    navigate("/rooms${room.roomNo}", { replace : true });
-    // }
+        // 토큰 만료시 재 로그인
+        if(token.exp * 1000 < Date.now()) {
+            setLoginModal(true);
+            return;
+        }
+       navigate(`/room/rvlist/${room.roomNo}`, { replace : true });
+    }
 
     return(
         <>
-            {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
+            { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
             
             <div className={ RoomDetailCSS.DetailDiv }>
             <h2>회의실 상세 보기</h2>
@@ -75,12 +77,13 @@ function RoomDetail(){
                         </tr>
                     </tbody>
                 </table>
-                <button
+                <NavLink
+                    to="room/rvlist"
                     className={ RoomDetailCSS.roomResBtn }
-                    // onClick={ onClickReservationHandler }
+                    onClick={ onClickReservationHandler }
                 >
                     예약 전체 조회
-                </button>
+                </NavLink>
             </div>
           </div>
         </>

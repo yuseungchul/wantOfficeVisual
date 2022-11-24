@@ -1,0 +1,13 @@
+.pagingBtn{
+    margin-top: 100px;
+    margin: 100px 10px 10px 10px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: #D34C4C;
+}

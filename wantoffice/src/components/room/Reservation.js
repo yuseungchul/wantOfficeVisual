@@ -20,15 +20,15 @@ function Reservation({reservation}){
                 <td>{ reservation.reservationTime }</td>
                 
                 
-                    <th>예약 시간</th>
+                    <th>예약 날짜</th>
                     <td>{ reservation.reservationDate }</td>
              
-                    <th>예약 시간</th>
+                    <th>예약 상태</th>
                     <td>{ reservation.reservationStatus }</td>
                 
                 
-                    <th>예약 시간</th>
-                    <td>{ reservation.room.roomName }</td>
+                    <th>회의실</th>
+                    <td>{ reservation.room.roomNo }</td>
                 
                 
                     <th>예약 시간</th>
