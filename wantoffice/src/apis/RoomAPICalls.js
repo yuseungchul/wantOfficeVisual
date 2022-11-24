@@ -5,11 +5,14 @@ export const callRoomListAPI = ({currentPage = 1}) => {
 
     return async (dispatch, getState) => {
 
+        console.log('callRoomListAPI 동작 확인');
+
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
                 "Content-Type" : "application/json",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
         })
         .then(response => response.json());
@@ -31,7 +34,9 @@ export const callRoomDetailAPI = ({roomNo}) => {
             method : "GET",
             headers : {
                 "Content-Type" : "application/json",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            
             }
         })
         .then(response => response.json());
@@ -45,23 +50,26 @@ export const callRoomDetailAPI = ({roomNo}) => {
 }
 
 /* 회의실 예약 전체 조회 */
-// export const callReservationListAPI = ({currentPage = 1}) => {
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists?page=${currentPage}`;
+export const callReservationListAPI = ({currentPage = 1}) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists?page=${currentPage}`;
 
-//     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
 
-//         const result = await fetch(requestURL, {
-//             method : "GET",
-//             headers : {
-//                 "Content-Type" : "application/json",
-//                 "Accept": "*/*"
-//             }
-//         })
-//         .then(response => response.json());
+        console.log('callReservationListAPI 동작 확인');
 
-//         if(result.status === 200) {
-//             console.log('[ReservationAPICalls] callReservationListAPI result : ', result);
-//             dispatch({ type: GET_ROOMS, payload: result.data });
-//         }
-//     }
-// }
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[ReservationAPICalls] callReservationListAPI result : ', result);
+            dispatch({ type: GET_ROOMS, payload: result.data });
+        }
+    }
+}

@@ -1,24 +1,41 @@
 import ReservationCSS from "./Reservation.module.css";
 import { useNavigate } from 'react-router-dom';
-function Reservation({ reservation : {reservationNo, reservationTime, reservationDate, reservationStatus, reservationPurpose, reservationRemoveStatus, roomName, memberName, roomImage}}){
+function Reservation({reservation}){
     
     const navigate = useNavigate();
 
     const onClickReservationHandler = (reservationNo) => {
-        navigate(`/room/rvlists/${reservationNo}`, { replace : false });
+        navigate(`/room/rvlist/${reservationNo}`, { replace : false });
     }
 
     return(
-        <div
+        <table
             className={ ReservationCSS.RvDiv }
-            onClick={ () => onClickReservationHandler(reservationNo) }
+            onClick={ () => onClickReservationHandler(reservation.reservationNo) }
         >
-            <h6>{ reservationTime }</h6>
-            <h6>{ reservationDate }</h6>
-            <h6>{ reservationStatus }</h6>
-            <h6>{ roomName }</h6>
-            <h6>{ memberName }</h6>
-        </div>
+            
+            <tr>
+                <th>예약 시간</th>
+            
+                <td>{ reservation.reservationTime }</td>
+                
+                
+                    <th>예약 시간</th>
+                    <td>{ reservation.reservationDate }</td>
+             
+                    <th>예약 시간</th>
+                    <td>{ reservation.reservationStatus }</td>
+                
+                
+                    <th>예약 시간</th>
+                    <td>{ reservation.room.roomName }</td>
+                
+                
+                    <th>예약 시간</th>
+                    <td>{ reservation.member.memberId }</td>
+                    </tr>
+            
+        </table>
     );
 
 }

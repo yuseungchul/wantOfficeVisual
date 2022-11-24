@@ -1,12 +1,17 @@
 .RvDiv{
     width: 180px;
     height: 200px;
-    padding: 40px;
-    float: left;
+    padding: 30px;
     text-align: center;
+    
 }
+/* 
+.RvDiv th, tr, td {
+    border: 1px solid #000;
+} */
 
-.RvDiv h6{
+
+.RvDiv td{
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 18px;
