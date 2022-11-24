@@ -1,15 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderCSS from "./Header.module.css";
 import { decodeJwt } from "../../utils/tokenUtils";
+import LoginModal from './LoginModal';
 
 
 function Header() {
 
-    const isLogin = window.localStorage.getItem('accessToken');
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loginModal, setLoginModal] = useState(false);
 
@@ -20,15 +17,21 @@ function Header() {
             setLoginModal(true);
             return;
         }
-        navigate("/Main", { replace : true });
+        navigate("/main", { replace : true });
     }
 
     return (
+      
         <>
+            { loginModal ? <LoginModal setLoginModal={ setLoginModal} /> : null }
             <div className={ HeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/">홈</NavLink></li>
-                    <li><NavLink to="/">마이페이지</NavLink></li>
+                    <li><button 
+                        className={ HeaderCSS.HeaderBtn }
+                        onClick={ onClickMyPageHandler }
+                    >
+                        마이페이지
+                    </button></li>
                 </ul>
 
             </div>
@@ -40,6 +43,7 @@ function Header() {
                 </ul>
             </div>
         </>
+
     );
 
 }

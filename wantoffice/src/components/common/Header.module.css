@@ -51,3 +51,10 @@
 .SubmenuDiv > ul > li > a:hover{
    color: #D34C4C;
 }
+
+.HeaderBtn {
+   padding: 0;
+   border: none;
+   background: none;
+   cursor: pointer;
+}
