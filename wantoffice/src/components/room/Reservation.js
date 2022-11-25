@@ -5,7 +5,7 @@ function Reservation({reservation}){
     const navigate = useNavigate();
 
     const onClickReservationHandler = (reservationNo) => {
-        navigate(`/room/rvlist/${reservationNo}`, { replace : false });
+        navigate(`/room/rvlists/${reservationNo}`, { replace : false });
     }
 
     return(
@@ -16,11 +16,11 @@ function Reservation({reservation}){
         >
             <table className={ReservationCSS.rvtbdDiv}> 
                 <td>
-                    { reservation.reservationNo }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    { reservation.reservationTime } 시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    { reservation.reservationDate } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    { reservation.reservationStatus } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    { reservation.room.roomName } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    { reservation.reservationNo } 　　　
+                    { reservation.reservationTime } 시간 　　　　
+                    { reservation.reservationDate } 　　　　
+                    { reservation.reservationStatus } 　　　　
+                    { reservation.room.roomName } 　　　
                     { reservation.member.memberId } 
                 </td>
             </table>

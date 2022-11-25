@@ -16,17 +16,17 @@ function Header() {
         <>
             <div className={ AttendanceHeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/attendance" style={{ textDecoration: "none", color: "#8D8D8D" }}>근태</NavLink></li>
-                    <li><NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>연차</NavLink></li>
+                    <li><NavLink to="/attendance">근태</NavLink></li>
+                    <li><NavLink to="/">연차</NavLink></li>
                 </ul>
 
             </div>
 
-            <div className={ AttendanceHeaderCSS.SubmenuDiv }>
+            {/* <div className={ AttendanceHeaderCSS.SubmenuDiv }>
                 <p>근태</p>
                 <ul>
                     <li><NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 내 근태 월별 조회</NavLink></li>
-                    {/* { decoded === "ROLE_ADMIN" && <li> <NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 날짜별 근태 조회</NavLink></li> } */}
+                    { decoded === "ROLE_ADMIN" && <li> <NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 날짜별 근태 조회</NavLink></li> }
                     <li> <NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 날짜별 근태 조회</NavLink></li>
                 </ul>
 
@@ -35,7 +35,7 @@ function Header() {
                     <li><NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 연차 신청</NavLink></li>
                     <li><NavLink to="/" style={{ textDecoration: "none", color: "#8D8D8D" }}>&#9654; 연차 신청 조회</NavLink></li>
                 </ul>
-            </div>
+            </div> */}
         </>
     );
 

@@ -14,7 +14,7 @@ function Header() {
 
             </div>
 
-            <div className={RoomHeaderCSS.SubmenuDiv}>
+            {/* <div className={RoomHeaderCSS.SubmenuDiv}>
                 <p>회의실 조회</p>
                 <ul>
                     <li><NavLink to="/room">&#9654; 회의실 조회</NavLink></li>
@@ -26,7 +26,7 @@ function Header() {
                     <li key="2"><NavLink to="/">&#9654; 회의실 예약 등록</NavLink></li>
                     <li key="3"><NavLink to="/">&#9654; 회의실 예약 수정</NavLink></li>
                 </ul>
-            </div>
+            </div> */}
         </>
     );
 

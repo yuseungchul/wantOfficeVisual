@@ -2,7 +2,7 @@ import RoomCSS from "./Room.module.css";
 import { useNavigate } from 'react-router-dom';
 
 
-function Room({ room : {roomNo, roomName, roomLocation, roomCapacity, roomFileUrl, roomImage} }){
+function Room({ room : {roomNo, roomName, roomFileUrl} }){
 
     const navigate = useNavigate();
 
