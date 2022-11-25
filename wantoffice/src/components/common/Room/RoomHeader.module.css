@@ -38,3 +38,19 @@
    color: #8D8D8D;
    font-size: 14px;
 }
+
+.SubmenuDiv > ul > li > a{
+   color: #5a5a5a;
+   text-decoration: none;
+}
+
+.SubmenuDiv > ul > li > a:hover{
+   color: #D34C4C;
+}
+
+.HeaderBtn {
+   padding: 0;
+   border: none;
+   background: none;
+   cursor: pointer;
+}

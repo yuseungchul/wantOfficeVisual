@@ -1,4 +1,4 @@
-import roomReducer from "../../modules/roomModule";
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
@@ -78,11 +78,11 @@ function RoomDetail(){
                     </tbody>
                 </table>
                 <NavLink
-                    to="room/rvlist"
+                    to="/room"
                     className={ RoomDetailCSS.roomResBtn }
                     onClick={ onClickReservationHandler }
                 >
-                    예약 전체 조회
+                    뒤로가기
                 </NavLink>
             </div>
           </div>

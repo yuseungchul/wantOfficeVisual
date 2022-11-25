@@ -13,6 +13,7 @@ import Member from "./pages/admin/management/Member";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 import ReservationList from "./pages/room/ReservationList";
 import MyAttList from "./pages/attendance/MyAttList";
+import ReservDetail from "./pages/room/ReservDetail";
 import MemberLayout from "./layouts/management/MemberLayout";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="room/rvlist" element={ <ReservationList/> }/>
+          <Route path="room/rvlists/:reservationNo" element={ <ReservDetail/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
