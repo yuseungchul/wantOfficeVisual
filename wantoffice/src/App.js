@@ -9,11 +9,12 @@ import RoomList from "./pages/room/RoomList";
 import Attendance from "./pages/attendance/Attendance";
 import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
+import Member from "./pages/admin/management/Member";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 import ReservationList from "./pages/room/ReservationList";
 import MyAttList from "./pages/attendance/MyAttList";
 import ReservDetail from "./pages/room/ReservDetail";
-
+import MemberLayout from "./layouts/management/MemberLayout";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="room/rvlist" element={ <ReservationList/> }/>
           <Route path="room/rvlists/:reservationNo" element={ <ReservDetail/> }/>
+        </Route>
+        <Route path="/member" element={ <MemberLayout/> }>
+          <Route index element={ <Member/>}/>
         </Route>
         <Route path="*" element={ <Error/> }/>
       </Routes>

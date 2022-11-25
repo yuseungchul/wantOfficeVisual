@@ -16,6 +16,9 @@ function RegistMember({setRegistModal}) {
         memberPassword : '',
         memberEmail : '',
         memberPhone : '',
+    });
+
+    const [selectValue, setSelectValue] = useState({
         positionNo : '',
         deptNo : ''
     });
@@ -33,6 +36,10 @@ function RegistMember({setRegistModal}) {
     const onChangeHandler = (e) => {
         setForm({
             ...form,
+            [e.target.name] : e.target.value
+        }),
+        setSelectValue({
+            ...selectValue,
             [e.target.name] : e.target.value
         });
     }
@@ -94,9 +101,27 @@ function RegistMember({setRegistModal}) {
                     onChange={ onChangeHandler }
                 />
                 <p>직위</p>
-                <select name="직위" id="">
-                    <option value=""></option>
+                <select name='positionNo' value={ selectValue } onChange={ onChangeHandler }>
+                    <option value="1">대표</option>
+                    <option value="2">전무</option>
+                    <option value="3">상무</option>
+                    <option value="4">부장</option>
+                    <option value="5">차장</option>
+                    <option value="6">과장</option>
+                    <option value="7">대리</option>
+                    <option value="8">주임</option>
+                    <option value="9">사원</option>
                 </select>
+                <p>부서</p>
+                <select name='deptNo' value={ selectValue } onChange={ onChangeHandler }>
+                    <option value="1">인사팀</option>
+                    <option value="2">총무팀</option>
+                    <option value="3">영업팀</option>
+                    <option value="4">마케팅팀</option>
+                    <option value="5">개발팀</option>
+                    <option value="99">관리팀</option>
+                </select>
+                <button onClick={ onClickRegisterHandler }> 등록 </button>
             </div>
         </div>
     )
