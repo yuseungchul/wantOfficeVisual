@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { callLoginAPI } from '../../apis/MemberAPICalls';
+import MainCSS from './Main.module.css';
 
 function Login() {
 
@@ -39,12 +40,15 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className={ MainCSS.loginDiv }>
+            <img  src= {process.env.PUBLIC_URL + '/assets/img/logo.png'} alt="로고"/>
+
             <h3>ID</h3>
             <input
                 type="text"
                 name="memberId"
                 autoComplete='off'
+                placeholder='아이디를 입력해주세요'
                 onChange={ onChangeHandler }
             />
             <h3>PASSWORD</h3>
@@ -52,15 +56,18 @@ function Login() {
                 type="password"
                 name="memberPassword"
                 autoComplete='off'
+                placeholder='비밀번호를 입력해주세요'
                 onChange={ onChangeHandler }
             />
+            <br/>
             <button
                 onClick={ onClickHandler }
+                className={ MainCSS.loginBtn }
             >
-                LOGIN
+                로그인
             </button>
             <div>
-            <p>아이디 찾기</p> | <p>비밀번호 찾기</p>
+            <p>아이디 찾기　|　</p><p>비밀번호 찾기</p>
             </div>
         </div>
     );

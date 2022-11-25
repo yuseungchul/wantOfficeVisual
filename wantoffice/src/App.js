@@ -35,7 +35,7 @@ function App() {
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
-          <Route path="room/rvlist" element={ <ReservationList/> }/>
+          <Route path="room/rvlist/:roomNo" element={ <ReservationList/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>

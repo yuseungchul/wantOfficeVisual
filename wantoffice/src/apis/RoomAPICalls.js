@@ -50,8 +50,8 @@ export const callRoomDetailAPI = ({roomNo}) => {
 }
 
 /* 회의실 예약 전체 조회 */
-export const callReservationListAPI = ({currentPage = 1}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists?page=${currentPage}`;
+export const callReservationListAPI = ({roomNo}) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlist/${roomNo}`;
 
     return async (dispatch, getState) => {
 

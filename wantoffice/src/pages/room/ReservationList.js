@@ -1,95 +1,130 @@
 import ReservationListCSS from "./ReservationList.module.css";
-import Reservation from "../../components/room/Reservation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callReservationListAPI } from '../../apis/RoomAPICalls';
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 
 function ReservationList(){
 
     const dispatch = useDispatch();
-    const reservations = useSelector(state => state.reservationReducer);
-    const reservationList = reservations.data;
-    const [currentPage, setCurrentPage] = useState(1);
+    const reservation = useSelector(state => state.reservationReducer);
+    const reservationList = reservation.data;
+    const params = useParams();
+    const roomNo = params.roomNo;
+    // const [currentPage, setCurrentPage] = useState(1);
 
-    console.log(reservations, reservationList, currentPage);
+    console.log(reservation, reservationList);
+
+    // const date = '2022-11-25';
 
     useEffect(
         () => {
             console.log('useEffect 동작 확인');
             dispatch(callReservationListAPI({
-                currentPage : currentPage
+                roomNo : roomNo
             }));
         },
         []
     );
     
-    /* 페이징 */
-    const pageBtn = reservations.pageBtn;
-    const pageNumber = [];
-    console.log('pageBtn',pageBtn);
-    if(pageBtn){
-        for(let i = pageBtn.startPage; i <= pageBtn.endPage; i++) {
-            pageNumber.push(i);
-        }
-    }
+    
 
     
 
     return(
         <>
+
+            
+{/* { reservation &&  */}
             <div className={ReservationListCSS.rvListDiv}>
                 <h2>회의실 예약 안내</h2>
+                
                 <table className={ReservationListCSS.rvtblDiv}>
                     <th>순번</th>
-                    <th style={{"padding-left":"8px"}}>예약 시간</th>
-                    <th style={{"padding-left":"26px"}}>예약 날짜</th>
-                    <th style={{"padding-left":"40px"}}>예약 상태</th>
-                    <th style={{"padding-left":"28px"}}>회의실 이름</th>
-                    <th style={{"padding-left":"8px"}}>사원 ID</th>
+                    <th>예약 시간</th>
+                    <th>예약 상태</th>
+                    <th> 비고 </th>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>1</td>
+                        <label>
+                        9:00 ~ 10:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>2</td>
+                        <label>
+                        10:00 ~ 11:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>3</td>
+                        <label>
+                        11:00 ~ 12:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>4</td>
+                        <label>
+                        12:00 ~ 13:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>5</td>
+                        <label>
+                        13:00 ~ 14:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>6</td>
+                        <label>
+                        14:00 ~ 15:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>7</td>
+                        <label>
+                        15:00 ~ 16:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>8</td>
+                        <label>
+                        16:00 ~ 17:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
+                    <tr>
+                        <input type="checkbox"/>
+                        <td>9</td>
+                        <label>
+                        17:00 ~ 18:00
+                        </label>
+                        <td>{reservation.reservationStatus}</td>
+                    </tr>
                 </table>
+
                 <NavLink to="/">예약 신청</NavLink>
-                {
-                    Array.isArray(reservationList)
-                    && reservationList.map((reservation) => (<Reservation key={ reservation.reservationNo } reservation={ reservation }/>))
-                }
                 
-            <div className={ ReservationListCSS.rvPgs }>
-                {
-                    Array.isArray(reservationList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage - 1) }
-                        disabled={ currentPage === 1 }
-                        className={ ReservationListCSS.pagingBtn }
-                    >
-                        &lt;
-                    </button>
-                }
-                {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={ () => setCurrentPage(num) }>
-                            <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { ReservationListCSS.pagingBtn }
-                            >
-                                {num}
-                            </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(reservationList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage + 1) }
-                        disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                        className={ ReservationListCSS.pagingBtn }
-                    >
-                        &gt;
-                    </button>
-                }
-                </div>
+                
+            
             </div>
+            {/* } */}
         </>
     );
 

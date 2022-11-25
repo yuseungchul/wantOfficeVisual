@@ -42,8 +42,12 @@ function RoomDetail(){
             setLoginModal(true);
             return;
         }
-       navigate(`/room/rvlists/${room.roomNo}`, { replace : true });
+
+       navigate(`/room/rvlist/${roomNo}`, { replace : true });
     }
+
+
+
 
     return(
         <>
@@ -76,13 +80,12 @@ function RoomDetail(){
                         </tr>
                     </tbody>
                 </table>
-                <NavLink
-                    to="/room"
+                <button
                     className={ RoomDetailCSS.roomResBtn }
                     onClick={ onClickReservationHandler }
                 >
-                    뒤로가기
-                </NavLink>
+                    예약 조회
+                </button>
             </div>
           </div>
         </>
