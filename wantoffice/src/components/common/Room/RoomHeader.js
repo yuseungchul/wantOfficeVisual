@@ -9,24 +9,10 @@ function Header() {
             <div className={ RoomHeaderCSS.HeaderDiv }>
                 <ul>
                     <li><NavLink to="/room">회의실 조회</NavLink></li>
-                    <li><NavLink to="/">회의실 예약 조회</NavLink></li>
+                    <li><NavLink to="room/rvlist">회의실 예약</NavLink></li>
                 </ul>
 
             </div>
-
-            {/* <div className={RoomHeaderCSS.SubmenuDiv}>
-                <p>회의실 조회</p>
-                <ul>
-                    <li><NavLink to="/room">&#9654; 회의실 조회</NavLink></li>
-                </ul>
-
-                <p>회의실 예약 조회</p>
-                <ul>
-                    <li key="1"><NavLink to="room/rvlist">&#9654; 회의실 예약 조회</NavLink></li>
-                    <li key="2"><NavLink to="/">&#9654; 회의실 예약 등록</NavLink></li>
-                    <li key="3"><NavLink to="/">&#9654; 회의실 예약 수정</NavLink></li>
-                </ul>
-            </div> */}
         </>
     );
 
