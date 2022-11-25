@@ -7,15 +7,16 @@ import Calendar from "./pages/Calendar";
 import Error from "./pages/Error";
 import RoomList from "./pages/room/RoomList";
 import Attendance from "./pages/attendance/Attendance";
+import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
 import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
 import Member from "./pages/admin/management/Member";
-import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
+import MemberLayout from "./layouts/management/MemberLayout";
 import ReservationList from "./pages/room/ReservationList";
 // import RoomReservList from "./pages/RoomReserv/RoomReservList";
 import MyAttList from "./pages/attendance/MyAttList";
 import ReservDetail from "./pages/room/ReservDetail";
-import MemberLayout from "./layouts/management/MemberLayout";
+
 
 function App() {
   return (

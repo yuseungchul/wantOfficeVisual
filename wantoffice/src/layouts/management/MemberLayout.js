@@ -1,19 +1,20 @@
-// import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import ManagementHeader from "../../components/common/management/ManagementHeader";
+import Navbar from "../../components/common/Navbar";
 
-// import Navbar from "../components/common/Navbar";
-// function MemberLayout() {
+function MemberLayout() {
 
-//     return (
-//         <>
+    return (
+        <>
             
             
-//             <Navbar />
-//             <RoomHeader />
-//             <main>
-//                 <Outlet />
-//              </main>
-//         </>
-//     );
-// }
+            <Navbar />
+            <ManagementHeader />
+            <main>
+                <Outlet />
+             </main>
+        </>
+    );
+}
 
-// export default MemberLayout;
+export default MemberLayout;
