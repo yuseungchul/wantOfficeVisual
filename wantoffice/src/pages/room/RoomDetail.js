@@ -42,7 +42,7 @@ function RoomDetail(){
             setLoginModal(true);
             return;
         }
-       navigate(`/room/rvlist/${room.roomNo}`, { replace : true });
+       navigate(`/room/rvlists/${room.roomNo}`, { replace : true });
     }
 
     return(

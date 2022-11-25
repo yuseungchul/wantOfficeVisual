@@ -28,11 +28,14 @@ function ReservationList(){
     /* 페이징 */
     const pageBtn = reservations.pageBtn;
     const pageNumber = [];
+    console.log('pageBtn',pageBtn);
     if(pageBtn){
         for(let i = pageBtn.startPage; i <= pageBtn.endPage; i++) {
             pageNumber.push(i);
         }
     }
+
+    
 
     return(
         <>
@@ -46,6 +49,7 @@ function ReservationList(){
                     <th style={{"padding-left":"28px"}}>회의실 이름</th>
                     <th style={{"padding-left":"8px"}}>사원 ID</th>
                 </table>
+                <NavLink to="/">예약 신청</NavLink>
                 {
                     Array.isArray(reservationList)
                     && reservationList.map((reservation) => (<Reservation key={ reservation.reservationNo } reservation={ reservation }/>))

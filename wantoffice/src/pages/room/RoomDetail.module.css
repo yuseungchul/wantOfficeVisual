@@ -11,13 +11,14 @@
     border-bottom: 2px solid #8d8d8d;
     color:#8d8d8d;
     margin-bottom: 50px;
+    margin-top: 80px;
     padding: 20px;
 } 
 
 .imgsDiv{
     float: left;
-    width: 400px;
-    margin-left: 120px;
+    width: 350px;
+    margin-left: 30px;
 }
 
 .imgsDiv > img{
@@ -37,6 +38,7 @@
     float: left;
     width: 340px;
     margin-left: 280px;
+
 }
 
 .editTable{
