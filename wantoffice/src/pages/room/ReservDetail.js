@@ -6,26 +6,29 @@ import LoginModal from "../../components/common/LoginModal";
 import { decodeJwt } from "../../utils/tokenUtils";
 import ReservDetailCSS from "./ReservDetail.module.css";
 
-
 function ReservDetail(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const reservation = useSelector();
+    const reservation = useSelector(state => state.reservationReducer);
     const params = useParams();
     const reservationNo = params.reservationNo;
     const [loginModal, setLoginModal] = useState(false);
+
+    console.log('reservationNo',reservationNo);
 
     useEffect(
         () => {
             dispatch(callReservationDetailAPI({
                 reservationNo : reservationNo
             }));
+            console.log('callReservationDetailAPI');
         },
         []
     );
 
     const onClickReservationDetailHandler = () => {
+
         const token = decodeJwt(window.localStorage.getItem("accessToken"));
         console.log('[onClickReservationDetailHandler] token : ', token);
 

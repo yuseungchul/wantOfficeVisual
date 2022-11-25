@@ -1,8 +1,9 @@
 .HeaderDiv {
-   float: left;
    border-bottom: 1px solid  #C6C6C6;
-   width: 86%;
+   width: 80%;
    margin-left: 20px;
+   position: fixed;
+   left: 220px;
    
 }
 
@@ -15,16 +16,17 @@
 
 }
 
-.HeaderDiv > ul > li > a{
-   color: #8D8D8D;
+.HeaderDiv a{
    text-decoration: none;
+   color: #8D8D8D;
 }
 
-.HeaderDiv > ul > li > a:hover{
+.HeaderDiv a:hover{
+   
    color: #D34C4C;
 }
 
-.SubmenuDiv{
+/* .SubmenuDiv{
    float:left;
    width: 200px;
    height: 70vh;
@@ -50,11 +52,14 @@
 
 .SubmenuDiv > ul > li > a:hover{
    color: #D34C4C;
-}
+} */
 
 .HeaderBtn {
    padding: 0;
    border: none;
    background: none;
-   cursor: pointer;
+}
+
+.HeaderBtn:hover{
+   color: #D34C4C;
 }

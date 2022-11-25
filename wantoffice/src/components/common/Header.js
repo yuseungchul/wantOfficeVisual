@@ -36,12 +36,12 @@ function Header() {
 
             </div>
 
-            <div className={HeaderCSS.SubmenuDiv}>
+            {/* <div className={HeaderCSS.SubmenuDiv}>
                 <h2>내 정보</h2>
                 <ul>
                     <li><NavLink to="/">&#9654; 내 정보</NavLink></li>
                 </ul>
-            </div>
+            </div> */}
         </>
 
     );
