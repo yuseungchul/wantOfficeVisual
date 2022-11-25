@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callRegisterAPI } from "../../../apis/MemberAPICalls";
-import RegisterCSS from './Regist.module.css';
+import RegisteModalCSS from './RegistModal.module.css';
 
-function RegistMember({setRegistModal}) {
+function RegistModal({setRegistModal}) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function RegistMember({setRegistModal}) {
     const member = useSelector(state => state.memberReducer);
 
     useEffect(() => {
-        if(member.status === 201) {
+        if(member.status === 200) {
             alert("사원등록이 완료되었습니다.");
             navigate("/member", { replace : true });
         }
@@ -37,14 +37,10 @@ function RegistMember({setRegistModal}) {
         setForm({
             ...form,
             [e.target.name] : e.target.value
-        }),
-        setSelectValue({
-            ...selectValue,
-            [e.target.name] : e.target.value
-        });
+        })
     }
 
-    const onClickBackHandler = () => {
+    const onClickCloseHandler = () => {
         navigate("/member", { replace : true });
     }
 
@@ -61,8 +57,8 @@ function RegistMember({setRegistModal}) {
     }
 
     return (
-        <div className={ RegisterCSS.backgroundDiv }>
-            <div className={ RegisterCSS.registerDiv }>
+        <div className={ RegisteModalCSS.backgroundDiv }>
+            <div className={ RegisteModalCSS.registerDiv }>
                 <h2>사원 등록</h2>
                 <p>이름</p>
                 <input
@@ -129,4 +125,4 @@ function RegistMember({setRegistModal}) {
 
 }
 
-export default RegistMember;
+export default RegistModal;

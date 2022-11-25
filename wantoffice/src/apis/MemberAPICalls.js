@@ -65,15 +65,16 @@ export const callRegisterAPI = ({form}) => {
 
         console.log('[MemberAPICalls] callsRegisterAPI RESULT : ', result);
 
-        if(result.status === 201) {
+        if(result.status === 200) {
             dispatch({ type: POST_REGISTER, payload: result });
         }
     };
 }
 
+/*  전체 직원 조회 API */
 export const callMemberListAPI = ({currentPage = 1}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/members?page=${currentPage}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
