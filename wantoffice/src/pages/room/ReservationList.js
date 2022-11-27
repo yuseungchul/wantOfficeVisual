@@ -22,7 +22,8 @@ function ReservationList(){
         () => {
             console.log('useEffect 동작 확인');
             dispatch(callReservationListAPI({
-                roomNo : roomNo
+                roomNo : roomNo,
+                // date : date
             }));
         },
         []
@@ -34,7 +35,7 @@ function ReservationList(){
 
     return(
         <>
-
+            <div className={ ReservationListCSS.rvListDate }>2022/11/27</div>
             
 {/* { reservation &&  */}
             <div className={ReservationListCSS.rvListDiv}>
