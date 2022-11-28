@@ -86,6 +86,16 @@ function RoomDetail(){
                 >
                     예약 조회
                 </button>
+                <button
+                        // onClick={ onClickRoomPutHandler }
+                        className={ RoomDetailCSS.rmUpdateBtn }
+                    >
+                        수정하기</button>
+                <button
+                        // onClick={ onClickRoomPutHandler }
+                        className={ RoomDetailCSS.rmRemoveBtn }
+                    >
+                        삭제하기</button>
             </div>
           </div>
         </>
