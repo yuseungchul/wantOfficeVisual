@@ -72,7 +72,7 @@ export const callRegisterAPI = ({form}) => {
 }
 
 /*  전체 직원 조회 API */
-export const callMemberListAPI = ({currentPage = 1}) => {
+export const callMemberListAPI = ({currentPage}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member?page=${currentPage}`;
 
@@ -91,7 +91,7 @@ export const callMemberListAPI = ({currentPage = 1}) => {
         console.log('[MemberAPICalls] callMemberListAPI RESULT : ', result);
 
         if(result.status === 200){
-            dispatch({ type: GET_MEMBER, payload: result });
+            dispatch({ type: GET_MEMBER, payload: result.data });
         }
     };
 }
