@@ -21,6 +21,8 @@ npm install redux-thunk
 npm install redux-logger
 npm install redux-devtools-extension
 npm install react-router-dom@6
+npm install
+npm start
 ```
 
 **위 명령문 입력 후 npm start 실행**

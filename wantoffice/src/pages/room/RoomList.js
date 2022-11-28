@@ -77,6 +77,13 @@ function RoomList(){
                     </button>
                 }
                 </div>
+                <div>
+                    <button
+                        // onClick={ onClickRoomPutHandler }
+                        className={ RoomListCSS.RoomPutBtn }
+                    >
+                        등록하기</button>
+                </div>
             </div>
             
         </>
