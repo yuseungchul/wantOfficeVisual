@@ -12,16 +12,15 @@ import RoomLayout from "./layouts/RoomLayout";
 import RoomDetail from "./pages/room/RoomDetail";
 import Member from "./pages/admin/management/Member";
 import MemberLayout from "./layouts/management/MemberLayout";
-import ReservationList from "./pages/room/ReservationList";
-// import RoomReservList from "./pages/RoomReserv/RoomReservList";
+import ReservationList from "./pages/reservation/ReservationList";
 import MyAttList from "./pages/attendance/MyAttList";
-import ReservDetail from "./pages/room/ReservDetail";
 import AttListForAdmin from "./pages/attendance/AttListForAdmin";
 import MyOffList from "./pages/off/MyOffList";
 import Off from "./pages/off/Off";
 import OffListForApp from "./pages/off/OffListForApp";
 import ApprovalLayout from "./layouts/approval/ApprovalLayout";
 import ApprovalMain from "./pages/approval/ApprovalMain";
+import ReservationRegist from "./pages/reservation/ReservationRegist";
 
 function App() {
   return (
@@ -47,7 +46,8 @@ function App() {
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
-          <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
+          <Route path="rvlists" element={ <ReservationRegist/> }/>
+          {/* <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/> */}
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
