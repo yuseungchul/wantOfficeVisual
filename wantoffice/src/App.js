@@ -3,7 +3,7 @@ import Login from "./pages/contents/Login";
 import Layout from "./layouts/Layout";
 import Main from "./pages/contents/Main";
 import CalendarLayout from "./layouts/CalendarLayout";
-import Calendar from "./pages/Calendar";
+import Calendar from "./pages/calendar/Calendar";
 import Error from "./pages/Error";
 import RoomList from "./pages/room/RoomList";
 import Attendance from "./pages/attendance/Attendance";
