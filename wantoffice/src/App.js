@@ -20,6 +20,8 @@ import AttListForAdmin from "./pages/attendance/AttListForAdmin";
 import MyOffList from "./pages/off/MyOffList";
 import Off from "./pages/off/Off";
 import OffListForApp from "./pages/off/OffListForApp";
+import ApprovalLayout from "./layouts/approval/ApprovalLayout";
+import ApprovalMain from "./pages/approval/ApprovalMain";
 
 function App() {
   return (
@@ -51,6 +53,10 @@ function App() {
           <Route index element={ <Member/>}/>
         </Route>
         <Route path="*" element={ <Error/> }/>
+        <Route path="/Approval" element = { <ApprovalLayout/>}>
+        <Route index element={ <ApprovalMain/>}/>
+        </Route>
+
       </Routes>
     </BrowserRouter>
    

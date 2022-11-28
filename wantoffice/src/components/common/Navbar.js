@@ -36,7 +36,7 @@ function Navbar() {
                     <li><NavLink to="/attendance"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/> ATTENDANCE</NavLink></li>
                     <li><NavLink to="/calendar"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/> SCHEDULE</NavLink></li>
                     <li><NavLink to="/room"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/> RESERVATTION</NavLink></li>
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/> EDSM</NavLink></li>
+                    <li><NavLink to="/Approval"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/> APPROVAL</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="공지로고"/> NOTICE</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/> LIBRARY</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/> BUSINESS CARD</NavLink></li>
@@ -46,10 +46,13 @@ function Navbar() {
                     <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/"> LOGOUT</NavLink></li>
                 </ul>
               </div>
-          
-
-            
             </div>
+
+            <div className="{ NavCSS.NavBlank }">
+
+
+            </div>
+
         </>
     );
 }
