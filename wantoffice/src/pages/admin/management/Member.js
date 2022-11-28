@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callMemberListAPI } from "../../../apis/MemberAPICalls";
-// import RegistModal from "../../../components/common/management/RegistModal";
+import RegistModal from "../../../components/common/management/RegistModal";
 import MemberCSS from './Member.module.css';
 
 function Member() {
@@ -14,11 +14,11 @@ function Member() {
     const memberList = members.data;
     const pageInfo = members.pageBtn;
     const [currentPage, setCurrentPage] = useState(1);
-    // const [registModal, setRegistModal] = useState(false);
+    const [registModal, setRegistModal] = useState(false);
 
-    // const openModal = () => {
-    //     setRegistModal(true);
-    // }
+    const openModal = () => {
+        setRegistModal(true);
+    }
 
     const pageNumber = [];
     if (pageInfo) {
@@ -37,9 +37,9 @@ function Member() {
         , [currentPage]
     )
 
-    // const onClickRegisterHandler = () => {
-    //     setRegistModal(true);
-    // }
+    const onClickRegisterHandler = () => {
+        setRegistModal(true);
+    }
 
     const onClickTableTr = (memberNo) => {
         navigate(`/memberDetail/${memberNo}`, { replace: true });
@@ -49,10 +49,7 @@ function Member() {
 
     return (
         <>
-            {/* <div>
-                <button onClick={ openModal }>사원 등록</button>
-                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
-            </div> */}
+            
 
             <div className={MemberCSS.memberTableDiv}>
                 <table className={MemberCSS.memberTableCss}>
@@ -137,6 +134,11 @@ function Member() {
                         &gt;
                     </button>
                 }
+            </div>
+
+            <div>
+                <button onClick={ openModal }>사원 등록</button>
+                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
             </div>
         </>
     );

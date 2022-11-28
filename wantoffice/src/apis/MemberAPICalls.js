@@ -51,15 +51,7 @@ export const callRegisterAPI = ({form}) => {
                 "Accept": "*/*",
                 "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
             },
-            body: JSON.stringify({
-                memberName: form.memberName,
-                memberId: form.memberId,
-                memberPassword: form.memberPassword,
-                memberEmail: form.memberEmail,
-                memberPhone: form.memberPhone,
-                positionNo: form.positionNo,
-                deptNo: form.deptNo
-            })
+            body: form
         })
         .then(response => response.json());
 
@@ -67,6 +59,8 @@ export const callRegisterAPI = ({form}) => {
 
         if(result.status === 200) {
             dispatch({ type: POST_REGISTER, payload: result });
+            alert('사원 등록이 완료되었습니다.');
+            window.location.reload();
         }
     };
 }
