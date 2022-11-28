@@ -17,7 +17,7 @@ function Header() {
             <div className={ AttendanceHeaderCSS.HeaderDiv }>
                 <ul>
                     <li><NavLink to="/attendance">근태</NavLink></li>
-                    <li><NavLink to="/">연차</NavLink></li>
+                    <li><NavLink to="/off">연차</NavLink></li>
                 </ul>
 
             </div>
