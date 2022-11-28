@@ -2,13 +2,14 @@ import ReservationListCSS from "./ReservationList.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callReservationListAPI } from '../../apis/RoomAPICalls';
-import { NavLink, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RDate from "./RDate";
 import LoginModal from "../../components/common/LoginModal";
 
 function ReservationList(){
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const reservation = useSelector(state => state.reservationReducer);
     const reservationList = reservation.data;
     const params = useParams();
@@ -32,14 +33,21 @@ function ReservationList(){
         []
     );
 
-    // if(Date){
-    //     for();
-    // };
+    //  if(Date){
+    //      for(let i = Date.hour ; i <= Date.hour ; i++){
+    //         Date.hour
+    //      };
+    //  };
+
+    const onClickReservationInsert = () => {
+        console.log('[ReservationList] onClickReservationInsert');
+        navigate("/room/rvlists", { replace: false })
+    }
 
     return(
         <>
         { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
-            <p><RDate/></p>
+            <p className={ReservationListCSS.TimeDiv}><RDate/></p>
 
             <div className={ReservationListCSS.rvListDiv}>
                 <h2>회의실 예약 안내</h2>
@@ -50,7 +58,10 @@ function ReservationList(){
                     <th>예약 상태</th>
                     <th> 비고 </th>
                     <tr>
-                        <input type="checkbox"/>
+                        
+                        {reservation &&
+                        <td>{ reservation.reservationNo }</td>
+                    }
                         {/* <td>{reservation.reservationNo}</td>
                         <td>{reservation.reservationTime}</td>
                         <td>{reservation.reservationDate}</td>
@@ -61,7 +72,10 @@ function ReservationList(){
                     
                 </table>
 
-                <NavLink to="/">예약 신청</NavLink>
+                <button 
+                    className={ ReservationListCSS.InsertBtn }
+                    onClick={ onClickReservationInsert }
+                    >예약 신청</button>
                 
                 
             
