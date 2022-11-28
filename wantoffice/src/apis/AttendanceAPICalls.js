@@ -1,4 +1,4 @@
-import { POST_IN, GET_IN_OUT, POST_OUT, GET_MY } from "../modules/AttendanceModule";
+import { POST_IN, GET_IN_OUT, POST_OUT, GET_MY, GET_MANAGE_LIST } from "../modules/AttendanceModule";
 
 export const callInRegistAPI = () => {
 
@@ -92,6 +92,31 @@ export const callMyAttListAPI = ({year, month}) => {
         if(result.status === 200) {
             console.log('[AttendanceAPICalls] callMyAttListAPI result : ', result);
             dispatch({ type: GET_MY, payload: result.data });
+        }
+
+    }
+
+}
+
+export const callAttListForAdminAPI = ({search, currentPage = 1}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/attendance/manage-list?search=${search}&page=${currentPage}`;
+    console.log('requestURL : ', requestURL);
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[AttendanceAPICalls] callAttListForAdminAPI result : ', result);
+            dispatch({ type: GET_MANAGE_LIST, payload: result.data });
         }
 
     }

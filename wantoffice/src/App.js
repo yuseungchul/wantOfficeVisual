@@ -16,7 +16,10 @@ import ReservationList from "./pages/room/ReservationList";
 // import RoomReservList from "./pages/RoomReserv/RoomReservList";
 import MyAttList from "./pages/attendance/MyAttList";
 import ReservDetail from "./pages/room/ReservDetail";
-
+import AttListForAdmin from "./pages/attendance/AttListForAdmin";
+import MyOffList from "./pages/off/MyOffList";
+import Off from "./pages/off/Off";
+import OffListForApp from "./pages/off/OffListForApp";
 
 function App() {
   return (
@@ -31,6 +34,12 @@ function App() {
         <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route index element={ <Attendance/> }/>
           <Route path="/attendance/my" element={ <MyAttList/> }/>
+          <Route path="/attendance/manage-list" element={ <AttListForAdmin/> }/>
+        </Route>
+        <Route path="/off" element={<AttendanceLayout/>  }>
+          <Route index element={ <MyOffList/> }/>
+          <Route path="/off/regist" element={ <Off/> }/>
+          <Route path="/off/result" element={ <OffListForApp/> }/>
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
