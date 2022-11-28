@@ -1,0 +1,24 @@
+.memberTableDiv {
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 1500px;
+    height: 100%;
+    padding-left: 50px;
+}
+
+.memberTableCss{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.memberTableCss > th, td {
+    padding: 10px;
+    height: 10px;
+    text-align: center;
+    word-break: break-all;
+    table-layout: fixed;
+}
