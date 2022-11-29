@@ -26,6 +26,9 @@ import Dept from "./pages/admin/dept/Dept";
 import DeptLayout from "./layouts/management/DeptLayout";
 import Position from "./pages/admin/position/Position";
 import PositionLayout from "./layouts/management/PositionLayout";
+import ReservDetail from "./pages/reservation/ReservDetail";
+import RoomMInsert from "./pages/admin/room/RoomMInsert";
+
 
 function App() {
   return (
@@ -53,7 +56,8 @@ function App() {
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
           <Route path="rvlists" element={ <ReservationRegist/> }/>
-          {/* <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/> */}
+          <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
+          <Route path="room-managements" element={ <RoomMInsert/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>

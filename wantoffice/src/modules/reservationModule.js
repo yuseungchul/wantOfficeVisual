@@ -5,26 +5,26 @@ import { createActions, handleActions } from "redux-actions";
 const initialState = [];
 
 /* 액션 */
-export const GET_ROOM = 'room/GET_ROOM';
-export const GET_ROOMS = 'room/GET_ROOMS';
-export const POST_ROOM = 'room/POST_ROOM';
+export const GET_RESERVATION = 'room/GET_RESERVATION';
+export const GET_RESERVATIONS = 'room/GET_RESERVATIONS';
+export const POST_RESERVATION = 'room/POST_RESERVATION';
 
 const actions = createActions({
-    [GET_ROOM]: () => {},
-    [GET_ROOMS]: () => {},
-    [POST_ROOM]: () => {}
+    [GET_RESERVATION]: () => {},
+    [GET_RESERVATIONS]: () => {},
+    [POST_RESERVATION]: () => {}
 });
 
 /* 리듀서 */
 const reservationReducer = handleActions(
     {
-        [GET_ROOM] : (state, { payload }) =>{
+        [GET_RESERVATION] : (state, { payload }) =>{
             return payload;
         },
-        [GET_ROOMS] : (state, { payload }) =>{
+        [GET_RESERVATIONS] : (state, { payload }) =>{
             return payload;
         },
-        [POST_ROOM] : (state, { payload }) => {
+        [POST_RESERVATION] : (state, { payload }) => {
             return payload;
         }
     },

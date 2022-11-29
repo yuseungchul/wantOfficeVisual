@@ -1,5 +1,6 @@
 import { GET_ROOM, GET_ROOMS, POST_ROOM } from "../modules/roomModule";
 
+/* 회의실 조회(회원) */
 export const callRoomListAPI = ({currentPage = 1}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms?page=${currentPage}`;
 
@@ -48,6 +49,7 @@ export const callRoomListForAdminAPI = ({currentPage = 1}) => {
     }
 }
 
+/* 회의실 상세(공통) */
 export const callRoomDetailAPI = ({roomNo}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms/${roomNo}`;
@@ -73,6 +75,7 @@ export const callRoomDetailAPI = ({roomNo}) => {
 
 }
 
+/* 회의실 등록(관리자) */
 export const callRoomRegistAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/room-managements`
@@ -96,100 +99,3 @@ export const callRoomRegistAPI = ({form}) => {
 
 }
 
-/* 회의실 예약 전체 조회(관리자) */
-export const callReservationRoomListAPI = ({reservationNo}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlist/${reservationNo}`;
-
-    return async (dispatch, getState) => {
-
-        console.log('callReservationListAPI 동작 확인');
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[ReservationAPICalls] callReservationListAPI result : ', result);
-            dispatch({ type: GET_ROOMS, payload: result.data });
-        }
-    }
-}
-
-export const callReservationDetailAPI = ({reservationNo}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists/${reservationNo}`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[RoomAPICalls] callReservationDetailAPI result : ', result);
-            dispatch({ type: GET_ROOM, payload: result.data });
-        }
-    }
-
-}
-
-export const callReservationListAPI = ({roomNo}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlist/${roomNo}`;
-
-    return async (dispatch, getState) => {
-
-        console.log('callReservationListAPI 동작 확인');
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[ReservationAPICalls] callReservationListAPI result : ', result);
-            dispatch({ type: GET_ROOMS, payload: result.data });
-        }
-    }
-}
-
-export const callReservationRegistAPI = ({form}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists`;
-
-    return async (dispatch, getState) => {
-
-        console.log('callReservationRegistAPI 동작 확인');
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[ReservationRegistAPICalls] callReservationRegistAPI result : ', result);
-            dispatch({ type: POST_ROOM, payload: result.data });
-        }
-    }
-}

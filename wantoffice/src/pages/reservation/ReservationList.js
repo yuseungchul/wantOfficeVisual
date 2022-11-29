@@ -1,24 +1,25 @@
 import ReservationListCSS from "./ReservationList.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { callReservationListAPI } from '../../apis/RoomAPICalls';
+import { callReservationListAPI } from '../../apis/ReservationAPICalls';
 import { useNavigate, useParams } from "react-router-dom";
 import RDate from "./RDate";
 import LoginModal from "../../components/common/LoginModal";
+// import Reservation from "../../components/room/Reservation";
 
 function ReservationList(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const reservation = useSelector(state => state.reservationReducer);
-    const reservationList = reservation.data;
+    // const reservationList = reservation.data;
     const params = useParams();
     const roomNo = params.roomNo;
     const [loginModal, setLoginModal] = useState(false);
 
     // const [currentPage, setCurrentPage] = useState(1);
 
-    console.log(reservation, reservationList);
+    console.log(reservation);
 
     
 
@@ -33,45 +34,53 @@ function ReservationList(){
         []
     );
 
-    //  if(Date){
-    //      for(let i = Date.hour ; i <= Date.hour ; i++){
-    //         Date.hour
-    //      };
-    //  };
-
     const onClickReservationInsert = () => {
         console.log('[ReservationList] onClickReservationInsert');
-        navigate("/room/rvlists", { replace: false })
+        navigate(`/room/rvlists`, { replace: false })
+    }
+
+    const onClickReservationDetailer = () => {
+        console.log('[ReservationList] onClickReservationDetailer');
+        navigate(`/room/rvlists/${ reservation.reservationNo }`, { replace: false })
     }
 
     return(
         <>
         { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
-            <p className={ReservationListCSS.TimeDiv}><RDate/></p>
+            <div className={ReservationListCSS.TimeDiv}><RDate/></div>
 
             <div className={ReservationListCSS.rvListDiv}>
                 <h2>회의실 예약 안내</h2>
+                 
+                <table>
                 
-                <table className={ReservationListCSS.rvtblDiv}>
-                    <th>순번</th>
+                    <th>예약번호</th>
                     <th>예약 시간</th>
+                    <th>예약 날짜</th>
                     <th>예약 상태</th>
-                    <th> 비고 </th>
-                    <tr>
-                        
-                        {reservation &&
-                        <td>{ reservation.reservationNo }</td>
-                    }
-                        {/* <td>{reservation.reservationNo}</td>
-                        <td>{reservation.reservationTime}</td>
-                        <td>{reservation.reservationDate}</td>
-                        <td>{reservation.reservationStatus}</td>
-                        <td>{reservation.room.roomNo}</td>
-                        <td>{reservation.member.memberNo}</td> */}
-                    </tr>
+                    <th>예약 목적</th>
                     
+                    <tbody>
+                    {
+                            Array.isArray(reservation) && reservation.map(
+                                (reservation) => (
+                                    <tr
+                                        key={ reservation.reservationNo }
+                                        onClick={ () => onClickReservationDetailer(reservation.reservationNo) }
+                                    >
+                                        <td>{ reservation.reservationNo }</td>
+                                        <td>{ reservation.reservationTime }</td>
+                                        <td>{ reservation.reservationDate }</td>
+                                        <td>{ reservation.reservationStatus }</td>
+                                        <td>{ reservation.reservationPurpose }</td>
+                                    </tr>
+                                )
+                            )
+                        }
+                        </tbody>
+                  
                 </table>
-
+ 
                 <button 
                     className={ ReservationListCSS.InsertBtn }
                     onClick={ onClickReservationInsert }

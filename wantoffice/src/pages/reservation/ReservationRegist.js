@@ -1,14 +1,18 @@
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { callReservationRegistAPI } from "../../apis/RoomAPICalls";
+import { callReservationRegistAPI } from "../../apis/ReservationAPICalls";
 import ReservationRegistCSS from "./ReservationRegist.module.css";
-
+import { decodeJwt } from '../../utils/tokenUtils';
 function ReservationRegist(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const reservation = useSelector(state => state.reservationReducer);
+
     const [form, setForm] = useState({
+        reservationNo : reservation.reservationNo,
         reservationTime : 0,
         reservationStatus : '',
         reservationPurpose : '',
@@ -24,21 +28,23 @@ function ReservationRegist(){
         });
     }
 
-    const onClickReservationRegistHandler = () => {
-        const formData = new FormData();
+    const token = decodeJwt(window.localStorage.getItem('accessToken'));
 
-        formData.append("reservationTime", form.reservationTime);
-        formData.append("reservationStatus", form.reservationStatus);
-        formData.append("reservationPurpose", form.reservationPurpose);
-        formData.append("roomNo",form.roomNo);
-        formData.append("memberNo", form.memberNo);
+    const onClickReservationRegistHandler = () => {
+        
+        if(form.reservationTime === '' || reservation.reservationStatus === '' ||
+            form.reservationPurpose === '' || reservation.roomNo === '' || reservation.memberNo === ''){
+                // alert("정보를 모두 입력해주세요");
+                return;
+        }
 
         dispatch(callReservationRegistAPI({
-            form : formData
+            form : form
         }));
 
-        navigate('/rvlists', { replace : true });
-        window.localStorage.reload();
+        
+        navigate(`/room/rvlist`, { replace : true });
+        
     }
 
     return(
@@ -51,23 +57,24 @@ function ReservationRegist(){
                     <table>
                         <tbody>
                             <tr>
-                                <td><label>예약자 번호</label></td>
+                                <td><label>예약자ID</label></td>
                                 <td>
                                     <input
                                         name="memberNo"
-                                        placeholder="회원번호를 입력해 주세요"
+                                        autoComplete="off"
+                                        defaultValue={token.sub || ''}
                                         className={ReservationRegistCSS.inputDiv}
-                                        onChange={ onChangeHandler }
+                                        
                                     />
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>예약 이용시간</label></td>
+                                <td><label>이용 시간</label></td>
                                 <td>
                                     <input
                                         name="reservationTime"
                                         placeholder="이용시간"
-                                        className={ReservationRegistCSS.inputDiv}
+                                        className={ ReservationRegistCSS.inputDiv }
                                         onChange={ onChangeHandler }
                                     />
                                 </td>
