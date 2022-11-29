@@ -1,4 +1,4 @@
-import { GET_OFFS, GET_APP, GET_OFF_APP, POST_OFF, GET_OFF } from "../modules/OffModule";
+import { GET_OFFS, GET_APP, GET_OFF_APP, POST_OFF, GET_OFF, PATCH_OFF, PATCH_OFF_APP, PATCH_OFF_RETURN } from "../modules/OffModule";
 
 export const callOffAPI = ({currentPage = 1}) => {
 
@@ -125,6 +125,93 @@ export const callOffDetailAPI = ({offNo}) => {
         if(result.status === 200) {
             console.log('[OffAPICalls] callOffDetailAPI result : ', result);
             dispatch({ type: GET_OFF, payload: result.data });
+        }
+
+    }
+
+}
+
+export const callOffUpdateAPI = ({offNo, form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off/modify/${offNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PATCH",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify({
+                offTitle: form.offTitle,
+                offStart : form.offStart,
+                offEnd : form.offEnd,
+                offReason : form.offReason
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] callOffUpdateAPI result : ', result);
+            dispatch({ type: PATCH_OFF, payload: result });
+        }
+
+    }
+
+}
+
+export const callAppUpdateAPI = ({offNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off/app`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PATCH",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify({
+                offNo : offNo
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] callAppUpdateAPI result : ', result);
+            dispatch({ type: PATCH_OFF_APP, payload: result });
+        }
+
+    }
+
+}
+
+export const callReturnUpdateAPI = ({offNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off/return`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PATCH",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify({
+                offNo : offNo
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] callReturnUpdateAPI result : ', result);
+            dispatch({ type: PATCH_OFF_RETURN, payload: result });
         }
 
     }
