@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { callOffAPI } from "../../apis/OffAPICalls";
 import Off from "../../components/off/Off";
 import RoomListCSS from "../../pages/room/RoomList.module.css";
