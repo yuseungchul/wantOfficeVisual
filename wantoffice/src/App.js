@@ -22,6 +22,10 @@ import OffDetail from "./pages/off/OffDetail";
 import ApprovalLayout from "./layouts/approval/ApprovalLayout";
 import ApprovalMain from "./pages/approval/ApprovalMain";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
+import Dept from "./pages/admin/dept/Dept";
+import DeptLayout from "./layouts/management/DeptLayout";
+import Position from "./pages/admin/position/Position";
+import PositionLayout from "./layouts/management/PositionLayout";
 
 function App() {
   return (
@@ -53,6 +57,12 @@ function App() {
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
+        </Route>
+        <Route path="/dept" element={ <DeptLayout/> }>
+          <Route index element={ <Dept/>}/>
+        </Route>
+        <Route path="/position" element={ <PositionLayout/> }>
+          <Route index element={ <Position/>}/>
         </Route>
         <Route path="*" element={ <Error/> }/>
         <Route path="/Approval" element = { <ApprovalLayout/>}>

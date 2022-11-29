@@ -101,7 +101,9 @@ function Member() {
                     </tbody>
                 </table>
             </div>
-            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+            <br/>
+            <div 
+                className={ MemberCSS.PagenDiv }>
                 {
                     Array.isArray(memberList) &&
                     <button
@@ -137,7 +139,9 @@ function Member() {
             </div>
 
             <div>
-                <button onClick={ openModal }>사원 등록</button>
+                <button 
+                    className={ MemberCSS.memBtn }
+                    onClick={ openModal }>사원 등록</button>
                 { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
             </div>
         </>

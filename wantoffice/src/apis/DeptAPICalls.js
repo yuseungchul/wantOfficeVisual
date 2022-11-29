@@ -20,7 +20,7 @@ export const callDeptListAPI = () => {
         console.log('[DeptAPICalls] callDeptListAPI RESULT : ', result);
 
         if(result.status === 200) {
-            dispatch({ type: GET_DEPT, payload: result });
+            dispatch({ type: GET_DEPT, payload: result.data });
         }
     };
 }

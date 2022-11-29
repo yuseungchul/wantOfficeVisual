@@ -1,6 +1,6 @@
 import { GET_POSITION, POST_POSITION } from "../modules/PositionModule";
 
-/* 전체 직위 조회 API */
+/* 전체 직책 조회 API */
 export const callPositionListAPI = () => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/position/list`;
@@ -16,15 +16,14 @@ export const callPositionListAPI = () => {
         })
         .then(response => response.json());
 
-        console.log('[PositionAPICalls] callPositionListAPI RESULT : ', result);
-
         if(result.status === 200) {
-            dispatch({ type: GET_POSITION, payload: result });
+            console.log('[PositionAPICalls] callPositionListAPI RESULT : ', result);
+            dispatch({ type: GET_POSITION, payload: result.data });
         }
     };
 }
 
-/* 직위 등록 API */
+/* 직책 등록 API */
 export const callPositionRegistAPI = ({form}) => {
     
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/position/position-management`;
