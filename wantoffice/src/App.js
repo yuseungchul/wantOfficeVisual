@@ -28,6 +28,7 @@ import Position from "./pages/admin/position/Position";
 import PositionLayout from "./layouts/management/PositionLayout";
 import ReservDetail from "./pages/reservation/ReservDetail";
 import RoomMInsert from "./pages/admin/room/RoomMInsert";
+import OffUpdate from "./pages/off/OffUpdate";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/off/regist" element={ <Off/> }/>
           <Route path="/off/result" element={ <OffListForApp/> }/>
           <Route path="/off/:offNo" element={ <OffDetail/> }/>
+          <Route path="/off/modify/:offNo" element={ <OffUpdate/> }/>
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>

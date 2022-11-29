@@ -14,7 +14,6 @@ function OffListForApp() {
     const [selectedResult, setSelectedResult] = useState("대기");
     
     const handleSelectResult = (e) => {
-        console.log('e.target.value : ', e.target.value);
         setSelectedResult(e.target.value);
     };
 
