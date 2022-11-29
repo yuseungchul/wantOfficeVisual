@@ -8,7 +8,9 @@ function ReservationRegist(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const params = useParams();
+    // const roomNo = params.roomNo;
+    const reservationNo = params.reservationNo;
     const reservation = useSelector(state => state.reservationReducer);
 
     const [form, setForm] = useState({
@@ -43,7 +45,7 @@ function ReservationRegist(){
         }));
 
         
-        navigate(`/room/rvlist`, { replace : true });
+        navigate(`/room/rvlist/${reservationNo}`, { replace : true });
         
     }
 
@@ -66,6 +68,25 @@ function ReservationRegist(){
                                         className={ReservationRegistCSS.inputDiv}
                                         
                                     />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>예약 시간 목록</label></td>
+                                <td>
+                                    <select
+                                        className={ ReservationRegistCSS.inputDiv }
+                                        onChange={ onChangeHandler }
+                                    >
+                                        <option>09:00 ~ 10:00</option>
+                                        <option>10:00 ~ 11:00</option>
+                                        <option>11:00 ~ 12:00</option>
+                                        <option>12:00 ~ 13:00</option>
+                                        <option>13:00 ~ 14:00</option>
+                                        <option>14:00 ~ 15:00</option>
+                                        <option>15:00 ~ 16:00</option>
+                                        <option>16:00 ~ 17:00</option>
+                                        <option>17:00 ~ 18:00</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -104,12 +125,7 @@ function ReservationRegist(){
                             <tr>
                                 <td><label>예약할 회의실</label></td>
                                 <td>
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="1"/> 3층 회의실A</label> &nbsp;
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="2"/> 3층 회의실B</label> &nbsp;
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="3"/> 3층 회의실C</label> <br/>
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="4"/> 4층 회의실A</label> &nbsp;
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="5"/> 4층 회의실B</label> &nbsp;
-                                    <label><input type="radio" name="roomNo" onChange={ onChangeHandler } value="6"/> 4층 회의실C</label> &nbsp;
+                                    <label></label>
                                 </td>
                             </tr>
                         </tbody>

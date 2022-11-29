@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import ReservationDetailCSS from './ReservDetail.module.css';
-import { callReservationDetailAPI } from '../../apis/ReservationAPICalls';
+import RoomDetailCSS from './RoomDetail.module.css';
+import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 import LoginModal from '../../components/common/LoginModal';
 
-function ReservDetail(){
+function RoomDetail(){
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const reservation = useSelector(state => state.reservationReducer);
+    const room = useSelector(state => state.roomReducer);
     const params = useParams();
-    const reservationNo = params.reservationNo;
+    const roomNo = params.roomNo;
     const [loginModal, setLoginModal] = useState(false);
 
     useEffect(
         () => {
-            dispatch(callReservationDetailAPI({
-                reservationNo : reservationNo
+            dispatch(callRoomDetailAPI({
+                roomNo : roomNo
             }));
         },
         []
@@ -43,7 +43,7 @@ function ReservDetail(){
             return;
         }
 
-       navigate(`/room/rvlist/${reservationNo}`, { replace : true });
+       navigate(`/room/rvlist/${roomNo}`, { replace : true });
     }
 
 
@@ -53,40 +53,52 @@ function ReservDetail(){
         <>
             { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
             
-            <div className={ ReservationDetailCSS.DetailDiv }>
+            <div className={ RoomDetailCSS.DetailDiv }>
             <h2>회의실 상세 보기</h2>
+                <div className={ RoomDetailCSS.imgsDiv }>
+                    <img src={ room.roomFileUrl } alt="테스트"/>
+                    <p className={ RoomDetailCSS.imgName }
+                    >
+                        { room.roomName }
+                    </p>
+                </div>
             
-            <div className={ ReservationDetailCSS.editDiv }>
-                <table className={ ReservationDetailCSS.editTable }>
+            <div className={ RoomDetailCSS.editDiv }>
+                <table className={ RoomDetailCSS.editTable }>
                     <tbody>
                         <tr>
                             <th>회의실 명칭</th>
-                            <td>{ reservation.memberNo || '' }</td>
+                            <td>{ room.roomName || '' }</td>
                         </tr>
                         <tr>
                             <th>회의실 위치</th>
-                            <td>{ reservation.reservationtime || '' }</td>
+                            <td>{ room.roomLocation || '' }</td>
                         </tr>
                         <tr>
                             <th>회의실 수용 인원</th>
-                            <td>최대 { reservation.reservationPurpose || '' } 인</td>
+                            <td>최대 { room.roomCapacity || '' } 인</td>
                         </tr>
                     </tbody>
                 </table>
                 <button
-                    className={ ReservationDetailCSS.roomResBtn }
+                    className={ RoomDetailCSS.roomResBtn }
                     onClick={ onClickReservationHandler }
                 >
                     예약 조회
                 </button>
                 <button
+                        // onClick={ onClickRoomPostHandler }
+                        className={ RoomDetailCSS.rmUpdateBtn }
+                    >
+                        등록하기</button>
+                <button
                         // onClick={ onClickRoomPutHandler }
-                        className={ ReservationDetailCSS.rmUpdateBtn }
+                        className={ RoomDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
                 <button
-                        // onClick={ onClickRoomPutHandler }
-                        className={ ReservationDetailCSS.rmRemoveBtn }
+                        // onClick={ onClickRoomRemoveHandler }
+                        className={ RoomDetailCSS.rmRemoveBtn }
                     >
                         삭제하기</button>
             </div>
@@ -96,4 +108,4 @@ function ReservDetail(){
 
 }
 
-export default ReservDetail;
+export default RoomDetail;
