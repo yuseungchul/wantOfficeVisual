@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
     offReducer,
     calendarReducer,
     deptReducer,
-    positionReducer
+    positionReducer,
+    approvalReducer
 });
 
 export default rootReducer;

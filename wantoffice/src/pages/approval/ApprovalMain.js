@@ -1,9 +1,24 @@
-
+import { useDispatch, useSelector } from 'react-redux';
 import ApprovalMainCSS from "./ApprovalMain.module.css"
 
 
 
 function ApprovalMain () {
+
+    // const dispatch = useDispatch();
+    // const approvals = useSelector(state => state.approvalReducer);
+    // const approvalList = approvals.data;
+    // const [currentPage, setCurrentPage] = useState(1);
+    
+
+    // useEffect(
+    //     () => {
+    //         dispatch(callApprovalListAPI({
+    //             currentPage : currentPage
+    //         }));
+    //     }
+    //     , [currentPage]
+    // );
 
 
 
@@ -43,9 +58,22 @@ function ApprovalMain () {
 
                 <div  className={ApprovalMainCSS.contentList}> 
                 <p>전체 결재 목록</p>
-                <th>
-                    
-                </th>
+                <table className={ApprovalMainCSS.approvalTable }></table>
+                    <thead>
+                        <th> No </th>
+                        <th> 구분 </th>
+                        <th> 제목 </th>
+                        <th> 작성자 </th>
+                        <th> 작성일자 </th>
+                        <th> 결재자 </th>
+                        <th> 처리일자 </th>
+                        <th> 상태 </th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+
+
 
 
                 </div>
