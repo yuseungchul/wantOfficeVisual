@@ -3,11 +3,13 @@ import Room from "../../components/room/Room";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callRoomListAPI } from '../../apis/RoomAPICalls';
-import { decodeJwt } from '../../utils/tokenUtils';
-import { NavLink } from 'react-router-dom';
+import { Navigate, useNavigate } from "react-router-dom";
+// import { decodeJwt } from '../../utils/tokenUtils';
+
 
 function RoomList(){
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const rooms = useSelector(state => state.roomReducer);
     const roomList = rooms.data;
@@ -26,6 +28,11 @@ function RoomList(){
         [currentPage]
     );
 
+    const onClickRoomMInsert = () =>{
+        console.log('[RoomList] onClickRoomMInsert');
+        navigate(`/room/room-managements`, { replace : false })
+    }
+
     /* 페이징 */
     const pageBtn = rooms.pageBtn;
     const pageNumber = [];
@@ -40,7 +47,7 @@ function RoomList(){
            
             <div className={RoomListCSS.roomListDiv}>
                 <h2>회의실 시설 안내</h2>
-                {
+                { 
                     Array.isArray(roomList)
                     && roomList.map((room) => (<Room key={ room.roomNo } room={ room }/>))
                 }
@@ -80,7 +87,13 @@ function RoomList(){
                 }
                 </div>
             </div>
-            
+            {/* { decoded === "ROLE_ADMIN" &&  */}
+                <button
+                        onClick={ onClickRoomMInsert }
+                        className={ RoomListCSS.rmInsertBtn }
+                    >
+                        등록하기</button>
+                        {/* } */}
         </>
     );
 

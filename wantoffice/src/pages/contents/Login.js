@@ -12,7 +12,7 @@ function Login() {
     const login = useSelector(state => state.memberReducer);
 
     useEffect(() => {
-            if(login && login.status === 200) {
+            if(login.status === 200) {
                 console.log("[Login] Login SUCCESS {}", login);
                 navigate("/main", { replace: true });
             }
