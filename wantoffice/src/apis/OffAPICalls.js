@@ -1,4 +1,4 @@
-import { GET_OFF, GET_APP, GET_OFF_APP } from "../modules/OffModule";
+import { GET_OFFS, GET_APP, GET_OFF_APP, POST_OFF, GET_OFF } from "../modules/OffModule";
 
 export const callOffAPI = ({currentPage = 1}) => {
 
@@ -18,7 +18,7 @@ export const callOffAPI = ({currentPage = 1}) => {
 
         if(result.status === 200) {
             console.log('[OffAPICalls] callOffAPI result : ', result);
-            dispatch({ type: GET_OFF, payload: result.data });
+            dispatch({ type: GET_OFFS, payload: result.data });
         }
 
     }
@@ -27,7 +27,7 @@ export const callOffAPI = ({currentPage = 1}) => {
 
 export const callAppNameAPI = () => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/searchApp`;
 
     return async (dispatch, getState) => {
 
@@ -50,7 +50,36 @@ export const callAppNameAPI = () => {
 
 }
 
-/* 등록 */
+export const callOffRegistAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify({
+                offTitle: form.offTitle,
+                offStart : form.offStart,
+                offEnd : form.offEnd,
+                offReason : form.offReason
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] callOffRegistAPI result : ', result);
+            dispatch({ type: POST_OFF, payload: result });
+        }
+
+    }
+
+}
 
 export const callOffListForAppAPI = ({offResult, currentPage = 1}) => {
 
@@ -71,6 +100,31 @@ export const callOffListForAppAPI = ({offResult, currentPage = 1}) => {
         if(result.status === 200) {
             console.log('[OffAPICalls] callOffListForAppAPI result : ', result);
             dispatch({ type: GET_OFF_APP, payload: result.data });
+        }
+
+    }
+
+}
+
+export const callOffDetailAPI = ({offNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/off/${offNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] callOffDetailAPI result : ', result);
+            dispatch({ type: GET_OFF, payload: result.data });
         }
 
     }

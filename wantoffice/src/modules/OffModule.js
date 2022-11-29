@@ -4,22 +4,24 @@ import { createActions, handleActions } from "redux-actions";
 const initialState = [];
 
 /* 액션 */
-export const GET_OFF = 'off/GET_OFF';
+export const GET_OFFS = 'off/GET_OFFS';
 export const GET_APP = 'off/GET_APP';
 export const POST_OFF = 'off/POST_OFF';
 export const GET_OFF_APP = 'off/GET_OFF_APP';
+export const GET_OFF = 'off/GET_OFF';
 
 const actions = createActions({
-    [GET_OFF]: () => {},
+    [GET_OFFS]: () => {},
     [GET_APP]: () => {},
     [POST_OFF]: () => {},
-    [GET_OFF_APP]: () => {}
+    [GET_OFF_APP]: () => {},
+    [GET_OFF]: () => {}
 });
 
 /* 리듀서 */
 const offReducer = handleActions(
     {
-        [GET_OFF] : (state, { payload }) => {
+        [GET_OFFS] : (state, { payload }) => {
             return payload;
         },
         [GET_APP] : (state, { payload }) => {
@@ -29,6 +31,9 @@ const offReducer = handleActions(
             return payload;
         },
         [GET_OFF_APP] : (state, { payload }) => {
+            return payload;
+        },
+        [GET_OFF] : (state, { payload }) => {
             return payload;
         }
     },

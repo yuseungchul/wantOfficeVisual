@@ -1,21 +1,29 @@
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from "date-fns/esm/locale";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { callAppNameAPI } from "../../apis/OffAPICalls";
+import { callAppNameAPI, callOffRegistAPI } from "../../apis/OffAPICalls";
 
 
 function Off() {
 
-    function toStringByFormatting(source, delimiter = "-") {
-        const year = source.getFullYear();
-        const month = source.getMonth() + 1;
-        const day = source.getDate();
-
-        return [year, (month < 10 ? "0"+month : month), (day < 10 ? "0"+day : day)].join(delimiter);
-    }
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const offs = useSelector(state => state.offReducer);
+
+    const now = new Date();
+
+    const [startDate, setStartDate] = useState(now);
+    const [endDate, setEndDate] = useState(now);
+
+    useEffect(
+        () => {
+            dispatch(callAppNameAPI());
+         }, []
+    );
+
     const [form, setForm] = useState({
         offDate : toStringByFormatting(new Date()),
         offUpdate : '',
@@ -28,18 +36,141 @@ function Off() {
         appAuthNo : 0
     });
 
-    useEffect(
-        () => {
-            dispatch(callAppNameAPI());
-         }, []
-    );
+    const handleSelectStartDate = (selectedStartDate) => {
+        setStartDate(new Date(selectedStartDate));
+        setForm({
+            ...form,
+            offStart : toStringByFormatting(new Date(selectedStartDate))
+        });
+    };
+
+    const handleSelectEndDate = (selectedEndDate) => {
+        setEndDate(new Date(selectedEndDate));
+        //calcDate();
+        setForm({
+            ...form,
+            offEnd : toStringByFormatting(new Date(selectedEndDate))
+        });
+    };
+
+    // function calcDate() {
+
+    //     console.log(startDate);
+    //     console.log('calDate', endDate);
+
+    //     if(startDate == null || endDate == null) {
+    //         return
+    //     }
+    //     const date1 = new Date(startDate);
+    //     const date2 = new Date(endDate);
+
+    //     let count = 0;
+
+    //     while(true) {  
+
+    //         var temp_date = date1;
+    //         if(temp_date.getTime() > date2.getTime()) {
+    //             console.log("count : " + count);
+    //             break;
+    //         } else {
+    //             var tmp = temp_date.getDay();
+    //             if(tmp == 0 || tmp == 6) {
+    //                 // 주말
+    //                 console.log("주말");
+    //             } else {
+    //                 // 평일
+    //                 console.log("평일");
+    //                 count++;         
+    //             }
+    //             temp_date.setDate(date1.getDate() + 1); 
+    //         }
+    //     }
+
+    //     console.log('count : ', count);
+    // }
+
+    function toStringByFormatting(source, delimiter = "-") {
+        const year = source.getFullYear();
+        const month = source.getMonth() + 1;
+        const day = source.getDate();
+
+        return [year, (month < 10 ? "0"+month : month), (day < 10 ? "0"+day : day)].join(delimiter);
+    }
+
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        });
+    };
+
+    const onClickOffRegistHandler = () => {
+
+        dispatch(callOffRegistAPI({
+            form : form
+        }));
+
+        alert('연차 신청이 완료되었습니다.');
+
+        navigate(`/off`);
+
+    } 
 
     return (
         <>
             <div>
                 <h3>연차 신청</h3>
             </div>
-            
+            { offs.app &&
+                <div>
+                    <h4>제목</h4>
+                    <input
+                        type="text"
+                        name='offTitle'
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    />
+                    <h4>연차 기간</h4>
+                    <DatePicker
+                        locale={ko}
+                        dateFormat="yyyy-MM-dd"
+                        minDate={new Date()}
+                        selected={startDate}
+                        onChange={handleSelectStartDate}
+                        popperPlacement="auto"
+                    />
+                    <h4>~</h4>
+                    <DatePicker
+                        locale={ko}
+                        dateFormat="yyyy-MM-dd"
+                        minDate={new Date(startDate)}
+                        selected={endDate}
+                        onChange={handleSelectEndDate}
+                        popperPlacement="auto"
+                    />
+                    <h4>남은 연차일수</h4>
+                    <h4>{ offs.offDays }</h4>
+                    <h4>연차 사유</h4>
+                    <textarea
+                        name='offReason'
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    >
+                    </textarea>
+                    <h4>결재권자</h4>
+                    <h4>{ offs.app.memberName }</h4>
+                    <h5>상기 이유로 연차를 신청합니다.</h5>
+                    <button
+                        onClick={ onClickOffRegistHandler }
+                    >
+                        등록
+                    </button>
+                    <button
+                    >
+                        뒤로
+                    </button>
+                </div>
+            }
         </>
     );
 

@@ -18,6 +18,7 @@ import AttListForAdmin from "./pages/attendance/AttListForAdmin";
 import MyOffList from "./pages/off/MyOffList";
 import Off from "./pages/off/Off";
 import OffListForApp from "./pages/off/OffListForApp";
+import OffDetail from "./pages/off/OffDetail";
 import ApprovalLayout from "./layouts/approval/ApprovalLayout";
 import ApprovalMain from "./pages/approval/ApprovalMain";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
@@ -41,6 +42,7 @@ function App() {
           <Route index element={ <MyOffList/> }/>
           <Route path="/off/regist" element={ <Off/> }/>
           <Route path="/off/result" element={ <OffListForApp/> }/>
+          <Route path="/off/:offNo" element={ <OffDetail/> }/>
         </Route>
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>

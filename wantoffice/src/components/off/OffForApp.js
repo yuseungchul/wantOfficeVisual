@@ -5,7 +5,7 @@ function OffForApp({off}) {
     const navigate = useNavigate();
 
     const onClickOffHandler = (offNo) => {
-        navigate(`/off/add/${offNo}`);
+        navigate(`/off/${offNo}`);
     }
 
     return (
