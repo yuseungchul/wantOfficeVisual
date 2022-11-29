@@ -5,6 +5,8 @@ import memberReducer from './MemberModules';
 import reservationReducer from './reservationModule';
 import offReducer from './OffModule';
 import calendarReducer from './CalendarModule';
+import deptReducer from './DeptModule';
+import positionReducer from './PositionModule';
 
 const rootReducer = combineReducers({
     roomReducer,
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
     memberReducer,
     reservationReducer,
     offReducer,
-    calendarReducer
+    calendarReducer,
+    deptReducer,
+    positionReducer
 });
 
 export default rootReducer;
