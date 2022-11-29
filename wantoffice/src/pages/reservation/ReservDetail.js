@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import RoomDetailCSS from './RoomDetail.module.css';
+import ReservDetailCSS from './ReservDetail.module.css';
 import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 import LoginModal from '../../components/common/LoginModal';
@@ -53,18 +53,18 @@ function RoomDetail(){
         <>
             { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
             
-            <div className={ RoomDetailCSS.DetailDiv }>
+            <div className={ ReservDetailCSS.DetailDiv }>
             <h2>회의실 상세 보기</h2>
-                <div className={ RoomDetailCSS.imgsDiv }>
+                <div className={ ReservDetailCSS.imgsDiv }>
                     <img src={ room.roomFileUrl } alt="테스트"/>
-                    <p className={ RoomDetailCSS.imgName }
+                    <p className={ ReservDetailCSS.imgName }
                     >
                         { room.roomName }
                     </p>
                 </div>
             
-            <div className={ RoomDetailCSS.editDiv }>
-                <table className={ RoomDetailCSS.editTable }>
+            <div className={ ReservDetailCSS.editDiv }>
+                <table className={ ReservDetailCSS.editTable }>
                     <tbody>
                         <tr>
                             <th>회의실 명칭</th>
@@ -81,24 +81,24 @@ function RoomDetail(){
                     </tbody>
                 </table>
                 <button
-                    className={ RoomDetailCSS.roomResBtn }
+                    className={ ReservDetailCSS.roomResBtn }
                     onClick={ onClickReservationHandler }
                 >
                     예약 조회
                 </button>
                 <button
                         // onClick={ onClickRoomPostHandler }
-                        className={ RoomDetailCSS.rmUpdateBtn }
+                        className={ ReservDetailCSS.rmUpdateBtn }
                     >
                         등록하기</button>
                 <button
                         // onClick={ onClickRoomPutHandler }
-                        className={ RoomDetailCSS.rmUpdateBtn }
+                        className={ ReservDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
                 <button
                         // onClick={ onClickRoomRemoveHandler }
-                        className={ RoomDetailCSS.rmRemoveBtn }
+                        className={ ReservDetailCSS.rmRemoveBtn }
                     >
                         삭제하기</button>
             </div>
