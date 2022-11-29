@@ -7,6 +7,7 @@ import offReducer from './OffModule';
 import calendarReducer from './CalendarModule';
 import deptReducer from './DeptModule';
 import positionReducer from './PositionModule';
+import approvalReducer from './ApprovalModule';
 
 const rootReducer = combineReducers({
     roomReducer,
