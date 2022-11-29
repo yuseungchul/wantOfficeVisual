@@ -1,4 +1,4 @@
-import { GET_ROOM, GET_ROOMS, POST_ROOM } from "../modules/roomModule";
+import { GET_ROOM, GET_ROOMS, POST_ROOM, PUT_ROOM } from "../modules/roomModule";
 
 /* 회의실 조회(회원) */
 export const callRoomListAPI = ({currentPage = 1}) => {
@@ -87,7 +87,8 @@ export const callRoomRegistAPI = ({form}) => {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
+            },
+            body : form
         })
         .then(response => response.json());
 
@@ -97,5 +98,27 @@ export const callRoomRegistAPI = ({form}) => {
         }
     }
 
+}
+
+/* 회의실 수정(관리자) */
+export const callRoomUpdateAPI = ({form}) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms-managements`
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[RoomAPICalls] callRoomUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_ROOM, payload : result.data });
+        }
+    }
 }
 

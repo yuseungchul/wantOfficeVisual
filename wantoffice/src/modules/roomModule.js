@@ -7,11 +7,13 @@ const initialState = [];
 export const GET_ROOM = 'room/GET_ROOM';
 export const GET_ROOMS = 'room/GET_ROOMS';
 export const POST_ROOM = 'room/POST_ROOM';
+export const PUT_ROOM = 'room/PUT_ROOM';
 
 const actions = createActions({
     [GET_ROOM]: () => {},
     [GET_ROOMS]: () => {},
-    [POST_ROOM]: () => {}
+    [POST_ROOM]: () => {},
+    [PUT_ROOM]: () => {}
 });
 
 /* 리듀서 */
@@ -24,6 +26,9 @@ const roomReducer = handleActions(
             return payload;
         },
         [POST_ROOM] : (state, { payload }) =>{
+            return payload;
+        },
+        [PUT_ROOM] : (state, { payload }) => {
             return payload;
         }
     },
