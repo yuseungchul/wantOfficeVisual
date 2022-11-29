@@ -51,15 +51,7 @@ export const callRegisterAPI = ({form}) => {
                 "Accept": "*/*",
                 "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
             },
-            body: JSON.stringify({
-                memberName: form.memberName,
-                memberId: form.memberId,
-                memberPassword: form.memberPassword,
-                memberEmail: form.memberEmail,
-                memberPhone: form.memberPhone,
-                positionNo: form.positionNo,
-                deptNo: form.deptNo
-            })
+            body: form
         })
         .then(response => response.json());
 
@@ -67,12 +59,14 @@ export const callRegisterAPI = ({form}) => {
 
         if(result.status === 200) {
             dispatch({ type: POST_REGISTER, payload: result });
+            alert('사원 등록이 완료되었습니다.');
+            window.location.reload();
         }
     };
 }
 
 /*  전체 직원 조회 API */
-export const callMemberListAPI = ({currentPage = 1}) => {
+export const callMemberListAPI = ({currentPage}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member?page=${currentPage}`;
 
@@ -91,7 +85,7 @@ export const callMemberListAPI = ({currentPage = 1}) => {
         console.log('[MemberAPICalls] callMemberListAPI RESULT : ', result);
 
         if(result.status === 200){
-            dispatch({ type: GET_MEMBER, payload: result });
+            dispatch({ type: GET_MEMBER, payload: result.data });
         }
     };
 }

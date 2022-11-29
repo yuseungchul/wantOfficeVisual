@@ -37,7 +37,7 @@ function LoginModal({setLoginModal}) {
         <div className={ LoginModalCSS.modal}>
             <div className={ LoginModalCSS.modalContainer }>
                 <div className={ LoginModalCSS.loginModalDiv }>
-                    <h2>Login</h2>
+                    <h2>LOGIN</h2>
                     <p>ID</p>
                     <input
                         type="text"
@@ -59,7 +59,6 @@ function LoginModal({setLoginModal}) {
                     >
                         LOGIN
                     </button>
-
                 </div>
             </div>
         </div>

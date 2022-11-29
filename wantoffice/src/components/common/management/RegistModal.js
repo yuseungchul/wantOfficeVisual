@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,9 @@ function RegistModal({setRegistModal}) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const imageInput = useRef();
+    const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
 
     const [form, setForm] = useState({
         memberName : '',
@@ -16,6 +19,10 @@ function RegistModal({setRegistModal}) {
         memberPassword : '',
         memberEmail : '',
         memberPhone : '',
+        positionNo : '',
+        deptNo : '',
+        authNo : '',
+        memberJoinDate : '',
     });
 
     const [selectValue, setSelectValue] = useState({
@@ -23,21 +30,35 @@ function RegistModal({setRegistModal}) {
         deptNo : ''
     });
 
-    const member = useSelector(state => state.memberReducer);
-
     useEffect(() => {
-        if(member.status === 200) {
-            alert("사원등록이 완료되었습니다.");
-            navigate("/member", { replace : true });
+        if(image) {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+                const { result } = e.target;
+                if(result) {
+                    setImageUrl(result);
+                }
+            }
+            fileReader.readAsDataURL(image);
         }
     },
-    [member]);
+    [image]);
 
     const onChangeHandler = (e) => {
         setForm({
             ...form,
             [e.target.name] : e.target.value
         })
+    }
+
+    const onClickImageUpload = () => {
+        imageInput.current.click();
+    }
+
+    const onChangeImageUpload = (e) => {
+        const image = e.target.files[0];
+
+        setImage(image);
     }
 
     const onClickCloseHandler = () => {
@@ -47,10 +68,28 @@ function RegistModal({setRegistModal}) {
     /* 사원 등록 API 호출 */
     const onClickRegisterHandler = () => {
 
-        dispatch(callRegisterAPI({
-            form : form
-        }));
+        const formData = new FormData();
 
+        formData.append("memberName", form.memberName);
+        formData.append("memberId", form.memberId);
+        formData.append("memberPassword", form.memberPassword);
+        formData.append("memberPhone", form.memberPhone);
+        formData.append("memberEmail", form.memberEmail);
+        formData.append("position.positioinNo", form.positionNo);
+        formData.append("dept.deptNo", form.deptNo);
+        formData.append("auth.authNo", form.authNo);
+        
+        if(image) {
+            formData.append("memberImage", image);
+        }
+
+        console.log("form :", form);
+        console.log("formData : ", formData);
+
+        dispatch(callRegisterAPI({
+            form : formData
+        }));
+        
         setRegistModal(false);
         console.log('[RegistModal] Regist Process End');
         alert('사원 등록이 완료되었습니다.');
@@ -60,6 +99,13 @@ function RegistModal({setRegistModal}) {
         <div className={ RegisteModalCSS.backgroundDiv }>
             <div className={ RegisteModalCSS.registerDiv }>
                 <h2>사원 등록</h2>
+                <div className={ RegisteModalCSS.ImageDiv }>
+                <img
+                    className = { RegisteModalCSS.memberImageDiv }
+                    src={ imageUrl }
+                    alt="preview"
+                />
+                </div>
                 <p>이름</p>
                 <input
                     type="text"
@@ -97,7 +143,7 @@ function RegistModal({setRegistModal}) {
                     onChange={ onChangeHandler }
                 />
                 <p>직위</p>
-                <select name='positionNo' value={ selectValue } onChange={ onChangeHandler }>
+                <select name='positionNo' value={ form.positionNo } onChange={ onChangeHandler }>
                     <option value="1">대표</option>
                     <option value="2">전무</option>
                     <option value="3">상무</option>
@@ -109,13 +155,18 @@ function RegistModal({setRegistModal}) {
                     <option value="9">사원</option>
                 </select>
                 <p>부서</p>
-                <select name='deptNo' value={ selectValue } onChange={ onChangeHandler }>
+                <select name='deptNo' value={ form.deptNo } onChange={ onChangeHandler }>
                     <option value="1">인사팀</option>
                     <option value="2">총무팀</option>
                     <option value="3">영업팀</option>
                     <option value="4">마케팅팀</option>
                     <option value="5">개발팀</option>
                     <option value="99">관리팀</option>
+                </select>
+                <p>권한</p>
+                <select name='authNo' value={ form.authNo } onChange={ onChangeHandler }>
+                    <option value="2">결재권자</option>
+                    <option value="3">일반사원</option>
                 </select>
                 <button onClick={ onClickRegisterHandler }> 등록 </button>
             </div>
