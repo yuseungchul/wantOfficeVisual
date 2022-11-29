@@ -34,3 +34,10 @@
     float: left;
 
 }
+
+.product{
+    font-size: 100px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
