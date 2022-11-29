@@ -76,7 +76,7 @@ export const callRoomDetailAPI = ({roomNo}) => {
 }
 
 /* 회의실 등록(관리자) */
-export const callRoomRegistAPI = ({form}) => {
+export const callRoomMInsertAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/room-managements`
 

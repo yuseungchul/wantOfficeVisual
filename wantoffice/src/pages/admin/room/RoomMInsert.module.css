@@ -1,0 +1,62 @@
+.MInsertDiv{
+    position: fixed;
+    background-color: #fff;
+    top: 100px;
+    left: 260px;
+    height: 800px;
+    width: 78%;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.MInsertDiv h2 {
+    text-align: center;
+    border-top: 2px solid #8d8d8d;
+    border-bottom: 2px solid #8d8d8d;
+    margin: 50px 30px 0 30px;
+    padding: 20px;
+    color:#8d8d8d;
+}
+
+.roomBtnDiv{
+    position: absolute;
+    top: 800px;
+    left: 50%;
+    z-index: 1;
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:20px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+
+.roomBtnDiv:hover{
+    background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+
+.roomInfoToDiv{
+    position:fixed;
+    top: 300px;
+    left: 600px;
+    
+}
+
+.roomImage{
+    width: 50%;
+}
+
+.roomInfoDiv{
+    position:fixed;
+    top: 500px;
+    left: 600px;
+}

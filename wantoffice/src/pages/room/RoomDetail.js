@@ -15,6 +15,14 @@ function RoomDetail(){
     const roomNo = params.roomNo;
     const [loginModal, setLoginModal] = useState(false);
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[1];
+    }
+
     useEffect(
         () => {
             dispatch(callRoomDetailAPI({
