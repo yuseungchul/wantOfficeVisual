@@ -75,7 +75,7 @@ function Position() {
                 { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
             </div>
         </>
-    )
+    );
 }
 
 export default Position;

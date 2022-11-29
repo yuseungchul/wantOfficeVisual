@@ -38,7 +38,8 @@ export const callPositionRegistAPI = ({form}) => {
                 "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
             },
             body: JSON.stringify({
-                positionName: form.positionName
+                positionName: form.positionName,
+                positionRest: form.positionRest
             })
         })
         .then(response => response.json());

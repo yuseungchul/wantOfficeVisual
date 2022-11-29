@@ -9,7 +9,8 @@ function PositionRegistModal({setRegistModal}) {
     const dispatch = useDispatch();
 
     const [form, setForm] = useState({
-        positionName : ''
+        positionName : '',
+        positionRest : ''
     });
 
     const onChangeHandler = (e) => {
@@ -43,11 +44,19 @@ function PositionRegistModal({setRegistModal}) {
         <div>
             <div>
                 <h2>직책 등록</h2>
-                <p>*</p>
+                <p>직책명</p>
                 <input
                     type="text"
                     name='positionName'
                     placeholder="직책명을 입력하세요"
+                    autoComplete='off'
+                    onChange={ onChangeHandler }
+                />
+                <p>지급연차일수</p>
+                <input
+                    type="number"
+                    name='positionRest'
+                    placeholder="연차일수를 입력하세요"
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
