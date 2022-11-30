@@ -36,6 +36,8 @@ import PositionLayout from "./layouts/management/PositionLayout";
 
 import ApprovalLayout from "./layouts/approval/ApprovalLayout";
 import ApprovalMain from "./pages/approval/ApprovalMain";
+import ApprovalInsert from "./pages/approval/ApprovalInsert";
+import ApproverList from "./pages/approval/ApproverList"
 
 function App() {
   return (
@@ -79,8 +81,11 @@ function App() {
           <Route index element={ <Position/>}/>
         </Route>
         <Route path="*" element={ <Error/> }/>
-        <Route path="/Approval" element = { <ApprovalLayout/>}>
+
+        <Route path="/approval" element = { <ApprovalLayout/>}>
         <Route index element={ <ApprovalMain/>}/>
+        <Route path="approval-management" element={ <ApprovalInsert/>}/>
+        <Route path="approver" element={ <ApproverList/>}/>
         </Route>
 
       </Routes>

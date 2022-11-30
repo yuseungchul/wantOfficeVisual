@@ -8,8 +8,8 @@ function Header() {
         <>
             <div className={ ApprovalHeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/approver">DRAFTER</NavLink></li>
-                    <li><NavLink to="/approver">APPROVER</NavLink></li>
+                    <li><NavLink to="/approval">DRAFTER</NavLink></li>
+                    <li><NavLink to="/approval/approver">APPROVER</NavLink></li>
                 </ul>
 
             </div>
