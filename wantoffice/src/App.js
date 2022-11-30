@@ -29,6 +29,7 @@ import PositionLayout from "./layouts/management/PositionLayout";
 import ReservDetail from "./pages/reservation/ReservDetail";
 import RoomMInsert from "./pages/admin/room/RoomMInsert";
 import OffUpdate from "./pages/off/OffUpdate";
+import RoomMUpdate from "./pages/admin/room/RoomMUpdate";
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
           <Route path="rvlists" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
           <Route path="room-managements" element={ <RoomMInsert/> }/>
+          <Route path="rooms-managements" element={ <RoomMUpdate/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
