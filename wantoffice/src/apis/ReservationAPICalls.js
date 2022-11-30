@@ -1,4 +1,4 @@
-import { GET_RESERVATION, GET_RESERVATIONS, POST_RESERVATION } from "../modules/reservationModule";
+import { GET_RESERVATION, GET_RESERVATIONS, POST_RESERVATION, PUT_RESERVATION } from "../modules/reservationModule";
 
 /* 회의실 예약 전체 조회(관리자) */
 export const callReservationRoomListAPI = ({reservationNo}) => {
@@ -87,10 +87,10 @@ export const callReservationRegistAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
-                "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
+            },
+            body : form
         })
         .then(response => response.json());
 
@@ -101,15 +101,24 @@ export const callReservationRegistAPI = ({form}) => {
     }
 }
 
-/* 회의실 예약 수정(회원) */
-// export const callReservationUpdateAPI = ({form}) => {
+/* 회의실 수정(관리자) */
+export const callReservationUpdateAPI = ({form}) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists`
 
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists`
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
 
-//     return async (dispatch, getState) => {
-
-//         const result = await fetch(requestURL, {
-
-//         })
-//     }
-// }
+        if(result.status === 200) {
+            console.log('[ReservationAPICalls] callReservationUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_RESERVATION, payload : result.data });
+        }
+    }
+}

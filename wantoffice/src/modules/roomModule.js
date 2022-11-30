@@ -8,14 +8,14 @@ export const GET_ROOM = 'room/GET_ROOM';
 export const GET_ROOMS = 'room/GET_ROOMS';
 export const POST_ROOM = 'room/POST_ROOM';
 export const PUT_ROOM = 'room/PUT_ROOM';
-export const DELETE_ROOM = 'room/DELETE_ROOM';
+// export const DELETE_ROOM = 'room/DELETE_ROOM';
 
 const actions = createActions({
     [GET_ROOM]: () => {},
     [GET_ROOMS]: () => {},
     [POST_ROOM]: () => {},
     [PUT_ROOM]: () => {},
-    [DELETE_ROOM]: () => {}
+    // [DELETE_ROOM]: () => {}
 });
 
 /* 리듀서 */
@@ -33,9 +33,9 @@ const roomReducer = handleActions(
         [PUT_ROOM] : (state, { payload }) => {
             return payload;
         },
-        [DELETE_ROOM] : (state, { payload }) => {
-            return payload;
-        }
+        // [DELETE_ROOM] : (state, { payload }) => {
+        //     return payload;
+        // }
     },
     initialState
 );

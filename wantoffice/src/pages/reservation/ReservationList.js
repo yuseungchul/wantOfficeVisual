@@ -54,8 +54,9 @@ function ReservationList(){
                  
                 <table>
                 
-                    <th>예약번호</th>
+                    <th>예약 번호</th>
                     <th>예약 시간</th>
+                    <th>예약 이용 시간</th>
                     <th>예약 날짜</th>
                     <th>예약 상태</th>
                     <th>예약 목적</th>
@@ -70,8 +71,9 @@ function ReservationList(){
                                     >
                                         <td>{ reservation.reservationNo }</td>
                                         <td>{ reservation.reservationTime }</td>
+                                        <td>{ reservation.reservationUseTime } 시간</td>
                                         <td>{ reservation.reservationDate }</td>
-                                        <td>{ reservation.reservationStatus }</td>
+                                        <td>{ reservation.reservationSetting }</td>
                                         <td>{ reservation.reservationPurpose }</td>
                                     </tr>
                                 )
