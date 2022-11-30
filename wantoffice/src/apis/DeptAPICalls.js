@@ -1,4 +1,4 @@
-import { GET_DEPT, POST_DEPT, PUT_DEPT } from "../modules/DeptModule";
+import { GET_DEPTS, GET_DEPT, POST_DEPT, PUT_DEPT } from "../modules/DeptModule";
 
 
 /* 전체 부서 조회 API */
@@ -20,7 +20,7 @@ export const callDeptListAPI = () => {
         console.log('[DeptAPICalls] callDeptListAPI RESULT : ', result);
 
         if(result.status === 200) {
-            dispatch({ type: GET_DEPT, payload: result.data });
+            dispatch({ type: GET_DEPTS, payload: result.data });
         }
     };
 }
@@ -51,6 +51,31 @@ export const callDeptRegistAPI = ({form}) => {
             dispatch({ type: POST_DEPT, payload: result });
         }
     };
+}
+
+/* 부서 상세 API */
+export const callDeptDetailAPI = ({deptNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/dept/list/${deptNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[DeptAPICalls] callDeptDetailAPI RESULT : ', result);
+
+            dispatch({ type: GET_DEPT, payload: result});
+        }
+    }
 }
 
 /* 부서 수정 API */
