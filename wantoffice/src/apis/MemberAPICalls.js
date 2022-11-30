@@ -47,7 +47,6 @@ export const callRegisterAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Accept": "*/*",
                 "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
             },
@@ -57,12 +56,11 @@ export const callRegisterAPI = ({form}) => {
 
         console.log('[MemberAPICalls] callsRegisterAPI RESULT : ', result);
 
-        if(result.status === 200) {
-            dispatch({ type: POST_REGISTER, payload: result });
-            alert('사원 등록이 완료되었습니다.');
+        if(result.status === 201) {
+            dispatch({ type: POST_REGISTER, payload: result.data });
             window.location.reload();
         }
-    };
+    }
 }
 
 /*  전체 직원 조회 API */

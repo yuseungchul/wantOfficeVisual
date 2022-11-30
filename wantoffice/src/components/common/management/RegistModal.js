@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callRegisterAPI } from "../../../apis/MemberAPICalls";
@@ -23,11 +22,6 @@ function RegistModal({setRegistModal}) {
         deptNo : '',
         authNo : '',
         memberJoinDate : '',
-    });
-
-    const [selectValue, setSelectValue] = useState({
-        positionNo : '',
-        deptNo : ''
     });
 
     useEffect(() => {
@@ -75,7 +69,7 @@ function RegistModal({setRegistModal}) {
         formData.append("memberPassword", form.memberPassword);
         formData.append("memberPhone", form.memberPhone);
         formData.append("memberEmail", form.memberEmail);
-        formData.append("position.positioinNo", form.positionNo);
+        formData.append("position.positionNo", form.positionNo);
         formData.append("dept.deptNo", form.deptNo);
         formData.append("auth.authNo", form.authNo);
         
@@ -83,28 +77,44 @@ function RegistModal({setRegistModal}) {
             formData.append("memberImage", image);
         }
 
-        console.log("form :", form);
         console.log("formData : ", formData);
 
         dispatch(callRegisterAPI({
             form : formData
         }));
         
-        setRegistModal(false);
+        //setRegistModal(false);
+        console.log('[RegistModal] Regist Process End', formData);
         console.log('[RegistModal] Regist Process End');
         alert('사원 등록이 완료되었습니다.');
     }
+
+    console.log("form :", form);
 
     return (
         <div className={ RegisteModalCSS.backgroundDiv }>
             <div className={ RegisteModalCSS.registerDiv }>
                 <h2>사원 등록</h2>
                 <div className={ RegisteModalCSS.ImageDiv }>
-                <img
-                    className = { RegisteModalCSS.memberImageDiv }
-                    src={ imageUrl }
-                    alt="preview"
-                />
+                    { imageUrl && <img
+                        className = { RegisteModalCSS.memberImageDiv }
+                        src={ imageUrl }
+                        alt="preview"
+                    /> }
+                    <input
+                        style={ { display: 'none' }}
+                        type="file"
+                        name='memberImage'
+                        accept='image/jpg,image/png,image/jpeg,image/gif'
+                        onChange={ onChangeImageUpload }
+                        ref={ imageInput }
+                    />
+                    <button
+                        className={ RegisteModalCSS.memberImageButton }
+                        onClick={ onClickImageUpload }
+                    >
+                        이미지 파일
+                    </button>
                 </div>
                 <p>이름</p>
                 <input
@@ -142,7 +152,7 @@ function RegistModal({setRegistModal}) {
                     maxLength="13"
                     onChange={ onChangeHandler }
                 />
-                <p>직위</p>
+                <p>직책</p>
                 <select name='positionNo' value={ form.positionNo } onChange={ onChangeHandler }>
                     <option value="1">대표</option>
                     <option value="2">전무</option>
@@ -165,14 +175,13 @@ function RegistModal({setRegistModal}) {
                 </select>
                 <p>권한</p>
                 <select name='authNo' value={ form.authNo } onChange={ onChangeHandler }>
-                    <option value="2">결재권자</option>
                     <option value="3">일반사원</option>
+                    <option value="2">결재권자</option>
                 </select>
                 <button onClick={ onClickRegisterHandler }> 등록 </button>
             </div>
         </div>
     )
-
 
 }
 
