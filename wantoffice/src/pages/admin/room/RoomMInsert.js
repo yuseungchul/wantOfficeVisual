@@ -1,6 +1,6 @@
 import RoomMInsertCSS from './RoomMInsert.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { callRoomMInsertAPI } from '../../../apis/RoomAPICalls';
 
@@ -10,28 +10,28 @@ function RoomMInsert(){
     const navigate = useNavigate();
     const imageInput = useRef();
     const [image, setImage] = useState(null);
-    const [roomFileUrl, setRoomFileUrl] = useState('');
+    const [roomfileUrl, setRoomfileUrl] = useState('');
     const [form, setForm] = useState({
         roomName : '',
         roomLocation : '',
-        roomCapacity : 0,
-        roomFileUrl : '',
-        reservationStatus : ''
+        roomCapacity : 0
+        
     });
-
+    console.log("form",form);
     useEffect(() =>{
         if(image) {
             const fileReader = new FileReader();
             fileReader.onload = (e) => {
                 const { result } = e.target;
                 if(result) {
-                    setRoomFileUrl(result);
+                    setRoomfileUrl(result);
                 }
             }
             fileReader.readAsDataURL(image);
         }
     },
     [image]);
+    console.log("result");
 
     const onChangeHandler = (e) => {
         setForm({
@@ -39,11 +39,15 @@ function RoomMInsert(){
             [e.target.name] : e.target.value
         });
     }
-
-    const onClickImageUpload = () => {
+    console.log("onChangeHandler 동작확인");
+    const onClickImageUpload = useCallback(() => {
+        if(!imageInput.current){
+            return;
+        }
         imageInput.current.click();
-    }
-
+        
+    },[image]);
+    console.log("onClickImageUpload 동작확인");
     const onChangeImageUpload = (e) => {
 
         const image = e.target.files[0];
@@ -51,17 +55,18 @@ function RoomMInsert(){
         setImage(image);
 
     }
-
+    console.log("onChangeImageUpload 동작확인");
     const onClickRoomMInsertHandler = () => {
 
         const formData = new FormData();
-    
+        
+        for (let key of formData.keys()) {
+            console.log(key);
+     }  
         formData.append("roomName", form.roomName);
         formData.append("roomLocation", form.roomLocation);
         formData.append("roomCapacity", form.roomCapacity);
-        formData.append("roomFileUrl", form.roomFileUrl);
-        formData.append("reservation.reservationStatus", form.reservationStatus)
-
+        
         if(image) {
             formData.append("roomImage", image);
         }
@@ -69,7 +74,7 @@ function RoomMInsert(){
         dispatch(callRoomMInsertAPI({
             form : formData
         }));
-
+        console.log(formData);
         navigate('/room', { replace : true });
         window.location.reload();
     }
@@ -88,9 +93,9 @@ function RoomMInsert(){
             <h2>회의실 시설 안내</h2>
                 <div className= { RoomMInsertCSS.roomInfoDiv }>
                     <div className= { RoomMInsertCSS.roomImage }>
-                        { roomFileUrl && <img
+                        { roomfileUrl && <img
                                 className={ RoomMInsertCSS.roomImage }
-                                src={ roomFileUrl }
+                                src={ roomfileUrl }
                                 alt="preview"
                         />}
                         <input
@@ -103,6 +108,7 @@ function RoomMInsert(){
                         <button
                             className={ RoomMInsertCSS.roomImageBtn }
                             onClick={ onClickImageUpload }
+                            name='roomFileUrl'
                         >
                             이미지 업로드
                         </button>
@@ -144,15 +150,7 @@ function RoomMInsert(){
                                     />
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>예약 가능 여부</label></td>
-                                <td>
-                                    <select>
-                                        <option>예약가능</option>
-                                        <option>예약불가</option>
-                                    </select>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
