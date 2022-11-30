@@ -2,35 +2,40 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/contents/Login";
 import Layout from "./layouts/Layout";
 import Main from "./pages/contents/Main";
+import Error from "./pages/Error";
+
 import CalendarLayout from "./layouts/CalendarLayout";
 import Calendar from "./pages/calendar/Calendar";
-import Error from "./pages/Error";
-import RoomList from "./pages/room/RoomList";
+
 import Attendance from "./pages/attendance/Attendance";
 import AttendanceLayout from "./layouts/attendance/AttendanceLayout";
-import RoomLayout from "./layouts/RoomLayout";
-import RoomDetail from "./pages/room/RoomDetail";
-import Member from "./pages/admin/management/Member";
-import MemberLayout from "./layouts/management/MemberLayout";
-import ReservationList from "./pages/reservation/ReservationList";
 import MyAttList from "./pages/attendance/MyAttList";
 import AttListForAdmin from "./pages/attendance/AttListForAdmin";
-import MyOffList from "./pages/off/MyOffList";
 import Off from "./pages/off/Off";
-import OffListForApp from "./pages/off/OffListForApp";
 import OffDetail from "./pages/off/OffDetail";
-import ApprovalLayout from "./layouts/approval/ApprovalLayout";
-import ApprovalMain from "./pages/approval/ApprovalMain";
+import MyOffList from "./pages/off/MyOffList";
+import OffUpdate from "./pages/off/OffUpdate";
+import OffListForApp from "./pages/off/OffListForApp";
+
+import RoomLayout from "./layouts/RoomLayout";
+import RoomList from "./pages/room/RoomList";
+import RoomDetail from "./pages/room/RoomDetail";
+import RoomMInsert from "./pages/admin/room/RoomMInsert";
+import RoomMUpdate from "./pages/admin/room/RoomMUpdate";
+import RoomMDelete from "./pages/admin/room/RoomMDelete";
+import ReservationList from "./pages/reservation/ReservationList";
+import ReservDetail from "./pages/reservation/ReservDetail";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
+
+import Member from "./pages/admin/management/Member";
+import MemberLayout from "./layouts/management/MemberLayout";
 import Dept from "./pages/admin/dept/Dept";
 import DeptLayout from "./layouts/management/DeptLayout";
 import Position from "./pages/admin/position/Position";
 import PositionLayout from "./layouts/management/PositionLayout";
-import ReservDetail from "./pages/reservation/ReservDetail";
-import RoomMInsert from "./pages/admin/room/RoomMInsert";
-import OffUpdate from "./pages/off/OffUpdate";
-import RoomMUpdate from "./pages/admin/room/RoomMUpdate";
 
+import ApprovalLayout from "./layouts/approval/ApprovalLayout";
+import ApprovalMain from "./pages/approval/ApprovalMain";
 
 function App() {
   return (
@@ -57,11 +62,12 @@ function App() {
         <Route path="/room" element={<RoomLayout/>}>
           <Route index element={ <RoomList/> }/>
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
+          <Route path="room-managements" element={ <RoomMInsert/> }/>
+          <Route path="rooms-managements" element={ <RoomMUpdate/> }/>
+          <Route path="rooms-management/:roomNo" element={<RoomMDelete/>}/>
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
           <Route path="rvlists" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
-          <Route path="room-managements" element={ <RoomMInsert/> }/>
-          <Route path="rooms-managements" element={ <RoomMUpdate/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
