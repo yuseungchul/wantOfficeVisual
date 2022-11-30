@@ -76,6 +76,27 @@ function RoomDetail(){
        navigate(`/room/rooms-managements`, { replace : false });
     }
 
+    /* 예약 삭제 버튼 이벤트 */    
+    const onClickRoomDeleteHandler = () => {
+
+        // 로그인 상태 확인
+        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+        console.log('[onClickRoomPutHandler] token : ', token);
+
+        if(!token) {
+            alert("신청 전 로그인 확인이 필요합니다.");
+            setLoginModal(true);
+            return;
+        }
+
+        // 토큰 만료시 재 로그인
+        if(token.exp * 1000 < Date.now()) {
+            setLoginModal(true);
+            return;
+        }
+
+       navigate(`/room/rooms-management/${roomNo}`, { replace : true });
+    }
 
     return(
         <>
@@ -120,7 +141,7 @@ function RoomDetail(){
                     >
                         수정하기</button>
                 <button
-                        // onClick={ onClickRoomPutHandler }
+                        onClick={ onClickRoomDeleteHandler }
                         className={ RoomDetailCSS.rmRemoveBtn }
                     >
                         삭제하기</button>
