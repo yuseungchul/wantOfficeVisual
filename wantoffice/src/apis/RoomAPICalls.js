@@ -84,14 +84,15 @@ export const callRoomMInsertAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
-                "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
             body : form
         })
-        .then(response => response.json());
-
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data);
+        });
         if(result.status === 200) {
             console.log('[RoomAPICalls] callRoomRegistAPI result : ', result);
             dispatch({ type: POST_ROOM, payload : result.data });
