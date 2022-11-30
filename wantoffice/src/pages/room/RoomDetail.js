@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RoomDetailCSS from './RoomDetail.module.css';
 import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
@@ -54,7 +54,7 @@ function RoomDetail(){
        navigate(`/room/rvlist/${roomNo}`, { replace : true });
     }
 
-    /* 예약수정 버튼 이벤트 */    
+    /* 회의실수정 버튼 이벤트 */    
     const onClickRoomPutHandler = () => {
 
         // 로그인 상태 확인
@@ -77,26 +77,20 @@ function RoomDetail(){
     }
 
     /* 예약 삭제 버튼 이벤트 */    
-    const onClickRoomDeleteHandler = () => {
+    // const onClickRoomDeleteHandler = (roomNo) => {
 
-        // 로그인 상태 확인
-        const token = decodeJwt(window.localStorage.getItem("accessToken"));
-        console.log('[onClickRoomPutHandler] token : ', token);
+    //     {
+    //         dispatch(callRoomMDeleteAPI({
+    //             roomNo : roomNo
+    //         }));
+    //         console.log("삭제 확인");
+    //         alert('회의실이 삭제 되었습니다.');
+            
+    //     }
 
-        if(!token) {
-            alert("신청 전 로그인 확인이 필요합니다.");
-            setLoginModal(true);
-            return;
-        }
-
-        // 토큰 만료시 재 로그인
-        if(token.exp * 1000 < Date.now()) {
-            setLoginModal(true);
-            return;
-        }
-
-       navigate(`/room/rooms-management/${roomNo}`, { replace : true });
-    }
+    // //    navigate(`/room/rooms-management/${roomNo}`, { replace : true });
+    //    window.location.reload();
+    // }
 
     return(
         <>
@@ -140,11 +134,11 @@ function RoomDetail(){
                         className={ RoomDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
-                <button
+                {/* <button
                         onClick={ onClickRoomDeleteHandler }
                         className={ RoomDetailCSS.rmRemoveBtn }
                     >
-                        삭제하기</button>
+                        삭제하기</button> */}
             </div>
           </div>
         </>

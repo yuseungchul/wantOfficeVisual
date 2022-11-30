@@ -123,24 +123,24 @@ export const callRoomMUpdateAPI = ({form}) => {
     }
 }
 
-export const callRoomMDeleteAPI = ({roomNo}) => {
+// export const callRoomMDeleteAPI = ({roomNo}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms-management/${roomNo}`
+//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms-management/${roomNo}`
 
-    return async (dispatch, getState) => {
-        const result = await fetch(requestURL, {
-            method : "DELETE",
-            headers : {
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
+//     return async (dispatch, getState) => {
+//         const result = await fetch(requestURL, {
+//             method : "DELETE",
+//             headers : {
+//                 "Accept" : "*/*",
+//                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+//             }
+//         })
+//         .then(response => response.json());
 
-        if(result.status === 204) {
-            console.log('[RoomAPICalls] callRoomMDeleteAPI RESULT : ', result);
-            dispatch({ type: DELETE_ROOM, payload : result.data });
-        }
+//         if(result.status === 204) {
+//             console.log('[RoomAPICalls] callRoomMDeleteAPI RESULT : ', result);
+//             dispatch({ type: DELETE_ROOM, payload : result.data });
+//         }
 
-    }
-}
+//     }
+// }

@@ -66,7 +66,6 @@ function App() {
           <Route path="rooms/:roomNo" element={ <RoomDetail/> }/>
           <Route path="room-managements" element={ <RoomMInsert/> }/>
           <Route path="rooms-managements" element={ <RoomMUpdate/> }/>
-          <Route path="rooms-management/:roomNo" element={<RoomMDelete/>}/>
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
           <Route path="rvlists" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>

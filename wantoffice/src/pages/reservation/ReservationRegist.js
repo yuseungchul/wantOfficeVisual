@@ -65,8 +65,8 @@ function ReservationRegist(){
                                         name="memberNo"
                                         autoComplete="off"
                                         defaultValue={token.sub || ''}
-                                        className={ReservationRegistCSS.inputDiv}
-                                        
+                                        className={ ReservationRegistCSS.inputDiv }
+                                        style={ {border:'none'} }
                                     />
                                 </td>
                             </tr>
@@ -76,6 +76,7 @@ function ReservationRegist(){
                                     <select
                                         className={ ReservationRegistCSS.inputDiv }
                                         onChange={ onChangeHandler }
+                                        name="reservationTime"
                                     >
                                         <option>09:00 ~ 10:00</option>
                                         <option>10:00 ~ 11:00</option>
@@ -108,6 +109,8 @@ function ReservationRegist(){
                                         onChange={ onChangeHandler }
                                     >
                                         <option>예약</option>
+                                        <option>예약</option>
+                                        <option>예약</option>
                                     </select>
                                 </td>
                             </tr>
@@ -122,12 +125,7 @@ function ReservationRegist(){
                                     />
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>예약할 회의실</label></td>
-                                <td>
-                                    <label></label>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
