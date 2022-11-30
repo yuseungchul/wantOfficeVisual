@@ -1,4 +1,4 @@
-import { GET_ROOM, GET_ROOMS, POST_ROOM, PUT_ROOM } from "../modules/roomModule";
+import { GET_ROOM, GET_ROOMS, POST_ROOM, PUT_ROOM, DELETE_ROOM } from "../modules/roomModule";
 
 /* 회의실 조회(회원) */
 export const callRoomListAPI = ({currentPage = 1}) => {
@@ -102,7 +102,7 @@ export const callRoomMInsertAPI = ({form}) => {
 }
 
 /* 회의실 수정(관리자) */
-export const callRoomUpdateAPI = ({form}) => {
+export const callRoomMUpdateAPI = ({form}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms-managements`
 
     return async (dispatch, getState) => {
@@ -123,3 +123,24 @@ export const callRoomUpdateAPI = ({form}) => {
     }
 }
 
+export const callRoomMDeleteAPI = ({roomNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rooms-management/${roomNo}`
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method : "DELETE",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 204) {
+            console.log('[RoomAPICalls] callRoomMDeleteAPI RESULT : ', result);
+            dispatch({ type: DELETE_ROOM, payload : result.data });
+        }
+
+    }
+}

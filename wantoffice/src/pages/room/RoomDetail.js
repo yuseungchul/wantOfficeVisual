@@ -54,7 +54,27 @@ function RoomDetail(){
        navigate(`/room/rvlist/${roomNo}`, { replace : true });
     }
 
+    /* 예약수정 버튼 이벤트 */    
+    const onClickRoomPutHandler = () => {
 
+        // 로그인 상태 확인
+        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+        console.log('[onClickRoomPutHandler] token : ', token);
+
+        if(!token) {
+            alert("신청 전 로그인 확인이 필요합니다.");
+            setLoginModal(true);
+            return;
+        }
+
+        // 토큰 만료시 재 로그인
+        if(token.exp * 1000 < Date.now()) {
+            setLoginModal(true);
+            return;
+        }
+
+       navigate(`/room/rooms-managements`, { replace : false });
+    }
 
 
     return(
@@ -95,7 +115,7 @@ function RoomDetail(){
                     예약 조회
                 </button>
                 <button
-                        // onClick={ onClickRoomPutHandler }
+                        onClick={ onClickRoomPutHandler }
                         className={ RoomDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
