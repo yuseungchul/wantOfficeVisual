@@ -130,31 +130,6 @@ export const callCustomersAPI = ({currentPage = 1}) => {
 
 }
 
-export const callCustomerAPI = ({customerNo}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/customer/${customerNo}`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[CardAPICalls] callCustomerAPI result : ', result);
-            dispatch({ type: GET_CUSTOMER, payload: result.data });
-        }
-
-    }
-
-}
-
 export const callCustomerRegistAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/customer`;

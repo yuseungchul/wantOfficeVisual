@@ -1,28 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callCustomerAPI, callCustomerDeleteAPI, callCustomerUpdateAPI } from "../../apis/CardAPICalls";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { callCustomerDeleteAPI, callCustomerUpdateAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
 
-function CustomerDetailModal({customerNo, setCustomerDetailModal}) {
+function CustomerDetailModal({customer, setCustomerDetailModal}) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
-    const customer = useSelector(state => state.cardReducer);
     const token = decodeJwt(window.localStorage.getItem("accessToken"));
 
     const [modifyMode, setModifyMode] = useState(false);
     const [form, setForm] = useState({});
-
-    useEffect(
-        () => {
-            dispatch(callCustomerAPI({
-                customerNo: customerNo
-            }));
-        }
-        ,[]
-    );
 
     const onChangeHandler = (e) => {
         setForm({
@@ -45,7 +34,7 @@ function CustomerDetailModal({customerNo, setCustomerDetailModal}) {
 
     const onClickCustomerUpdateHandler = () => {
         dispatch(callCustomerUpdateAPI({
-            customerNo: customerNo,
+            customerNo: customer.customerNo,
             form: form
         }));
 
@@ -57,7 +46,7 @@ function CustomerDetailModal({customerNo, setCustomerDetailModal}) {
 
     const onClickCustomerDeleteHandler = () => {
         dispatch(callCustomerDeleteAPI({
-            customerNo: customerNo,
+            customerNo: customer.customerNo,
             form: form
         }));
 
@@ -65,6 +54,10 @@ function CustomerDetailModal({customerNo, setCustomerDetailModal}) {
 
         navigate(`/card/customers`, { replace: true });
         window.location.reload();
+    }
+
+    const onClickCloseHandler = () => {
+        setCustomerDetailModal(false);
     }
 
     return (
@@ -161,7 +154,7 @@ function CustomerDetailModal({customerNo, setCustomerDetailModal}) {
                 customer && 
                 <div>
                     <button
-                        onClick={ () => navigate('/card/customers') }
+                        onClick={ onClickCloseHandler }
                     >
                         뒤로
                     </button>

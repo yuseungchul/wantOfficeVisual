@@ -40,6 +40,7 @@ import ApproverList from "./pages/approval/ApproverList"
 
 import CardLayout from "./layouts/card/CardLayout";
 import CustomerList from "./pages/card/CustomerList";
+import Card from "./pages/card/Card";
 
 function App() {
   return (
@@ -90,6 +91,7 @@ function App() {
         </Route>
 
         <Route path="/card" element={ <CardLayout/> }>
+          <Route index element={ <Card/> }/>
           <Route path="/card/customers" element={ <CustomerList/> }/>
         </Route>
 
