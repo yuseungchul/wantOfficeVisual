@@ -87,16 +87,33 @@ export const callReservationRegistAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
+                "content-Type": "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
-            body : form
+            body : JSON.stringify({
+                // reservationNo : form.reservationNo,
+                reservationDate : form.reservationDate,
+                reservationTimeIn : form.reservationTimeIn,
+                reservationTimeOut : form.reservationTimeOut,
+                reservationUseTime : form.reservationUseTime,
+                reservationPurpose : form.reservationPurpose, 
+                // room : {
+                //     roomNo : form.roomNo
+                // },
+                member : {
+                    memberNo : form.memberNo
+                }
+            })
         })
         .then(response => response.json());
+        // .then((data) => {
+        //     console.log(data);
+        // });
 
         if(result.status === 200) {
             console.log('[ReservationRegistAPICalls] callReservationRegistAPI result : ', result);
-            dispatch({ type: POST_RESERVATION, payload: result.data });
+            dispatch({ type: POST_RESERVATION, payload: result });
         }
     }
 }
