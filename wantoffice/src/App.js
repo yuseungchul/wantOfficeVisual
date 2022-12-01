@@ -38,6 +38,8 @@ import ApprovalMain from "./pages/approval/ApprovalMain";
 import ApprovalInsert from "./pages/approval/ApprovalInsert";
 import ApproverList from "./pages/approval/ApproverList"
 
+import CardLayout from "./layouts/card/CardLayout";
+
 function App() {
   return (
     <BrowserRouter>
@@ -84,6 +86,9 @@ function App() {
         <Route index element={ <ApprovalMain/>}/>
         <Route path="approval-management" element={ <ApprovalInsert/>}/>
         <Route path="approver" element={ <ApproverList/>}/>
+        </Route>
+
+        <Route path="/card" element={ <CardLayout/> }>
         </Route>
 
       </Routes>
