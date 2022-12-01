@@ -14,7 +14,7 @@ border-right: solid 1px #cfcfcf;
     margin-left: 245px;
 }
 
-.submenu > button {
+.submenu > div> button {
     margin-top: 10px;
     background-color: transparent;
     border: solid 2px #739CA5;

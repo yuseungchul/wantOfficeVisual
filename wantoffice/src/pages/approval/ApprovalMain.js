@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { callApprovalListAPI  } from '../../apis/ApprovalAPICalls';
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import ApprovalModal from "../../components/approvals/ApprovalModal";
+
 
 function ApprovalMain () {
 
@@ -40,16 +42,28 @@ function ApprovalMain () {
     navigate(`/approval/approval-management`, { replace : false })
 }
 
+
+/* 결재등록 모달 */
+const [modalOpen, setModalOpen] = useState(false);
+
+const showModal = () => {
+    setModalOpen(true);
+    };
+  
+
+
     return (
         <>
             <div>
             {/* 서브메뉴 */}
             <section className={ApprovalMainCSS.submenu}>
             <h3>DRAFTER</h3>
-            <button 
-             onClick={ ApprovalInsert }> 
-                New Document
-            </button>
+
+            {/* 결재등록버튼 */}
+            <div>
+            <button onClick={showModal}>New Document</button>
+            {modalOpen && <ApprovalModal setModalOpen={setModalOpen} />}
+             </div>
             
             <div className={ApprovalMainCSS.submenuDiv}>
             <h6>▶ 요청 결재 목록</h6>
@@ -92,8 +106,7 @@ function ApprovalMain () {
                                             <th> {a.docTitle} </th>                                
                                             <th> {a.member.memberName} </th>
                                             <th> {a.docDate} </th>
-                                            !!!!!!!!!!!!!!!!!
-                                            <th key={a.docNo}> {a.progress.dpStatus} </th>
+                                            <th> {a.progress[a.progress.length - 1].member.memberName} </th>
                                             <th> {a.form.dfNo} </th>
                                         </tr>
                                     )
@@ -138,7 +151,16 @@ function ApprovalMain () {
                     </button>
                 }
             </div>
+
+            
+     
+
+
+
+
         </>
+
+        
 
         
     );

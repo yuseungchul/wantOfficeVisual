@@ -1,6 +1,7 @@
 import ApprovalMainCSS from "./ApprovalMain.module.css"
 import { Navigate, useNavigate } from "react-router-dom";
-
+import ApprovalModal from "../../components/approvals/ApprovalModal";
+import { useEffect, useState } from 'react';
 
 
 function ApproverList() {
@@ -11,6 +12,13 @@ function ApproverList() {
         navigate(`/approval/approval-management`, { replace : false })
     }
 
+    /* 결재 등록 버튼 */
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const showModal = () => {
+        setModalOpen(true);
+        };
+
     return(
 
         <>
@@ -18,10 +26,11 @@ function ApproverList() {
                     {/* 서브메뉴 */}
                     <section className={ApprovalMainCSS.submenu}>
                     <h3>APPROVER</h3>
-                    <button 
-                     onClick={ ApprovalInsert }> 
-                        New Document
-                    </button>
+                    {/* 결재 등록 버튼 */}
+                    <div>
+                        <button onClick={showModal}>New Document</button>
+                        {modalOpen && <ApprovalModal setModalOpen={setModalOpen} />}
+                    </div>
                     
                     <div className={ApprovalMainCSS.submenuDiv}>
                     <h6>▶ 요청 결재 목록</h6>
@@ -33,7 +42,7 @@ function ApproverList() {
                     </ul>
                     </div>
                     </section>
-                    </div>
+                </div>
         </>
         
         )
