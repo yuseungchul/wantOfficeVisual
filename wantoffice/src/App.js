@@ -39,6 +39,8 @@ import ApprovalInsert from "./pages/approval/ApprovalInsert";
 import ApproverList from "./pages/approval/ApproverList"
 
 import CardLayout from "./layouts/card/CardLayout";
+import CustomerRegistModal from "./pages/card/CustomerRegistModal";
+import CustomerList from "./pages/card/CustomerList";
 
 function App() {
   return (
@@ -89,6 +91,8 @@ function App() {
         </Route>
 
         <Route path="/card" element={ <CardLayout/> }>
+          <Route path="/card/customers" element={ <CustomerList/> }/>
+          <Route path="/card/customer/regist" element={ <CustomerRegistModal/> }/>
         </Route>
 
       </Routes>
