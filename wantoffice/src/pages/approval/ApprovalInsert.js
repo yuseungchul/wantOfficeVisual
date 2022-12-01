@@ -1,9 +1,9 @@
 import ApprovalMainCSS from "./ApprovalMain.module.css"
 import { Navigate, useNavigate } from "react-router-dom";
-
+import ApprovalModal from "../../components/approvals/ApprovalModal";
+import { useState } from 'react';
 
 function ApprovalInsert() {
-
 
     const navigate = useNavigate();
 
@@ -11,6 +11,16 @@ function ApprovalInsert() {
         console.log('결재 등록 페이지');
         navigate(`/approval/approval-management`, { replace : false })
     }
+
+      // 모달창 노출 여부 state
+      const [modalOpen, setModalOpen] = useState(false);
+
+
+      // 모달창 노출
+      const showModal = () => {
+          setModalOpen(true);
+      };
+  
 
 return(
 
@@ -35,9 +45,15 @@ return(
             </div>
             </section>
             </div>
+
+        <div>
+            <button onClick={showModal}>모달 띄우기</button>
+            {modalOpen && <ApprovalModal setModalOpen={setModalOpen} />}
+        </div>
+
 </>
 
-)
+);
 
 
 
