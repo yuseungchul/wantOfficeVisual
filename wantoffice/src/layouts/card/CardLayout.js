@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import CardHeader from "../../components/common/card/CardHeader";
 import Navbar from "../../components/common/Navbar";
 function CardLayout() {
 
@@ -8,7 +7,6 @@ function CardLayout() {
             
             
             <Navbar />
-            <CardHeader />
             <main>
                 <Outlet />
              </main>

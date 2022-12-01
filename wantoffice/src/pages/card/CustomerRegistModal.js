@@ -33,8 +33,13 @@ function CustomerRegistModal({setCustomerRegistModal}) {
 
         alert('거래처 명함 등록이 완료되었습니다.');
 
-        navigate('/main');
+        navigate('/card/customers');
+        window.location.reload();
 
+    }
+
+    const onClickCloseHandler = () => {
+        setCustomerRegistModal(false);
     }
 
     return (
@@ -101,6 +106,7 @@ function CustomerRegistModal({setCustomerRegistModal}) {
                         등록
                     </button>
                     <button
+                        onClick={ onClickCloseHandler }
                     >
                         취소
                     </button>

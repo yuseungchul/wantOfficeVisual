@@ -39,7 +39,7 @@ function Navbar() {
                     <li><NavLink to="/approval"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/> APPROVAL</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBoard.png'} alt="공지로고"/> NOTICE</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/> LIBRARY</NavLink></li>
-                    <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/> BUSINESS CARD</NavLink></li>
+                    <li><NavLink to="/card"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/> BUSINESS CARD</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/> DM</NavLink></li>
                     { decoded === "ROLE_ADMIN" && <li><NavLink to="rvlist-managements">회의실 예약 관리</NavLink></li>}
                     { decoded === "ROLE_ADMIN" && <li><NavLink to="/member"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/> MANAGEMENT</NavLink></li> }
