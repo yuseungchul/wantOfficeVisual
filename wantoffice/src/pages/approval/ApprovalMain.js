@@ -7,7 +7,6 @@ import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import ApprovalModal from "../../components/approvals/ApprovalModal";
 
-
 function ApprovalMain () {
 
 
@@ -151,6 +150,8 @@ const showModal = () => {
                     </button>
                 }
             </div>
+
+           
 
             
      
