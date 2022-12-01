@@ -119,7 +119,7 @@ export const callReservationRegistAPI = ({form}) => {
 }
 
 /* 회의실 수정(관리자) */
-export const callReservationUpdateAPI = ({form}) => {
+export const callReservationMUpdateAPI = ({form}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/room/rvlists`
 
     return async (dispatch, getState) => {

@@ -26,6 +26,7 @@ import ReservationList from "./pages/reservation/ReservationList";
 import ReservDetail from "./pages/reservation/ReservDetail";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
 import ReservListM from "./pages/admin/reservation/ReservListM";
+import ReservationMUpdate from "./pages/admin/reservation/ReservationMUpdate";
 
 import Member from "./pages/admin/management/Member";
 import MemberLayout from "./layouts/management/MemberLayout";
@@ -41,6 +42,7 @@ import ApproverList from "./pages/approval/ApproverList"
 import CardLayout from "./layouts/card/CardLayout";
 import CustomerList from "./pages/card/CustomerList";
 import Card from "./pages/card/Card";
+
 
 function App() {
   return (
@@ -73,6 +75,7 @@ function App() {
           <Route path="rvlists" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
           <Route path="rvlist-managements" element={ <ReservListM/> }/>
+          <Route path="rvlists-managements" element={ <ReservationMUpdate/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
