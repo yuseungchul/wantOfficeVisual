@@ -20,7 +20,7 @@ function ReservDetail(){
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
-        decoded = temp.auth[0];
+        decoded = temp.auth[0].authName;
     }
 
     useEffect(
@@ -32,9 +32,9 @@ function ReservDetail(){
         []
     );
     console.log('callReservationDetailAPI 동작');
-    const onClickReservationPutHandler = () => {
-        console.log('[ReservationDetail] onClickReservationPutHandler');
-        navigate(`/room/rvlists`, {replace: false})
+    const onClickReservationUpdateHandler = () => {
+        console.log('[ReservationDetail] onClickReservationUpdateHandler');
+        navigate(`/room/rvlists-managements`, {replace: false})
     }
 
     return(
@@ -79,17 +79,25 @@ function ReservDetail(){
                     </tbody>
 
                 </table>
-               
+                { decoded === "ROLE_ADMIN" && 
                 <button
-                        onClick={ onClickReservationPutHandler }
+                        onClick={ onClickReservationUpdateHandler }
                         className={ ReservDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
+                }
+                { decoded === "ROLE_ADMIN" && 
                 <button
                         // onClick={ onClickRoomRemoveHandler }
                         className={ ReservDetailCSS.rmRemoveBtn }
                     >
                         삭제하기</button>
+                }
+                <button        
+                    onClick={ () => navigate(-1) }            
+                >
+                    돌아가기
+                </button>
             </div>
           </div>
         </>
