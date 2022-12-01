@@ -22,7 +22,6 @@ import RoomList from "./pages/room/RoomList";
 import RoomDetail from "./pages/room/RoomDetail";
 import RoomMInsert from "./pages/admin/room/RoomMInsert";
 import RoomMUpdate from "./pages/admin/room/RoomMUpdate";
-import RoomMDelete from "./pages/admin/room/RoomMDelete";
 import ReservationList from "./pages/reservation/ReservationList";
 import ReservDetail from "./pages/reservation/ReservDetail";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
