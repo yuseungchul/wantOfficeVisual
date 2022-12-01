@@ -38,7 +38,6 @@ import ApprovalMain from "./pages/approval/ApprovalMain";
 import ApproverList from "./pages/approval/ApproverList"
 
 import CardLayout from "./layouts/card/CardLayout";
-import CustomerRegistModal from "./pages/card/CustomerRegistModal";
 import CustomerList from "./pages/card/CustomerList";
 
 function App() {
@@ -90,7 +89,6 @@ function App() {
 
         <Route path="/card" element={ <CardLayout/> }>
           <Route path="/card/customers" element={ <CustomerList/> }/>
-          <Route path="/card/customer/regist" element={ <CustomerRegistModal/> }/>
         </Route>
 
       </Routes>
