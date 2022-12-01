@@ -71,61 +71,35 @@ function ReservationRegist(){
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>예약 시간 목록</label></td>
+                                <td><label>예약 희망 시간</label></td>
                                 <td>
-                                    <select
-                                        className={ ReservationRegistCSS.inputDiv }
-                                        onChange={ onChangeHandler }
+                                    <input
                                         name="reservationTime"
-                                    >
-                                        <option>09:00 ~ 10:00</option>
-                                        <option>10:00 ~ 11:00</option>
-                                        <option>11:00 ~ 12:00</option>
-                                        <option>12:00 ~ 13:00</option>
-                                        <option>13:00 ~ 14:00</option>
-                                        <option>14:00 ~ 15:00</option>
-                                        <option>15:00 ~ 16:00</option>
-                                        <option>16:00 ~ 17:00</option>
-                                        <option>17:00 ~ 18:00</option>
-                                    </select>
+                                        autoComplete="off"                                
+                                        className={ ReservationRegistCSS.inputDiv }
+                                    />
                                 </td>
                             </tr>
                             <tr>
                                 <td><label>이용 시간</label></td>
                                 <td>
                                     <input
-                                        name="reservationTime"
-                                        placeholder="이용시간"
+                                        name="reservationUseTime"
+                                        autoComplete="off"                                
                                         className={ ReservationRegistCSS.inputDiv }
-                                        onChange={ onChangeHandler }
                                     />
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>예약 상태</label></td>
-                                <td>
-                                    <select
-                                        className={ReservationRegistCSS.selectDiv}
-                                        onChange={ onChangeHandler }
-                                    >
-                                        <option>예약</option>
-                                        <option>예약</option>
-                                        <option>예약</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>예약 목적</label></td>
+                                <td><label>예약목적</label></td>
                                 <td>
                                     <input
-                                        name="reservationPurpose"
-                                        placeholder="예약목적"
-                                        className={ReservationRegistCSS.inputDiv}
-                                        onChange={ onChangeHandler }
+                                        name="reservationUseTime"
+                                        autoComplete="off"                                
+                                        className={ ReservationRegistCSS.inputDiv }
                                     />
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
