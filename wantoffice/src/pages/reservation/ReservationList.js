@@ -14,6 +14,7 @@ function ReservationList(){
     const reservation = useSelector(state => state.reservationReducer);
     // const reservationList = reservation.data;
     const params = useParams();
+    const reservationNo = params.reservationNo; 
     const roomNo = params.roomNo;
     const [loginModal, setLoginModal] = useState(false);
 
@@ -39,9 +40,9 @@ function ReservationList(){
         navigate(`/room/rvlists`, { replace: false })
     }
 
-    const onClickReservationDetailer = () => {
+    const onClickReservationDetailer = (reservationNo) => {
         console.log('[ReservationList] onClickReservationDetailer');
-        navigate(`/room/rvlists/${ reservation.reservationNo }`, { replace: false })
+        navigate(`/room/rvlists/${ reservationNo }`, { replace: false })
     }
 
     return(
@@ -55,8 +56,9 @@ function ReservationList(){
                 <table>
                 
                     <th>예약 번호</th>
-                    <th>예약 시간</th>
-                    <th>예약 이용 시간</th>
+                    <th>시작 시간</th>
+                    <th>종료 시간</th>
+                    <th>이용 시간</th>
                     <th>예약 날짜</th>
                     <th>예약 상태</th>
                     <th>예약 목적</th>
@@ -70,11 +72,13 @@ function ReservationList(){
                                         onClick={ () => onClickReservationDetailer(reservation.reservationNo) }
                                     >
                                         <td>{ reservation.reservationNo }</td>
-                                        <td>{ reservation.reservationTime }</td>
+                                        <td>{ reservation.reservationTimeIn }</td>
+                                        <td>{ reservation.reservationTimeOut }</td>
                                         <td>{ reservation.reservationUseTime } 시간</td>
                                         <td>{ reservation.reservationDate }</td>
                                         <td>{ reservation.reservationSetting }</td>
                                         <td>{ reservation.reservationPurpose }</td>
+                                        <td></td>
                                     </tr>
                                 )
                             )

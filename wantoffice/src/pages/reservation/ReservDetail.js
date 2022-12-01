@@ -31,7 +31,7 @@ function ReservDetail(){
         },
         []
     );
-
+    console.log('callReservationDetailAPI 동작');
     const onClickReservationPutHandler = () => {
         console.log('[ReservationDetail] onClickReservationPutHandler');
         navigate(`/room/rvlists`, {replace: false})
@@ -39,26 +39,27 @@ function ReservDetail(){
 
     return(
         <>
-            { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
+            {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
             
             <div className={ ReservDetailCSS.DetailDiv }>
              <h2>회의실 예약 상세 보기</h2>
             <div className={ ReservDetailCSS.editDiv }>
                 <table className={ ReservDetailCSS.editTable }>
-                {
-                            Array.isArray(reservation) && reservation.map(
-                                (reservation) => (
                     <tbody>
                         <tr>   
                             <td><label>예약 번호</label></td>
                             <td>{ reservation.reservationNo || '' }</td>
                         </tr>
                         <tr>
-                            <th>예약 시간</th>
-                            <td>{ reservation.reservationTime || '' }</td>
+                            <th>시작 시간</th>
+                            <td>{ reservation.reservationTimeIn || '' }</td>
                         </tr>
                         <tr>
-                            <th>예약 이용 시간</th>
+                            <th>종료 시간</th>
+                            <td>{ reservation.reservationTimeOut || '' }</td>
+                        </tr>
+                        <tr>
+                            <th>이용 시간</th>
                             <td>{ reservation.reservationUseTime || ''} 시간</td>
                         </tr>
                         <tr>
@@ -76,9 +77,7 @@ function ReservDetail(){
                         </tr> 
                      
                     </tbody>
-                       )
-                       )
-                   }
+
                 </table>
                
                 <button
