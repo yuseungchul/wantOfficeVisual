@@ -3,14 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { callCustomersAPI } from "../../apis/CardAPICalls";
 import CustomerRegistModal from "./CustomerRegistModal";
 import RoomListCSS from "../../pages/room/RoomList.module.css";
+import { useNavigate } from "react-router-dom";
+import CustomerDetailModal from "./CustomerDetailModal";
 
 function CustomerList () {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const customers = useSelector(state => state.cardReducer);
-    const customerList = customers.data;
+    const customerList = customers.data
     const [currentPage, setCurrentPage] = useState(1);
     const [customerRegistModal, setCustomerRegistModal] = useState(false);
+    const [customerDetailModal, setCustomerDetailModal] = useState(false);
+
+    const [customerNo, setCustomerNo] = useState();
 
     useEffect(
         () => {
@@ -20,6 +26,11 @@ function CustomerList () {
 
     const onClickCustomerRegistHandler = () => {
         setCustomerRegistModal(true);
+    }
+
+    const onClickCustomerDetailHandler = (customerNo) => {
+        setCustomerNo(customerNo);
+        setCustomerDetailModal(true);
     }
 
     const pageBtn = customers.pageBtn;
@@ -39,6 +50,14 @@ function CustomerList () {
                 />
                 : null
             }
+            {
+                customerDetailModal ?
+                <CustomerDetailModal
+                    customerNo={customerNo}
+                    setCustomerDetailModal={ setCustomerDetailModal }
+                />
+                : null
+            }
             <div>
                 <h2>거래처 명함</h2>
             </div>
@@ -46,7 +65,7 @@ function CustomerList () {
                 {
                     Array.isArray(customerList) && customerList.map(
                         (customer) => (
-                            <div key={ customer.customerNo }>
+                            <div key={ customer.customerNo } onClick={ () => onClickCustomerDetailHandler(customer.customerNo) }>
                                 <h5>{ customer.customerEmployee }</h5>
                                 <h5>회사명{ customer.customerName }</h5>
                                 <h5>직책{ customer.customerPosition }</h5>
