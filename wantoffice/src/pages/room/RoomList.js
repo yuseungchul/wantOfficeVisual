@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callRoomListAPI } from '../../apis/RoomAPICalls';
 import { Navigate, useNavigate } from "react-router-dom";
-// import { decodeJwt } from '../../utils/tokenUtils';
+import { decodeJwt } from '../../utils/tokenUtils';
 
 
 function RoomList(){
@@ -16,6 +16,15 @@ function RoomList(){
     const [currentPage, setCurrentPage] = useState(1);
 
     console.log(rooms, roomList);
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }console.log(decoded);
+
 
     useEffect(
         () => {
@@ -87,13 +96,13 @@ function RoomList(){
                 }
                 </div>
             </div>
-            {/* { decoded === "ROLE_ADMIN" &&  */}
+            { decoded === "ROLE_ADMIN" && 
                 <button
                         onClick={ onClickRoomMInsert }
                         className={ RoomListCSS.rmInsertBtn }
                     >
                         등록하기</button>
-                        {/* } */}
+                         } 
         </>
     );
 

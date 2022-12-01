@@ -20,7 +20,7 @@ function RoomDetail(){
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
-        decoded = temp.auth[1];
+        decoded = temp.auth[0];
     }
 
     useEffect(

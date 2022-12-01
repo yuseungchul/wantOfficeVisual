@@ -20,7 +20,7 @@ function ReservDetail(){
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
-        decoded = temp.auth[2];
+        decoded = temp.auth[0];
     }
 
     useEffect(

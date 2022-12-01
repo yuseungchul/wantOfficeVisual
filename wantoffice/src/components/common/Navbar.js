@@ -11,7 +11,7 @@ function Navbar() {
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
-        decoded = temp.auth[1];
+        decoded = temp.auth[0].authName;
     }
 
     const dispatch = useDispatch();
@@ -41,8 +41,8 @@ function Navbar() {
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconLibrary.png'} alt="자료실로고"/> LIBRARY</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconBusinesscard.png'} alt="명함로고"/> BUSINESS CARD</NavLink></li>
                     <li><NavLink to="/"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconDirectMessage.png'} alt="쪽지"/> DM</NavLink></li>
-                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/">회의실 관리</NavLink></li> }
-                    <li><NavLink to="/member"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/> MANAGEMENT</NavLink></li>
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/room">회의실 관리</NavLink></li>}
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/member"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconManagement.PNG'} alt="관리자로고"/> MANAGEMENT</NavLink></li> }
                     <li className={NavCSS.Log} onClick={ onClickLogoutHandler }><NavLink to="/"> LOGOUT</NavLink></li>
                 </ul>
               </div>
