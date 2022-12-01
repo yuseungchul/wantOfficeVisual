@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callMyCardAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
+import MyCardDetailModal from "./MyCardDetaillModal";
 
 function Card () {
 
@@ -25,7 +26,7 @@ function Card () {
     );
 
     const onClickOfficeCardHandler = () => {
-        navigate('');
+        setMyCardDetailModal(true);
     }
 
     const onClickCustomerCardHandler = () => {
@@ -36,6 +37,14 @@ function Card () {
 
     return (
         <>
+            {
+                myCardDetailModal ?
+                <MyCardDetailModal
+                    card={card}
+                    setMyCardDetailModal={ setMyCardDetailModal }
+                />
+                : null
+            }
             { card &&
             <div>
                 <h3>{ card.memberName }</h3>
@@ -45,6 +54,11 @@ function Card () {
                     <h5>전화번호{ card.memberPhone }</h5>
                     <h5>이메일{ card.memberEmail }</h5>
                 </div>
+                <button
+                    onClick={ onClickOfficeCardHandler }
+                >
+                수정
+                </button>
             </div>
             }
             <button
