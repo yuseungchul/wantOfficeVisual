@@ -25,12 +25,16 @@ function Card () {
         }, []
     );
 
-    const onClickOfficeCardHandler = () => {
+    const onClickMyCardHandler = () => {
         setMyCardDetailModal(true);
     }
 
     const onClickCustomerCardHandler = () => {
         navigate('/card/customers');
+    }
+
+    const onClickOfficeCardHandler = () => {
+        navigate('/card/office');
     }
 
     console.log('card', card);
@@ -55,13 +59,14 @@ function Card () {
                     <h5>이메일{ card.memberEmail }</h5>
                 </div>
                 <button
-                    onClick={ onClickOfficeCardHandler }
+                    onClick={ onClickMyCardHandler }
                 >
                 수정
                 </button>
             </div>
             }
             <button
+                onClick={ onClickOfficeCardHandler }
             >
                 사내 명함 조회
             </button>

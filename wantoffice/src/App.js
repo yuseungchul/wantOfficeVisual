@@ -42,6 +42,7 @@ import ApproverList from "./pages/approval/ApproverList"
 import CardLayout from "./layouts/card/CardLayout";
 import CustomerList from "./pages/card/CustomerList";
 import Card from "./pages/card/Card";
+import OfficeCardList from "./pages/card/OfficeCardList";
 
 
 function App() {
@@ -96,6 +97,7 @@ function App() {
         <Route path="/card" element={ <CardLayout/> }>
           <Route index element={ <Card/> }/>
           <Route path="/card/customers" element={ <CustomerList/> }/>
+          <Route path="/card/office" element={ <OfficeCardList/> }/>
         </Route>
 
       </Routes>
