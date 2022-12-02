@@ -8,22 +8,22 @@
 
 ```
 npm install --save --legacy-peer-deps
-npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
-npm install style-loader css-loader sass-loader node-sass --save
-npm install --save @fullcalendar/google-calendar
+npm install --save --legacy-peer-deps @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
+npm install style-loader css-loader sass-loader node-sass --save --legacy-peer-deps
+npm install --save --legacy-peer-deps @fullcalendar/google-calendar
 npm install --save --legacy-peer-deps @fullcalendar/interaction
 npm install --save --legacy-peer-deps moment
-npm install react-datepicker --save
-npm install date-fns --save
-npm install jwt-decode
-npm install react-router-dom
-npm install redux
-npm install react-redux
-npm install redux-actions
-npm install redux-thunk
-npm install redux-logger
-npm install redux-devtools-extension
-npm install react-router-dom@6
+npm install react-datepicker --save --legacy-peer-deps
+npm install date-fns --save --legacy-peer-deps
+npm install jwt-decode --save --legacy-peer-deps
+npm install react-router-dom --save --legacy-peer-deps
+npm install redux --save --legacy-peer-deps
+npm install react-redux --save --legacy-peer-deps
+npm install redux-actions --save --legacy-peer-deps
+npm install redux-thunk --save --legacy-peer-deps
+npm install redux-logger --save --legacy-peer-deps
+npm install redux-devtools-extension --save --legacy-peer-deps
+npm install react-router-dom@6 --save --legacy-peer-deps
 npm i @toast-ui/react-editor --save --legacy-peer-deps
 npm start
 ```
