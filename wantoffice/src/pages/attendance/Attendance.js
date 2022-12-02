@@ -27,27 +27,41 @@ function Attendance() {
 
     return (
         <>
-            <div><Clock/></div>
-            <div>
-                {
-                    <button className={ AttendanceCSS.InOutButton }
-                        onClick={ onClickInHandler }
-                        disabled={ attendance.attIn != null }
-                    >
-                        출근하기
-                    </button>
-                }
-                {
-                    <button className={ AttendanceCSS.InOutButton }
-                        onClick={ onClickOutHandler }
-                        disabled={ attendance.attIn == null || attendance.attOut != null }
-                    >
-                        퇴근하기
-                    </button>
-                }
+            <div className={ AttendanceCSS.attendanceDiv }>
+                <div><Clock/></div>
+                <div>
+                    {
+                        <button className={ AttendanceCSS.InOutButton }
+                            onClick={ onClickInHandler }
+                            disabled={ attendance.attIn != null }
+                        >
+                            출근하기
+                        </button>
+                    }
+                    {
+                        <button className={ AttendanceCSS.InOutButton }
+                            onClick={ onClickOutHandler }
+                            disabled={ attendance.attIn == null || attendance.attOut != null }
+                        >
+                            퇴근하기
+                        </button>
+                    }
+                </div>
             </div>
-            <h3>{ attendance.attIn || ''}</h3>
-            <h3>{ attendance.attOut || '' }</h3>
+                <table className={ AttendanceCSS.InOutTable }>
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                    </colgroup>
+                    <tr>
+                        <td>출근시간</td>
+                        <td>{ attendance.attIn || ''}</td>
+                        <td>퇴근시간</td>
+                        <td>{ attendance.attOut || '' }</td>
+                    </tr>
+                </table>
         </>
     );
 
