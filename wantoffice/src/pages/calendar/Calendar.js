@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { useDispatch, useSelector } from "react-redux";
 import { callSchedulesAPI } from "../../apis/CalendarAPICalls";
@@ -9,6 +11,7 @@ import { useEffect, useState } from "react";
 import PersnalTitle from './title/PersnalTitle';
 import CompanyTitle from './title/CompanyTitle';
 import DeptTitle from './title/DeptTitle';
+import moment from 'moment';
 
 
 function Calendar() {
@@ -16,10 +19,12 @@ function Calendar() {
     const apiKey = process.env.REACT_APP_CAL_API_KEY;
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const schedules = useSelector(state => state.calendarReducer);
     const [persnalChecked, setPersnalChecked] = useState(true);
     const [companyChecked, setCompanyChecked] = useState(true);
     const [deptChecked, setDeptChecked] = useState(true);
+    // const [Modal, setModal] = useState(false);
 
     const schedule = schedules.map(schedule => {
       return { title: schedule.scheduleTitle,
@@ -127,7 +132,6 @@ function Calendar() {
     console.log(result);
     // -------------------------------------------------------- 더티 코드 리팩토링 필요
 
-    
     return(
         <>
         <div className={CalendarCSS.calendarContainer}>
@@ -145,9 +149,15 @@ function Calendar() {
         </div>
            <div className="cal-container">
               <FullCalendar
-                plugins={[dayGridPlugin, googleCalendarPlugin]}
+                plugins={[dayGridPlugin, googleCalendarPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
+                selectable={true}
                 googleCalendarApiKey={apiKey}
+                select={ function(e) {
+                  const clickEnd = moment(e.endStr).subtract(1, 'day').format('YYYY-MM-DD');
+                  alert('selected ' + e.startStr + ' to ' + e.endStr);
+                  navigate(`/calendar/regist`, { state : { start : e.startStr, end : clickEnd }});
+                }}
                 events= {
                   // {'title': '제목3', 'content': '내용3', 'start': '2022-11-21', 'end': '2022-11-25', 'backgroundColor': '#C27EE2'},
                   // {title: '제목3', content: '내용3', start: '2022-12-24', end: '2022-12-25', backgroundColor: '#C27EE2'}
