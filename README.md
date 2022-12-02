@@ -7,6 +7,7 @@
 3. **필수 설치 List**
 
 ```
+npm install --save --legacy-peer-deps
 npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
 npm install style-loader css-loader sass-loader node-sass --save
 npm install --save @fullcalendar/google-calendar
@@ -24,7 +25,6 @@ npm install redux-logger
 npm install redux-devtools-extension
 npm install react-router-dom@6
 npm i @toast-ui/react-editor --save --legacy-peer-deps
-npm install
 npm start
 ```
 
