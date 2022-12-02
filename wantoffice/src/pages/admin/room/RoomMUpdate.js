@@ -18,12 +18,12 @@ function RoomMUpdate(){
 
     const [modifyMode, setModifyMode] = useState(false);
 
-    useEffect(() => {
-        dispatch(callRoomDetailAPI({
-            roomNo : params.roomNo
-        }));
-    }
-    ,[]);
+    // useEffect(() => {
+    //     dispatch(callRoomDetailAPI({
+    //         roomNo : params.roomNo
+    //     }));
+    // }
+    // ,[]);
 
     useEffect(() => {
         if(image) {

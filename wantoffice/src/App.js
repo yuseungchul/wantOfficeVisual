@@ -77,7 +77,7 @@ function App() {
           <Route path="room-managements" element={ <RoomMInsert/> }/>
           <Route path="rooms-managements" element={ <RoomMUpdate/> }/>
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
-          <Route path="rvlists" element={ <ReservationRegist/> }/>
+          <Route path="rvlists-in/:roomNo" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
           <Route path="rvlist-managements" element={ <ReservListM/> }/>
           <Route path="rvlists-managements" element={ <ReservationMUpdate/> }/>

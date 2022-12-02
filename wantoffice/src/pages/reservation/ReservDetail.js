@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReservDetailCSS from './ReservDetail.module.css';
 import { callReservationDetailAPI } from '../../apis/ReservationAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
-import LoginModal from '../../components/common/LoginModal';
+// import LoginModal from '../../components/common/LoginModal';
 
 function ReservDetail(){
     
@@ -13,7 +13,7 @@ function ReservDetail(){
     const reservation = useSelector(state => state.reservationReducer);
     const params = useParams();
     const reservationNo = params.reservationNo;
-    const [loginModal, setLoginModal] = useState(false);
+    // const [loginModal, setLoginModal] = useState(false);
 
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;

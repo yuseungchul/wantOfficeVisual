@@ -37,7 +37,7 @@ function ReservationList(){
 
     const onClickReservationInsert = () => {
         console.log('[ReservationList] onClickReservationInsert');
-        navigate(`/room/rvlists`, { replace: false })
+        navigate(`/room/rvlists-in/${ roomNo }`, { replace: false })
     }
 
     const onClickReservationDetailer = (reservationNo) => {
