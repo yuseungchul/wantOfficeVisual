@@ -20,7 +20,7 @@ function RoomDetail(){
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
-        decoded = temp.auth[0];
+        decoded = temp.auth[0].authName;
     }
 
     useEffect(
@@ -129,11 +129,13 @@ function RoomDetail(){
                 >
                     예약 조회
                 </button>
+                { decoded === "ROLE_ADMIN" && 
                 <button
                         onClick={ onClickRoomPutHandler }
                         className={ RoomDetailCSS.rmUpdateBtn }
                     >
                         수정하기</button>
+}
                 {/* <button
                         onClick={ onClickRoomDeleteHandler }
                         className={ RoomDetailCSS.rmRemoveBtn }

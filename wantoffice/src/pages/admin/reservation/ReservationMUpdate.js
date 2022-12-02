@@ -57,14 +57,14 @@ function ReservationMUpdate(){
         formData.append("reservationPurpose", form.reservationPurpose);
         formData.append("reservationStatus", form.reservationStatus);
         formData.append("reservationSetting", form.reservationSetting);
-        formData.append("room.roomNo", form.room.roomNo);
-        formData.append("member.memberNo", form.member.memberNo);
+        //formData.append("room.roomNo", form.room.roomNo);
+        //formData.append("member.memberNo", form.member.memberNo);
     
 
     dispatch(callReservationMUpdateAPI({
         form : formData
     }));
-    navigate('', { replace : true });
+    navigate('/room', { replace : true });
     window.location.reload();
 }
     return(
@@ -74,7 +74,7 @@ function ReservationMUpdate(){
                 <div className={ ReservationMUpdateCSS.reservedInfoDiv }>
                     <table>
                         <tbody>
-                            <tr>
+                            {/* <tr>
                                 <td><label>예약 번호</label></td>
                                 <td>
                                     <input
@@ -86,16 +86,16 @@ function ReservationMUpdate(){
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <td><label>시작 시간</label></td>
                                 <td>
                                     <input
-                                        name='reservationNo'
+                                        name='reservationTimeIn'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
-                                        readOnly={ !modifyMode ? true : false }
+                                        readOnly={ !modifyMode ? false : false }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
@@ -104,7 +104,7 @@ function ReservationMUpdate(){
                                 <td><label>종료 시간</label></td>
                                 <td>
                                     <input
-                                        name='reservationNo'
+                                        name='reservationTimeOut'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
@@ -117,7 +117,7 @@ function ReservationMUpdate(){
                                 <td><label>이용 시간</label></td>
                                 <td>
                                     <input
-                                        name='reservationNo'
+                                        name='reservationUseTime'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
@@ -130,7 +130,7 @@ function ReservationMUpdate(){
                                 <td><label>예약상태</label></td>
                                 <td>
                                     <input
-                                        name='reservationNo'
+                                        name='reservationSetting'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
@@ -143,7 +143,7 @@ function ReservationMUpdate(){
                                 <td><label>예약목적</label></td>
                                 <td>
                                     <input
-                                        name='reservationNo'
+                                        name='reservationPurpose'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
@@ -152,6 +152,31 @@ function ReservationMUpdate(){
                                     />
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label>예약 여부</label></td>
+                                <td>
+                                    <label>
+                                        <input 
+                                            type="radio" 
+                                            name="reservationStatus"  
+                                            onChange={ onChangeHandler } 
+                                            value="Y"
+                                            readOnly={ modifyMode ? false : true }
+                                            checked={ (!modifyMode ? reservDetail.reservationStatus : form.reservationStatus) === 'Y' ? true : false }
+                                        /> 
+                                            Y
+                                    </label> &nbsp;
+                                    <label>
+                                        <input 
+                                            type="radio" 
+                                            name="reservationStatus"  
+                                            onChange={ onChangeHandler } 
+                                            value="N"
+                                            readOnly={ modifyMode ? false : true }
+                                            checked={ (!modifyMode ? reservDetail.reservationStatus : form.reservationStatus) === 'N' ? true : false }
+                                        /> N</label>
+                                </td>
+                            </tr>    
                         </tbody>
                     </table>
                     
