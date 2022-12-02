@@ -4,9 +4,9 @@ import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import getHours from "date-fns/getHours";
 import getMinutes from "date-fns/getMinutes";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { callReservationRegistAPI } from "../../apis/ReservationAPICalls";
 import ReservationRegistCSS from "./ReservationRegist.module.css";
 import { decodeJwt } from '../../utils/tokenUtils';
@@ -15,17 +15,15 @@ function ReservationRegist(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const params = useParams();
     const state = useState();
+    const params = useParams();
     const roomNo = params.roomNo;
     const memberNo = params.memberNo;
-    const reservationNo = params.reservationNo;
-    const reservation = useSelector(state => state.reservationReducer);
 
     const [startTime, setStartTime] = useState(null);       //시작시간
     const [endTime, setEndTime] = useState(null);           // 종료 시간
     const [isSelected, setIsSelected] = useState(false);    // 시작시간 선택시
-
+    
 
 
     //시작 시간 선택시 해당 시간 적용 및 setIsSelected의 true, setEndTime의 null 값을 반환
@@ -72,7 +70,7 @@ function ReservationRegist(){
     const onClickReservationRegistHandler = () => {
         
         if( 
-            form.memberNo === 0 ||
+            form.memberNo ||
             form.reservationDate === 'date' ||
             !startTime || 
             !endTime || 
@@ -85,6 +83,10 @@ function ReservationRegist(){
                 
         }
 
+        // < DatePicker
+        //                             filterDate={filterPassedTime}
+        //                             />
+
         form.reservationUseTime = parseInt((endTime - startTime) / (1000 * 60 * 60));
 
         dispatch(callReservationRegistAPI({
@@ -94,16 +96,13 @@ function ReservationRegist(){
             memberNo : memberNo
         }));
 
-        navigate(`/room/rvlist/${roomNo}`, { replace : false });
+        // navigate(`/room/rvlist/${roomNo}`, { replace : false });
     }
 
     return(
-
         <>
-            
             <div className={ ReservationRegistCSS.reservationDiv }>
             <h2>회의실 예약 신청</h2>
-            
                 <div className={ ReservationRegistCSS.reservationInfo }>
                     <table>
                         <tbody>
@@ -152,7 +151,6 @@ function ReservationRegist(){
                                 </td>
                                 
                                 {isSelected ? // 시작 시간을 선택해야 종료 시간 선택 가능
-                
                                 <td>
                                 <DatePicker
                                     selected={endTime}
@@ -178,24 +176,9 @@ function ReservationRegist(){
                                 </td>
                                 : null
                                 }
-                                {/* < DatePicker
-                                    filterDate={filterPassedTime}
-                                    /> */}
+                                
                             </tr>
                             
-                            {/* <tr>
-                                <td><label>이용 시간</label></td>
-                                <td>
-                                    <input
-                                        name="reservationUseTime"
-                                        type="number"
-                                        autoComplete="off"                                
-                                        className={ ReservationRegistCSS.inputDiv }
-                                        disabled={true}
-                                        value={ form.reservationUseTime }
-                                    />
-                                </td>
-                            </tr> */}
                             <tr>
                                 <td><label>예약목적</label></td>
                                 <td>
@@ -207,18 +190,6 @@ function ReservationRegist(){
                                     />
                                 </td>
                             </tr>
-                            
-                            {/* <tr>
-                                <td><label>예약관리</label></td>
-                                <td>
-                                    <input
-                                        name="reservationStatus"
-                                        autoComplete="off"                                
-                                        className={ ReservationRegistCSS.inputDiv }
-                                        onChange={onChangeHandler}
-                                    />
-                                </td>
-                            </tr> */}
                         </tbody>
                     </table>
                 </div>
@@ -233,10 +204,8 @@ function ReservationRegist(){
                     onClick={ () => navigate(-1) }
                 >돌아가기</button>
             </div>
-         </div>
-            
+         </div>   
         </>
-
     );
 
 }
