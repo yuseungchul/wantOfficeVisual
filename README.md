@@ -11,6 +11,8 @@ npm i @toast-ui/react-editor --save --legacy-peer-deps
 npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid
 npm install style-loader css-loader sass-loader node-sass --save
 npm install --save @fullcalendar/google-calendar
+npm install --save @fullcalendar/interaction
+npm install moment
 npm install react-datepicker --save
 npm install date-fns --save
 npm install jwt-decode
