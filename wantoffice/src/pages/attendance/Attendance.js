@@ -31,7 +31,7 @@ function Attendance() {
                 <div><Clock/></div>
                 <div>
                     {
-                        <button className={ AttendanceCSS.InOutButton }
+                        <button className={ AttendanceCSS.InButton }
                             onClick={ onClickInHandler }
                             disabled={ attendance.attIn != null }
                         >
@@ -39,7 +39,7 @@ function Attendance() {
                         </button>
                     }
                     {
-                        <button className={ AttendanceCSS.InOutButton }
+                        <button className={ AttendanceCSS.OutButton }
                             onClick={ onClickOutHandler }
                             disabled={ attendance.attIn == null || attendance.attOut != null }
                         >
