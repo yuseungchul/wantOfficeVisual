@@ -171,7 +171,6 @@ function RegistModal({setRegistModal}) {
                     <option value="3">영업팀</option>
                     <option value="4">마케팅팀</option>
                     <option value="5">개발팀</option>
-                    <option value="99">관리팀</option>
                 </select>
                 <p>권한</p>
                 <select name='authNo' value={ form.authNo } onChange={ onChangeHandler }>
