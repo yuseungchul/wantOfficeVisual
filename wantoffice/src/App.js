@@ -43,6 +43,8 @@ import CardLayout from "./layouts/card/CardLayout";
 import CustomerList from "./pages/card/CustomerList";
 import Card from "./pages/card/Card";
 import OfficeCardList from "./pages/card/OfficeCardList";
+import ScheduleSelect from './pages/calendar/ScheduleSelect';
+import ScheduleRegist from './pages/calendar/ScheduleRegist';
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
           <Route path="/" element={ <Main/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
+          <Route path="/calendar/:scheduleNo" element={ <ScheduleSelect/> }/>
+          <Route path="/calendar/regist" element={ <ScheduleRegist/> }/>
         </Route>
         <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route index element={ <Attendance/> }/>
