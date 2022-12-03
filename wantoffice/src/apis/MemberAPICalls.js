@@ -135,32 +135,3 @@ export const callMemberUpdateAPI = ({form}) => {
     }
 }
 
-// /* 사원 비활성화 API */
-// export const callMemberDeleteAPI = ({form}) => {
-
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member/delete`;
-
-//     return async (dispatch, getState) => {
-
-//         const result = await fetch(requestURL, {
-//             method : "PATCH",
-//             headers : {
-//                 "Content-Type" : "application/json",
-//                 "Accept" : "*/*",
-//                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-//             },
-//             body : JSON.stringify({
-//                 memberStatus : form.memberStatus
-//             })
-//         })
-//         .then(response => response.json());
-
-//         console.log('[MemberAPICalls] callMemberDeleteAPI RESULT : ', result);
-
-//         if(result.status === 200) {
-//             console.log('[MemberAPICalls] callMemberDeleteAPI RESULT : ', result);
-//             dispatch({ type: DELETE_MEMBER, payload: result.data });
-//         }
-//     }
-// }
-
