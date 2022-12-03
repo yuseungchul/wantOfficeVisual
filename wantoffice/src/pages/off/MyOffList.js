@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callOffAPI } from "../../apis/OffAPICalls";
-import Off from "../../components/off/Off";
-import RoomListCSS from "../../pages/room/RoomList.module.css";
+import AttAndOffCSS from "../attendance/AttAndOff.module.css";
+import { decodeJwt } from "../../utils/tokenUtils";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function MyOffList() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const offs = useSelector(state => state.offReducer);
     const offList = offs.data;
     const [currentPage, setCurrentPage] = useState(1);
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
+    const onClickOffHandler = (offNo) => {
+        navigate(`/off/${offNo}`);
+    }
 
     useEffect(
         () => {
@@ -28,49 +42,100 @@ function MyOffList() {
     return (
         <>
             <div>
-                <h2>연차 신청 조회</h2>
-            </div>
-            <div>
-                <h4>번호　　제목　　연차기간　　결과</h4>
-                    {
-                        Array.isArray(offList)
-                        && offList.map((off) => (<Off key={ off.offNo } off={ off }/>))
-                    }
-                
-            </div>
-            <div className={ RoomListCSS.roomPgs }>
-                {
-                    Array.isArray(offList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage - 1) }
-                        disabled={ currentPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &lt;
-                    </button>
-                }
-                {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={ () => setCurrentPage(num) }>
+                <section className={AttAndOffCSS.submenu}>
+                        <br></br>
+                        <h3>Attendance</h3>
+                        <div className={AttAndOffCSS.submenuDiv}>
+                            <h4>근태</h4>
+                            <ul className={AttAndOffCSS.submenuUl} >
+                                { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
+                                { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
+                            </ul>
+                        </div>
+                        <br></br>
+                        { decoded === "ROLE_MEMBER" &&<h3>Off</h3> }
+                        <div className={AttAndOffCSS.submenuDiv}>
+                            { decoded === "ROLE_MEMBER" &&<span>연차</span> }
+                            { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                                <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
+                                <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
+                            </ul>
+                            }
+                            { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
+                            { decoded === "ROLE_APP_AUTH" && <ul>
+                                <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
+                            </ul>
+                            }
+                        </div>
+                    </section>
+                <div className={AttAndOffCSS.MyOffListDiv}>
+                    <span>연차 신청 조회</span>
+                    <table className={AttAndOffCSS.MyOffListTable}>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="30%"/>
+                            <col width="40%"/>
+                            <col width="15%"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>연차기간</th>
+                                <th>결과</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                Array.isArray(offList) && offList.map(
+                                    (off) => (
+                                        <tr
+                                            key={ off.offNo }
+                                            onClick={ () => onClickOffHandler(off.offNo) }
+                                        >
+                                        <td>{ off.offNo }</td>
+                                        <td>{ off.offTitle }</td>
+                                        <td>{ off.offStart }~{ off.offEnd }</td>
+                                        <td>{ off.offResult }</td>
+                                        </tr>
+                                    )
+                                )
+                            }
+                        </tbody>
+                    </table>
+                    <div className={AttAndOffCSS.pageDiv}>
+                        {
+                            Array.isArray(offList) &&
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(currentPage - 1) }
+                                disabled={ currentPage === 1 }
+                                className={AttAndOffCSS.pagingBtn}
                             >
-                                {num}
+                                &lt;
                             </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(offList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage + 1) }
-                        disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &gt;
-                    </button>
-                }
+                        }
+                        {
+                            pageNumber.map((num) => (
+                                <button
+                                    onClick={ () => setCurrentPage(num) }
+                                    className={AttAndOffCSS.num}
+                                >
+                                    {num}
+                                </button>
+                            ))
+                        }
+                        {
+                            Array.isArray(offList) &&
+                            <button
+                                onClick={ () => setCurrentPage(currentPage + 1) }
+                                disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
+                                className={AttAndOffCSS.pagingBtn}
+                            >
+                                &gt;
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
         </>
     );

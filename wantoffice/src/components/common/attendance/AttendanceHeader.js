@@ -16,8 +16,11 @@ function AttendanceHeader() {
         <>
             <div className={ AttendanceHeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/attendance/my">Attendance</NavLink></li>
-                    <li><NavLink to="/off">Off</NavLink></li>
+                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/attendance/my">Attendance</NavLink></li> }
+                    { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/attendance/my">Attendance</NavLink></li> }
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/attendance/manage-list">Attendance</NavLink></li> }
+                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/off">Off</NavLink></li> }
+                    { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/off">Off</NavLink></li> }
                 </ul>
 
             </div>
