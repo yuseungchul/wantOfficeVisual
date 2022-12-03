@@ -21,6 +21,10 @@ function Attendance() {
         }));
     }
 
+    const onClickMyInfoHandler = () => {
+        dispatch()
+    }
+
     useEffect(() => {
         dispatch(callInOutAPI());
     }, [attendanceDetail]);
@@ -62,6 +66,13 @@ function Attendance() {
                         <td>{ attendance.attOut || '' }</td>
                     </tr>
                 </table>
+                <button 
+                    className={ AttendanceCSS.myInfoBtn }
+                    onClick={ onClickMyInfoHandler }
+
+                >
+                    내 정보
+                </button>
         </>
     );
 
