@@ -17,8 +17,7 @@
     list-style: none;
     margin-top: 500px;
     position: relative;
-    margin-left: 1000px;
-    
+    margin-left: 1000px;    
 }
 
 .pagingBtn{
@@ -46,4 +45,37 @@
     text-align: center;
     /* word-break: break-all;
     table-layout: fixed; */
+}
+
+.pageDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 45%;
+    bottom: 30px;
+}
+
+.pagingBtn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pagingBtn:hover {
+    cursor: pointer;
+}
+
+.num {
+    border-radius: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.num:hover {
+    background-color: #99C4CA;
+    color: #ffffff;
+    cursor: pointer;
 }

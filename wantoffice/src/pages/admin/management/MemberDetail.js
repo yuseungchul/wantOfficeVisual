@@ -97,21 +97,9 @@ function MemberDetail() {
 
         console.log("formData : ", formData);
 
-        // navigate('/member', { replace : true });
-        // window.location.reload();
+        navigate('/member', { replace : true });
+        window.location.reload();
     }
-
-    // const onClickMemberDeleteHandler = () => {
-
-    //     dispatch(callMemberDeleteAPI({
-
-    //         form : form
-    //     }));
-
-    //     alert('사원 비활성화가 완료되었습니다.');
-    //     navigate('/member', { replace : true});
-    //     window.location.reload();
-    // }
 
     return (
         <div>
@@ -240,28 +228,6 @@ function MemberDetail() {
                             <tr>
                                 <td><label>재직여부</label></td>
                                 <td>
-                                    {/* <label>
-                                        <input
-                                            type="radio"
-                                            name='memberStatus'
-                                            onChange={ onChangeHandler }
-                                            value="Y"
-                                            readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus ) === 'Y' ? true : false }
-                                        />
-                                            재직 중
-                                    </label> &nbsp;
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name='memberStatus'
-                                            onChange={ onChangeHandler }
-                                            value="N"
-                                            readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus ) === 'N' ? true : false }
-                                        />
-                                            퇴사
-                                    </label> */}
                                     <label><select name='memberStatus' value={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus) || '' } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
                                             <option value="Y">재직 중</option>
                                             <option value="N">퇴사</option>
