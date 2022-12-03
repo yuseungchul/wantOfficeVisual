@@ -44,6 +44,7 @@ import Card from "./pages/card/Card";
 import OfficeCardList from "./pages/card/OfficeCardList";
 import ScheduleSelect from './pages/calendar/ScheduleSelect';
 import ScheduleRegist from './pages/calendar/ScheduleRegist';
+import MainLayout from "./layouts/attendance/MainLayout";
 
 
 function App() {
@@ -56,8 +57,10 @@ function App() {
           <Route path="/calendar/:scheduleNo" element={ <ScheduleSelect/> }/>
           <Route path="/calendar/regist" element={ <ScheduleRegist/> }/>
         </Route>
-        <Route path="/attendance" element={ <AttendanceLayout/> }>
+        <Route path="/main" element={ <MainLayout/> }>
           <Route index element={ <Attendance/> }/>
+        </Route>
+        <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route path="/attendance/my" element={ <MyAttList/> }/>
           <Route path="/attendance/manage-list" element={ <AttListForAdmin/> }/>
         </Route>

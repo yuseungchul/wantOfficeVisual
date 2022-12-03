@@ -14,7 +14,7 @@ function Login() {
     useEffect(() => {
             if(login.status === 200) {
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/attendance", { replace: true });
+                navigate("/main", { replace: true });
             }
         }
         ,[login]
