@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callMemberDetailAPI, callMemberUpdateAPI } from "../../../apis/MemberAPICalls";
 import memberDetailCSS from "./MemberDetail.module.css";
 
-function memberDetail() {
+function MemberDetail() {
 
     const params = useParams();
     const memberDetail = useSelector(state => state.memberReducer);
@@ -67,7 +67,8 @@ function memberDetail() {
             memberEmail : memberDetail.memberEmail,
             positionNo : memberDetail.position.positionNo,
             deptNo : memberDetail.dept.deptNo,
-            authNo : memberDetail.auth.authNo
+            authNo : memberDetail.auth.authNo,
+            memberStatus : memberDetail.memberStatus
         });
     }
 
@@ -84,6 +85,7 @@ function memberDetail() {
         formData.append("position.positionNo", form.positionNo);
         formData.append("dept.deptNo", form.deptNo);
         formData.append("auth.authNo", form.authNo);
+        formData.append("memberStatus", form.memberStatus);
 
         if(image) {
             formData.append("memberImage", image);
@@ -93,33 +95,27 @@ function memberDetail() {
             form : formData
         }));
 
-        navigate('/member', { replace : true });
-        window.location.reload();
+        console.log("formData : ", formData);
+
+        // navigate('/member', { replace : true });
+        // window.location.reload();
     }
+
+    // const onClickMemberDeleteHandler = () => {
+
+    //     dispatch(callMemberDeleteAPI({
+
+    //         form : form
+    //     }));
+
+    //     alert('사원 비활성화가 완료되었습니다.');
+    //     navigate('/member', { replace : true});
+    //     window.location.reload();
+    // }
 
     return (
         <div>
-            <div>
-                {!modifyMode &&
-                    <button
-                        onClick={ onClickModifyModeHandler }
-                    >
-                        수정
-                    </button>
-                }
-                {modifyMode &&
-                    <button
-                        onClick={ onClickMemberUpdateHandler }
-                    >
-                        저장
-                    </button>
-                }
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    뒤로
-                </button>
-            </div>
+            
             <div>
                 <div>
                     <div>
@@ -204,7 +200,7 @@ function memberDetail() {
                             <tr>
                                 <td><label>직책</label></td>
                                 <td>
-                                    <label><select name='positionNo' value={ form.positionNo } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
+                                    <label><select name='positionNo' value={ (!modifyMode ? memberDetail.position?.positionNo : form.positionNo) || '' } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
                                             <option value="1">대표</option>
                                             <option value="2">전무</option>
                                             <option value="3">상무</option>
@@ -221,7 +217,7 @@ function memberDetail() {
                             <tr>
                                 <td><label>부서</label></td>
                                 <td>
-                                    <label><select name='deptNo' value={ form.deptNo } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
+                                    <label><select name='deptNo' value={ (!modifyMode ? memberDetail.dept?.deptNo : form.deptNo) || '' } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
                                             <option value="1">인사팀</option>
                                             <option value="2">총무팀</option>
                                             <option value="3">영업팀</option>
@@ -234,9 +230,41 @@ function memberDetail() {
                             <tr>
                                 <td><label>권한</label></td>
                                 <td>
-                                    <label><select name='authNo' value={ form.authNo } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
+                                    <label><select name='authNo' value={ (!modifyMode ? memberDetail.auth?.authNo : form.authNo) || '' } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
                                             <option value="3">일반사원</option>
                                             <option value="2">결재권자</option>
+                                           </select>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>재직여부</label></td>
+                                <td>
+                                    {/* <label>
+                                        <input
+                                            type="radio"
+                                            name='memberStatus'
+                                            onChange={ onChangeHandler }
+                                            value="Y"
+                                            readOnly={ modifyMode ? false : true }
+                                            checked={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus ) === 'Y' ? true : false }
+                                        />
+                                            재직 중
+                                    </label> &nbsp;
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name='memberStatus'
+                                            onChange={ onChangeHandler }
+                                            value="N"
+                                            readOnly={ modifyMode ? false : true }
+                                            checked={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus ) === 'N' ? true : false }
+                                        />
+                                            퇴사
+                                    </label> */}
+                                    <label><select name='memberStatus' value={ (!modifyMode ? memberDetail.memberStatus : form.memberStatus) || '' } onChange={ onChangeHandler } readOnly={ modifyMode ? false : true }>
+                                            <option value="Y">재직 중</option>
+                                            <option value="N">퇴사</option>
                                            </select>
                                     </label>
                                 </td>
@@ -245,6 +273,36 @@ function memberDetail() {
                     </table>
                 </div>
             </div>
+
+            <div>
+                {!modifyMode &&
+                    <button
+                        onClick={ onClickModifyModeHandler }
+                    >
+                        수정
+                    </button>
+                }
+                {modifyMode &&
+                    <button
+                        onClick={ onClickMemberUpdateHandler }
+                    >
+                        저장
+                    </button>
+                }
+                <button
+                    onClick={ () => navigate('/member') }
+                >
+                    뒤로
+                </button>
+                {/* <button
+                    onClick={ onClickMemberDeleteHandler }
+                >
+                    삭제
+                </button> */}
+            </div>
+
         </div>
     )
 }
+
+export default MemberDetail;

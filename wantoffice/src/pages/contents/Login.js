@@ -14,7 +14,7 @@ function Login() {
     useEffect(() => {
             if(login.status === 200) {
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/main", { replace: true });
+                navigate("/attendance", { replace: true });
             }
         }
         ,[login]
@@ -37,6 +37,10 @@ function Login() {
         dispatch(callLoginAPI({
             form : form
         }))
+    }
+
+    const onClickFindHandler = () => {
+        
     }
 
     return (
@@ -67,7 +71,10 @@ function Login() {
                 로그인
             </button>
             <div>
-            <p>아이디 찾기　|　</p><p>비밀번호 찾기</p>
+            <button
+                onClick={ onClickFindHandler }
+                className={ MainCSS.findBtn}
+            >아이디 찾기</button>
             </div>
         </div>
     );

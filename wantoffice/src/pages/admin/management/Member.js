@@ -42,7 +42,7 @@ function Member() {
     }
 
     const onClickTableTr = (memberNo) => {
-        navigate(`/memberDetail/${memberNo}`, { replace: true });
+        navigate(`/member/${memberNo}`, { replace: true });
     }
 
     console.log(members);
@@ -50,6 +50,12 @@ function Member() {
     return (
         <>
             
+            <div>
+                <button 
+                    className={ MemberCSS.memBtn }
+                    onClick={ openModal }>사원 등록</button>
+                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
+            </div>
 
             <div className={MemberCSS.memberTableDiv}>
                 <table className={MemberCSS.memberTableCss}>
@@ -136,13 +142,6 @@ function Member() {
                         &gt;
                     </button>
                 }
-            </div>
-
-            <div>
-                <button 
-                    className={ MemberCSS.memBtn }
-                    onClick={ openModal }>사원 등록</button>
-                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
             </div>
         </>
     );
