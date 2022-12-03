@@ -5,13 +5,13 @@ import ApprovalLayoutCSS from "./ApprovalLayout.module.css";
 function ApprovalLayout() {
 
     return (
-        <>
+        <div className= { ApprovalLayoutCSS.Appbody }>
             <Navbar />
             <ApprovalHeader/>
             <main>
                 <Outlet />
              </main>
-        </>
+        </div>
     );
 }
 
