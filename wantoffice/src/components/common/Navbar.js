@@ -33,7 +33,9 @@ function Navbar() {
              <div className={ NavCSS.Category }>
                 <ul>
                     <li><NavLink to="/main"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconHome.png'} alt="홈로고"/> HOME</NavLink></li>
-                    <li><NavLink to="/attendance"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/> ATTENDANCE</NavLink></li>
+                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/attendance/my"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/> ATTENDANCE</NavLink></li> }
+                    { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/attendance/my"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/> ATTENDANCE</NavLink></li> }
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/attendance/manage-list"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconAttendance.png'} alt="근태로고"/> ATTENDANCE</NavLink></li> }
                     <li><NavLink to="/calendar"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconSchedule.png'} alt="스케줄로고"/> SCHEDULE</NavLink></li>
                     <li><NavLink to="/room"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconReservation.png'} alt="예약로고"/> RESERVATTION</NavLink></li>
                     <li><NavLink to="/approval"><img  src= {process.env.PUBLIC_URL + '/assets/img/iconEDSM.png'} alt="전자결재로고"/> APPROVAL</NavLink></li>
