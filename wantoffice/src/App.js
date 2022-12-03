@@ -1,7 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/contents/Login";
-import Layout from "./layouts/Layout";
-import Main from "./pages/contents/Main";
 import Error from "./pages/Error";
 
 import CalendarLayout from "./layouts/CalendarLayout";
@@ -30,6 +28,7 @@ import ReservationMUpdate from "./pages/admin/reservation/ReservationMUpdate";
 
 import Member from "./pages/admin/management/Member";
 import MemberLayout from "./layouts/management/MemberLayout";
+import MemberDetail from "./pages/admin/management/MemberDetail";
 import Dept from "./pages/admin/dept/Dept";
 import DeptLayout from "./layouts/management/DeptLayout";
 import Position from "./pages/admin/position/Position";
@@ -52,8 +51,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={ <Login/> }/>
-          <Route path="/main" element={ <Layout/> }/>
-          <Route path="/" element={ <Main/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
           <Route path="/calendar/:scheduleNo" element={ <ScheduleSelect/> }/>
@@ -84,6 +81,7 @@ function App() {
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>
           <Route index element={ <Member/>}/>
+          <Route path="/member/:memberNo" element={ <MemberDetail/> }/>
         </Route>
         <Route path="/dept" element={ <DeptLayout/> }>
           <Route index element={ <Dept/>}/>

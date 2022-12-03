@@ -1,4 +1,4 @@
-import { GET_MEMBERS, GET_MEMBER, PUT_MEMBER, DELETE_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModules";
+import { GET_MEMBERS, GET_MEMBER, PATCH_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModules";
 
 /* 로그인 API */
 export const callLoginAPI = ({form}) => {
@@ -112,33 +112,9 @@ export const callMemberDetailAPI = ({memberNo}) => {
 }
 
 /* 사원 정보 수정 API */
-export const callMemberUpdateAPI = ({memberNo, form}) => {
+export const callMemberUpdateAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member/update/${memberNo}`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "PUT",
-            headers : {
-                "Accept" : "*/*",
-                "Authoriazation" : "Bearer " + window.localStorage.getItem("accessToken")
-            },
-            body : form
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[MemberAPICalls] callMemberUpdateAPI RESULT : ', result);
-            dispatch({ type: PUT_MEMBER, payload: result.data });
-        }
-    }
-}
-
-/* 사원 비활성화 API */
-export const callMemberDeleteAPI = ({memberNo, form}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member/delete/${memberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member/update`;
 
     return async (dispatch, getState) => {
 
@@ -146,16 +122,45 @@ export const callMemberDeleteAPI = ({memberNo, form}) => {
             method : "PATCH",
             headers : {
                 "Accept" : "*/*",
-                "Authoriazation" : "Bearer " + window.localStorage.getItem("accessToken")
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             },
             body : form
         })
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[MemberAPICalls] callMemberDeleteAPI RESULT : ', result);
-            dispatch({ type: DELETE_MEMBER, payload: result.data });
+            console.log('[MemberAPICalls] callMemberUpdateAPI RESULT : ', result);
+            dispatch({ type: PATCH_MEMBER, payload: result.data });
         }
     }
 }
+
+// /* 사원 비활성화 API */
+// export const callMemberDeleteAPI = ({form}) => {
+
+//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/member/delete`;
+
+//     return async (dispatch, getState) => {
+
+//         const result = await fetch(requestURL, {
+//             method : "PATCH",
+//             headers : {
+//                 "Content-Type" : "application/json",
+//                 "Accept" : "*/*",
+//                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+//             },
+//             body : JSON.stringify({
+//                 memberStatus : form.memberStatus
+//             })
+//         })
+//         .then(response => response.json());
+
+//         console.log('[MemberAPICalls] callMemberDeleteAPI RESULT : ', result);
+
+//         if(result.status === 200) {
+//             console.log('[MemberAPICalls] callMemberDeleteAPI RESULT : ', result);
+//             dispatch({ type: DELETE_MEMBER, payload: result.data });
+//         }
+//     }
+// }
 

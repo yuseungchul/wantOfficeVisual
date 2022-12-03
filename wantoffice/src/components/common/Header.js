@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import HeaderCSS from "./Header.module.css";
 import { decodeJwt } from "../../utils/tokenUtils";
 import LoginModal from './LoginModal';
