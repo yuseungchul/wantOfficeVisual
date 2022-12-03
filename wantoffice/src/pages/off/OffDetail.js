@@ -115,7 +115,7 @@ function OffDetail() {
                                     </tbody>
                                 </table>
                                 { offs.offResult === "대기" && <button onClick={navigateToUpdate} className={AttAndOffCSS.updateBtn}>수정</button> }
-                                <button className={AttAndOffCSS.backBtn}>뒤로</button>
+                                <button className={AttAndOffCSS.backBtn} onClick={() => navigate(-1)}>뒤로</button>
                             </div>
                         : null
                     }
@@ -155,8 +155,9 @@ function OffDetail() {
                                         </tr>
                                     </tbody>
                                 </table>
-                                { offs.offResult === "대기" && <button onClick={onClickAppHandler}>승인</button> }
-                                { offs.offResult === "대기" && <button onClick={onClickReturnHandler}>반려</button> }
+                                { offs.offResult === "대기" && <button onClick={onClickAppHandler} className={AttAndOffCSS.appBtn}>승인</button> }
+                                { offs.offResult === "대기" && <button onClick={onClickReturnHandler} className={AttAndOffCSS.returnBtn}>반려</button> }
+                                <button className={AttAndOffCSS.backBtn2} onClick={() => navigate(-1)}>뒤로</button>
                             </div>
                         : null
                     }

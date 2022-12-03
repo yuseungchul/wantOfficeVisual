@@ -93,7 +93,8 @@ function AttListForAdmin() {
                     maxDate={new Date()}
                     selected={date}
                     onChange={handleSelectDate}
-                    popperPlacement="auto"
+                    popperPlacement="bottom-end"
+                    showPopperArrow={false}
                     className={AttAndOffCSS.offDatepicker}
                 />
                 <div>
