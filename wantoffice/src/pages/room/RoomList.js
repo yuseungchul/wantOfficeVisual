@@ -76,8 +76,8 @@ function RoomList(){
                     pageNumber.map((num) => (
                         <li key={num} onClick={ () => setCurrentPage(num) }>
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(num) }
+                                className= { RoomListCSS.num }
                             >
                                 {num}
                             </button>

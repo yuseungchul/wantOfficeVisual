@@ -15,12 +15,12 @@ function ReservationMUpdate(){
 
     const [modifyMode, setModifyMode] = useState(false);
 
-    useEffect(() => {
-        dispatch(callReservationDetailAPI({
-            reservationNo : params.reservationNo
-        }));
-    }
-    ,[]);
+    // useEffect(() => {
+    //     dispatch(callReservationDetailAPI({
+    //         reservationNo : params.reservationNo
+    //     }));
+    // }
+    // ,[]);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -32,34 +32,25 @@ function ReservationMUpdate(){
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
-            reservationNo : reservDetail.reservationNo,
             reservationDate : reservDetail.reservationDate,
             reservationTimeIn : reservDetail.reservationTimeIn,
             reservationTimeOut : reservDetail.reservationTimeOut,
             reservationUseTime : reservDetail.reservationUseTime,
             reservationPurpose : reservDetail.reservationPurpose,
             reservationStatus : reservDetail.reservationStatus,
-            reservationSetting : reservDetail.reservationSetting,
-            roomNo : reservDetail.room.roomNo,
-            memberNo : reservDetail.member.memberNo
         });
     }
 
     const onClickReservationUpdateHandler = () => {
 
         const formData = new FormData();
-
-        formData.append("reservationNo", form.reservationNo);
+ 
         formData.append("reservationDate", form.reservationDate);
         formData.append("reservationTimeIn", form.reservationTimeIn);
         formData.append("reservationTimeOut", form.reservationTimeOut);
         formData.append("reservationUseTime", form.reservationUseTime);
         formData.append("reservationPurpose", form.reservationPurpose);
         formData.append("reservationStatus", form.reservationStatus);
-        formData.append("reservationSetting", form.reservationSetting);
-        //formData.append("room.roomNo", form.room.roomNo);
-        //formData.append("member.memberNo", form.member.memberNo);
-    
 
     dispatch(callReservationMUpdateAPI({
         form : formData
@@ -69,33 +60,22 @@ function ReservationMUpdate(){
 }
     return(
         <>
-            
             <div className={ ReservationMUpdateCSS.reservedSection }>
                 <div className={ ReservationMUpdateCSS.reservedInfoDiv }>
                     <table>
                         <tbody>
-                            {/* <tr>
-                                <td><label>예약 번호</label></td>
-                                <td>
-                                    <input
-                                        name='reservationNo'
-                                        disabled={!modifyMode}
-                                        className={ ReservationMUpdateCSS.productInfoInput }
-                                        onChange={ onChangeHandler }
-                                        readOnly={ !modifyMode ? true : false }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    />
-                                </td>
-                            </tr> */}
                             <tr>
                                 <td><label>시작 시간</label></td>
                                 <td>
                                     <input
                                         name='reservationTimeIn'
+                                        placeholder='예약 시작 시간'
+                                        text='text'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
-                                        readOnly={ !modifyMode ? false : false }
+                                        value={ (!modifyMode ? reservDetail.reservationTimeIn : form.reservationTimeIn) || 0 }
+                                        readOnly={ !modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
@@ -103,12 +83,15 @@ function ReservationMUpdate(){
                             <tr>
                                 <td><label>종료 시간</label></td>
                                 <td>
-                                    <input
+                                <input
                                         name='reservationTimeOut'
+                                        placeholder='예약 종료 시간'
+                                        text='text'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
-                                        readOnly={ !modifyMode ? true : false }
+                                        value={ (!modifyMode ? reservDetail.reservationTimeOut : form.reservationTimeOut) || 0 }
+                                        readOnly={ !modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
@@ -118,19 +101,6 @@ function ReservationMUpdate(){
                                 <td>
                                     <input
                                         name='reservationUseTime'
-                                        disabled={!modifyMode}
-                                        className={ ReservationMUpdateCSS.productInfoInput }
-                                        onChange={ onChangeHandler }
-                                        readOnly={ !modifyMode ? true : false }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>예약상태</label></td>
-                                <td>
-                                    <input
-                                        name='reservationSetting'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
