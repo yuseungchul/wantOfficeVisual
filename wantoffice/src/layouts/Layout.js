@@ -7,8 +7,6 @@ function Layout() {
 
     return (
         <>
-            
-            
             <Navbar />
             <Header />
             <main>

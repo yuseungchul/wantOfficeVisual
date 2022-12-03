@@ -1,5 +1,6 @@
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from "date-fns/esm/locale";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import getHours from "date-fns/getHours";
@@ -139,6 +140,7 @@ function ReservationRegist(){
                                     onChange={onSelect}
                                     showTimeSelect
                                     showTimeSelectOnly
+                                    locale={ko}
                                     timeIntervals={60}
                                     minTime={setHours(setMinutes(new Date(), 0), 9)}
                                     maxTime={setHours(setMinutes(new Date(), 0), 18)}
@@ -157,6 +159,7 @@ function ReservationRegist(){
                                     onChange={ (time) => onChangeEndTime(time) }
                                     showTimeSelect
                                     showTimeSelectOnly
+                                    locale={ko}
                                     timeIntervals={60}
                                     minTime={startTime}
                                     maxTime={setHours(setMinutes(new Date(), getMinutes(startTime)), getHours(startTime)+2)} // 시작 시간부터 2시간
