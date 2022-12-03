@@ -20,7 +20,7 @@ function AttendanceHeader() {
                     { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/attendance/my">Attendance</NavLink></li> }
                     { decoded === "ROLE_ADMIN" && <li><NavLink to="/attendance/manage-list">Attendance</NavLink></li> }
                     { decoded === "ROLE_MEMBER" && <li><NavLink to="/off">Off</NavLink></li> }
-                    { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/off">Off</NavLink></li> }
+                    { decoded === "ROLE_APP_AUTH" && <li><NavLink to="/off/result">Off</NavLink></li> }
                 </ul>
 
             </div>

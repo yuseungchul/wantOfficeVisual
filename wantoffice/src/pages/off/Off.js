@@ -46,48 +46,11 @@ function Off() {
 
     const handleSelectEndDate = (selectedEndDate) => {
         setEndDate(new Date(selectedEndDate));
-        //calcDate();
         setForm({
             ...form,
             offEnd : toStringByFormatting(new Date(selectedEndDate))
         });
     };
-
-    // function calcDate() {
-
-    //     console.log(startDate);
-    //     console.log('calDate', endDate);
-
-    //     if(startDate == null || endDate == null) {
-    //         return
-    //     }
-    //     const date1 = new Date(startDate);
-    //     const date2 = new Date(endDate);
-
-    //     let count = 0;
-
-    //     while(true) {  
-
-    //         var temp_date = date1;
-    //         if(temp_date.getTime() > date2.getTime()) {
-    //             console.log("count : " + count);
-    //             break;
-    //         } else {
-    //             var tmp = temp_date.getDay();
-    //             if(tmp == 0 || tmp == 6) {
-    //                 // 주말
-    //                 console.log("주말");
-    //             } else {
-    //                 // 평일
-    //                 console.log("평일");
-    //                 count++;         
-    //             }
-    //             temp_date.setDate(date1.getDate() + 1); 
-    //         }
-    //     }
-
-    //     console.log('count : ', count);
-    // }
 
     function toStringByFormatting(source, delimiter = "-") {
         const year = source.getFullYear();
@@ -148,8 +111,6 @@ function Off() {
                         onChange={handleSelectEndDate}
                         popperPlacement="auto"
                     />
-                    <h4>남은 연차일수</h4>
-                    <h4>{ offs.offDays }</h4>
                     <h4>연차 사유</h4>
                     <textarea
                         name='offReason'
