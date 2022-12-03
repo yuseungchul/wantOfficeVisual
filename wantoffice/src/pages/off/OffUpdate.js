@@ -3,8 +3,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/esm/locale";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { callOffDetailAPI, callOffUpdateAPI } from "../../apis/OffAPICalls";
+import { decodeJwt } from "../../utils/tokenUtils";
+import AttAndOffCSS from "../attendance/AttAndOff.module.css";
 
 function OffUpdate() {
 
@@ -16,6 +18,14 @@ function OffUpdate() {
 
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
 
     useEffect(
         () => {
@@ -79,62 +89,120 @@ function OffUpdate() {
     return (
         <>
             <div>
-                <h3>연차 신청 수정</h3>
-            </div>
-            { offs.approval &&
-                <div>
-                    <h4>제목</h4>
-                    <input
-                        type="text"
-                        name='offTitle'
-                        autoComplete='off'
-                        onChange={ onChangeHandler }
-                        value={form.offTitle}
-                    />
-                    <h4>연차 기간</h4>
-                    <DatePicker
-                        locale={ko}
-                        dateFormat="yyyy-MM-dd"
-                        minDate={new Date()}
-                        selected={startDate}
-                        onChange={handleSelectStartDate}
-                        popperPlacement="auto"
-                        name='offStart'
-                        value={form.offStart}
-                    />
-                    <h4>~</h4>
-                    <DatePicker
-                        locale={ko}
-                        dateFormat="yyyy-MM-dd"
-                        minDate={new Date(startDate)}
-                        selected={endDate}
-                        onChange={handleSelectEndDate}
-                        popperPlacement="auto"
-                        name='offEnd'
-                        value={form.offEnd}
-                    />
-                    <h4>연차 사유</h4>
-                    <textarea
-                        name='offReason'
-                        autoComplete='off'
-                        onChange={ onChangeHandler }
-                        value={form.offReason}
-                    >
-                    </textarea>
-                    <h4>결재권자</h4>
-                    <h4>{ offs.approval.memberName }</h4>
-                    <h5>상기 이유로 연차를 신청합니다.</h5>
-                    <button
-                        onClick={ onClickOffUpdateHandler }
-                    >
-                        수정
-                    </button>
-                    <button
-                    >
-                        뒤로
-                    </button>
+                <section className={AttAndOffCSS.submenu}>
+                    <br></br>
+                    <h3>Attendance</h3>
+                    <div className={AttAndOffCSS.submenuDiv}>
+                        <h4>근태</h4>
+                        <ul className={AttAndOffCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br></br>
+                    <h3>Off</h3>
+                    <div className={AttAndOffCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
+                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                            <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
+                        </ul>
+                        }
+                    </div>
+                </section>
+                <div className={AttAndOffCSS.offRegistDiv}>
+                    <span>연차 신청 수정</span>
+                    { offs.approval &&
+                        <div>
+                            <table className={AttAndOffCSS.offRegistTable}>
+                                <colgroup>
+                                    <col width="30%"/>
+                                    <col width="70%"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>제목</th>
+                                        <td>
+                                        <input
+                                            type="text"
+                                            name='offTitle'
+                                            autoComplete='off'
+                                            onChange={ onChangeHandler }
+                                            value={form.offTitle}
+                                        />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>연차 기간</th>
+                                        <td>
+                                            <div className={AttAndOffCSS.datepickerWrapper}>
+                                                <DatePicker
+                                                    locale={ko}
+                                                    dateFormat="yyyy-MM-dd"
+                                                    minDate={new Date()}
+                                                    selected={startDate}
+                                                    onChange={handleSelectStartDate}
+                                                    popperPlacement="bottom-end"
+                                                    name='offStart'
+                                                    value={form.offStart}
+                                                    showPopperArrow={false}
+                                                    className={AttAndOffCSS.offRegistDatepicker}
+                                                />~　
+                                                <DatePicker
+                                                    locale={ko}
+                                                    dateFormat="yyyy-MM-dd"
+                                                    minDate={new Date(startDate)}
+                                                    selected={endDate}
+                                                    onChange={handleSelectEndDate}
+                                                    popperPlacement="bottom-start"
+                                                    name='offEnd'
+                                                    value={form.offEnd}
+                                                    showPopperArrow={false}
+                                                    className={AttAndOffCSS.offRegistDatepicker}
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>연차 사유</th>
+                                        <td>
+                                        <textarea
+                                            name='offReason'
+                                            autoComplete='off'
+                                            onChange={ onChangeHandler }
+                                            value={form.offReason}
+                                        >
+                                        </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>결재권자</th>
+                                        <td>{ offs.approval.memberName }</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>상기 이유로 연차를 신청합니다.</h5>
+                            <button
+                                onClick={ onClickOffUpdateHandler }
+                                className={AttAndOffCSS.registBtn}
+                            >
+                                수정
+                            </button>
+                            <button
+                                onClick={() => navigate(-1)}
+                                className={AttAndOffCSS.backBtn3}
+                            >
+                                뒤로
+                            </button>
+                        </div>
+                    }
                 </div>
-            }
+            </div>
         </>
     );
 
