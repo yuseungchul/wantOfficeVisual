@@ -4,14 +4,25 @@ import { ko } from "date-fns/esm/locale";
 import { useEffect, useState } from "react";
 import { callAttListForAdminAPI } from "../../apis/AttendanceAPICalls";
 import { useDispatch, useSelector } from "react-redux";
-import RoomListCSS from "../../pages/room/RoomList.module.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import { decodeJwt } from "../../utils/tokenUtils";
+import AttAndOffCSS from "../attendance/AttAndOff.module.css";
 
 function AttListForAdmin() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const attendances = useSelector(state => state.attendanceReducer);
     const attendanceList = attendances.data;
     const [currentPage, setCurrentPage] = useState(1);
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
 
     const now = new Date();
     const [date, setDate] = useState(now);
@@ -47,95 +58,122 @@ function AttListForAdmin() {
     return (
         <>
             <div>
-                <h2>날짜별 근태 조회</h2>
-            </div>
-            <DatePicker
-                locale={ko}
-                dateFormat="yyyy-MM-dd"
-                maxDate={new Date()}
-                selected={date}
-                onChange={handleSelectDate}
-                popperPlacement="auto"
-            />
-            <div>
-                <table>
-                    <colgroup>
-                        <col width="5.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                        <col width="13.5%"/>
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>근무유형</th>
-                            <th>날짜</th>
-                            <th>출근시간</th>
-                            <th>퇴근시간</th>
-                            <th>부서</th>
-                            <th>직책</th>
-                            <th>이름</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            Array.isArray(attendanceList) && attendanceList.map(
-                                (attendance) => (
-                                    <tr
-                                        key={ attendance.attNo }
-                                    >
-                                        <td>{ attendance.attNo }</td> 
-                                        <td>{ attendance.attType }</td> 
-                                        <td>{ attendance.attDate }</td> 
-                                        <td>{ attendance.attIn }</td> 
-                                        <td>{ attendance.attOut }</td>
-                                        <td>{ attendance.member.dept.deptName }</td>
-                                        <td>{ attendance.member.position.positionName }</td>
-                                        <td>{ attendance.member.memberName }</td>
-                                    </tr>
-                                )
-                            )      
+                <section className={AttAndOffCSS.submenu}>
+                    <br></br>
+                    <h3>Attendance</h3>
+                    <div className={AttAndOffCSS.submenuDiv}>
+                        <h4>근태</h4>
+                        <ul className={AttAndOffCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br></br>
+                    { decoded === "ROLE_MEMBER" &&<h3>Off</h3> }
+                    <div className={AttAndOffCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" &&<span>연차</span> }
+                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
+                        </ul>
                         }
-                    </tbody>
-                </table>
+                        { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
+                        { decoded === "ROLE_APP_AUTH" && <ul>
+                            <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
+                        </ul>
+                        }
+                    </div>
+                </section>
             </div>
-            <div className={ RoomListCSS.roomPgs }>
-                {
-                    Array.isArray(attendanceList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage - 1) }
-                        disabled={ currentPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &lt;
-                    </button>
-                }
-                {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={ () => setCurrentPage(num) }>
+            <div className={AttAndOffCSS.OffListForAdminDiv}>
+                <span>날짜별 근태 조회</span>
+                <DatePicker
+                    locale={ko}
+                    dateFormat="yyyy-MM-dd"
+                    maxDate={new Date()}
+                    selected={date}
+                    onChange={handleSelectDate}
+                    popperPlacement="auto"
+                    className={AttAndOffCSS.offDatepicker}
+                />
+                <div>
+                    <table className={AttAndOffCSS.OffListForAdminTable}>
+                        <colgroup>
+                            <col width="5.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                            <col width="13.5%"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>근무유형</th>
+                                <th>날짜</th>
+                                <th>출근시간</th>
+                                <th>퇴근시간</th>
+                                <th>부서</th>
+                                <th>직책</th>
+                                <th>이름</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                Array.isArray(attendanceList) && attendanceList.map(
+                                    (attendance) => (
+                                        <tr
+                                            key={ attendance.attNo }
+                                        >
+                                            <td>{ attendance.attNo }</td> 
+                                            <td>{ attendance.attType }</td> 
+                                            <td>{ attendance.attDate }</td> 
+                                            <td>{ attendance.attIn }</td> 
+                                            <td>{ attendance.attOut }</td>
+                                            <td>{ attendance.member.dept.deptName }</td>
+                                            <td>{ attendance.member.position.positionName }</td>
+                                            <td>{ attendance.member.memberName }</td>
+                                        </tr>
+                                    )
+                                )      
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div className={AttAndOffCSS.adminPageDiv}>
+                    {
+                        Array.isArray(attendanceList) &&
+                        <button
+                            onClick={ () => setCurrentPage(currentPage - 1) }
+                            disabled={ currentPage === 1 }
+                            className={AttAndOffCSS.pagingBtn}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {
+                        pageNumber.map((num) => (
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(num) }
+                                className={AttAndOffCSS.num}
                             >
                                 {num}
                             </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(attendanceList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage + 1) }
-                        disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &gt;
-                    </button>
-                }
+                        ))
+                    }
+                    {
+                        Array.isArray(attendanceList) &&
+                        <button
+                            onClick={ () => setCurrentPage(currentPage + 1) }
+                            disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
+                            className={AttAndOffCSS.pagingBtn}
+                        >
+                            &gt;
+                        </button>
+                    }
+                </div>
             </div>
         </>
     );

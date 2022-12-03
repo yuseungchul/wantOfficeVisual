@@ -49,14 +49,13 @@
     font-weight: bold;
     width: 700px;
     height: 700px;
-    padding-top: 15px;
+    padding-top: 25px;
 }
 
 .MyAttListDiv span {
     font-size: 25px;
     color: #505050;
-    margin-left: 20px;
-    
+    margin-left: 25px;
 }
 
 .yearSelect {
@@ -81,14 +80,149 @@
 }
 
 .MyAttListTable th {
-    border-top: 1px solid #505050;
-    border-bottom: 1px solid #505050;
+    border-top: 1px solid #c4bebe;
+    border-bottom: 1px solid #c4bebe;
     padding-top: 8px;
     padding-bottom: 8px;
+    background-color: #ffffff;
 }
 
 .MyAttListTable td {
     color: #505050;
     font-weight: normal;
-    font-size: small;
+    font-size: 13px;
+}
+
+.MyOffListDiv {
+    position: fixed;
+    left: 700px;
+    top: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-weight: bold;
+    width: 900px;
+    height: 600px;
+    padding-top: 25px;
+}
+
+.MyOffListDiv span {
+    font-size: 25px;
+    color: #505050;
+    margin-left: 25px;
+}
+
+.MyOffListTable {
+    margin-top: 35px;
+    margin-left: 25px;
+    width: 840px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.MyOffListTable th {
+    border-top: 1px solid #c4bebe;
+    border-bottom: 1px solid #c4bebe;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #ffffff;
+}
+
+.MyOffListTable td {
+    color: #505050;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.pageDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 45%;
+    bottom: 30px;
+}
+
+.pagingBtn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pagingBtn:hover {
+    cursor: pointer;
+}
+
+.num {
+    border-radius: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.num:hover {
+    background-color: #99C4CA;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.OffListForAdminDiv {
+    position: fixed;
+    left: 630px;
+    top: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-weight: bold;
+    width: 1100px;
+    height: 600px;
+    padding-top: 25px;
+}
+
+.OffListForAdminTable {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 1030px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.OffListForAdminTable th {
+    border-top: 1px solid #c4bebe;
+    border-bottom: 1px solid #c4bebe;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #ffffff;
+}
+
+.OffListForAdminTable td {
+    color: #505050;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.adminPageDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 48%;
+    bottom: 30px;
+}
+
+.OffListForAdminDiv span {
+    font-size: 25px;
+    color: #505050;
+    margin-left: 25px;
+}
+
+.offDatepicker {
+    width: 100px;
+    height: 18px;
+    margin-left: 35px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #c4bebe;
+    color: #c4bebe;
 }
