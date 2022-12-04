@@ -6,7 +6,7 @@ import { callAttListForAdminAPI } from "../../apis/AttendanceAPICalls";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { decodeJwt } from "../../utils/tokenUtils";
-import AttAndOffCSS from "../attendance/AttAndOff.module.css";
+import AttListForAdminCSS from "./AttListForAdmin.module.css";
 
 function AttListForAdmin() {
 
@@ -58,12 +58,12 @@ function AttListForAdmin() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={AttListForAdminCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={AttListForAdminCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={AttListForAdminCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -71,21 +71,21 @@ function AttListForAdmin() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={AttListForAdminCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={AttListForAdminCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={AttListForAdminCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
             </div>
-            <div className={AttAndOffCSS.OffListForAdminDiv}>
+            <div className={AttListForAdminCSS.AttListForAdminDiv}>
                 <span>날짜별 근태 조회</span>
                 <DatePicker
                     locale={ko}
@@ -95,10 +95,10 @@ function AttListForAdmin() {
                     onChange={handleSelectDate}
                     popperPlacement="bottom-end"
                     showPopperArrow={false}
-                    className={AttAndOffCSS.offDatepicker}
+                    className={AttListForAdminCSS.AttDatepicker}
                 />
                 <div>
-                    <table className={AttAndOffCSS.OffListForAdminTable}>
+                    <table className={AttListForAdminCSS.AttListForAdminTable}>
                         <colgroup>
                             <col width="5.5%"/>
                             <col width="13.5%"/>
@@ -143,13 +143,13 @@ function AttListForAdmin() {
                         </tbody>
                     </table>
                 </div>
-                <div className={AttAndOffCSS.adminPageDiv}>
+                <div className={AttListForAdminCSS.adminPageDiv}>
                     {
                         Array.isArray(attendanceList) &&
                         <button
                             onClick={ () => setCurrentPage(currentPage - 1) }
                             disabled={ currentPage === 1 }
-                            className={AttAndOffCSS.pagingBtn}
+                            className={AttListForAdminCSS.pagingBtn}
                         >
                             &lt;
                         </button>
@@ -158,7 +158,7 @@ function AttListForAdmin() {
                         pageNumber.map((num) => (
                             <button
                                 onClick={ () => setCurrentPage(num) }
-                                className={AttAndOffCSS.num}
+                                className={AttListForAdminCSS.num}
                             >
                                 {num}
                             </button>
@@ -169,7 +169,7 @@ function AttListForAdmin() {
                         <button
                             onClick={ () => setCurrentPage(currentPage + 1) }
                             disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                            className={AttAndOffCSS.pagingBtn}
+                            className={AttListForAdminCSS.pagingBtn}
                         >
                             &gt;
                         </button>

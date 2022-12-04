@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, NavLink } from "react-router-dom";
 import { callAppUpdateAPI, callOffDetailAPI, callReturnUpdateAPI } from "../../apis/OffAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
-import AttAndOffCSS from "../attendance/AttAndOff.module.css";
+import OffDetailCSS from "./OffDetail.module.css";
 
 function OffDetail() {
 
@@ -54,12 +54,12 @@ function OffDetail() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={OffDetailCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffDetailCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={OffDetailCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -67,26 +67,26 @@ function OffDetail() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffDetailCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={OffDetailCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={OffDetailCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
-                <div className={AttAndOffCSS.offDetailDiv}>
+                <div className={OffDetailCSS.offDetailDiv}>
                     <span>연차 신청</span>
                     { offs.approval && token &&
                         (token.sub === offs.member?.memberId)
                         ?
                             <div>
-                                <table className={AttAndOffCSS.offDetailTable}>
+                                <table className={OffDetailCSS.offDetailTable}>
                                     <colgroup>
                                         <col width="30%"/>
                                         <col width="70%"/>
@@ -114,8 +114,8 @@ function OffDetail() {
                                         </tr>
                                     </tbody>
                                 </table>
-                                { offs.offResult === "대기" && <button onClick={navigateToUpdate} className={AttAndOffCSS.updateBtn}>수정</button> }
-                                <button className={AttAndOffCSS.backBtn} onClick={() => navigate(-1)}>뒤로</button>
+                                { offs.offResult === "대기" && <button onClick={navigateToUpdate} className={OffDetailCSS.updateBtn}>수정</button> }
+                                <button className={OffDetailCSS.backBtn} onClick={() => navigate(-1)}>뒤로</button>
                             </div>
                         : null
                     }
@@ -123,7 +123,7 @@ function OffDetail() {
                         (token.sub === offs.approval?.memberId)
                         ?
                             <div>
-                                <table className={AttAndOffCSS.offDetailTable}>
+                                <table className={OffDetailCSS.offDetailTable}>
                                     <colgroup>
                                         <col width="30%"/>
                                         <col width="70%"/>
@@ -155,9 +155,9 @@ function OffDetail() {
                                         </tr>
                                     </tbody>
                                 </table>
-                                { offs.offResult === "대기" && <button onClick={onClickAppHandler} className={AttAndOffCSS.appBtn}>승인</button> }
-                                { offs.offResult === "대기" && <button onClick={onClickReturnHandler} className={AttAndOffCSS.returnBtn}>반려</button> }
-                                <button className={AttAndOffCSS.backBtn2} onClick={() => navigate(-1)}>뒤로</button>
+                                { offs.offResult === "대기" && <button onClick={onClickAppHandler} className={OffDetailCSS.appBtn}>승인</button> }
+                                { offs.offResult === "대기" && <button onClick={onClickReturnHandler} className={OffDetailCSS.returnBtn}>반려</button> }
+                                <button className={OffDetailCSS.backBtn2} onClick={() => navigate(-1)}>뒤로</button>
                             </div>
                         : null
                     }

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import { callAppNameAPI, callOffRegistAPI } from "../../apis/OffAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
-import AttAndOffCSS from "../attendance/AttAndOff.module.css";
+import OffCSS from "./Off.module.css";
 
 function Off() {
 
@@ -91,12 +91,12 @@ function Off() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={OffCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={OffCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -104,24 +104,24 @@ function Off() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={OffCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={OffCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
-                <div className={AttAndOffCSS.offRegistDiv}>
+                <div className={OffCSS.offRegistDiv}>
                     <span>연차 신청</span>
                     { offs.app &&
                         <div>
-                            <table className={AttAndOffCSS.offRegistTable}>
+                            <table className={OffCSS.offRegistTable}>
                                 <colgroup>
                                     <col width="30%"/>
                                     <col width="70%"/>
@@ -141,7 +141,7 @@ function Off() {
                                     <tr>
                                         <th>연차 기간</th>
                                         <td>
-                                            <div className={AttAndOffCSS.datepickerWrapper}>
+                                            <div className={OffCSS.datepickerWrapper}>
                                                 <DatePicker
                                                     locale={ko}
                                                     dateFormat="yyyy-MM-dd"
@@ -150,7 +150,7 @@ function Off() {
                                                     onChange={handleSelectStartDate}
                                                     popperPlacement="bottom-end"
                                                     showPopperArrow={false}
-                                                    className={AttAndOffCSS.offRegistDatepicker}
+                                                    className={OffCSS.offRegistDatepicker}
                                                 />~　
                                                 <DatePicker
                                                     locale={ko}
@@ -160,7 +160,7 @@ function Off() {
                                                     onChange={handleSelectEndDate}
                                                     popperPlacement="bottom-start"
                                                     showPopperArrow={false}
-                                                    className={AttAndOffCSS.offRegistDatepicker}
+                                                    className={OffCSS.offRegistDatepicker}
                                                 />
                                             </div>
                                         </td>
@@ -185,13 +185,13 @@ function Off() {
                             <h5>상기 이유로 연차를 신청합니다.</h5>
                             <button
                                 onClick={ onClickOffRegistHandler }
-                                className={AttAndOffCSS.registBtn}
+                                className={OffCSS.registBtn}
                             >
                                 등록
                             </button>
                             <button
                                 onClick={() => navigate(-1)}
-                                className={AttAndOffCSS.backBtn3}
+                                className={OffCSS.backBtn}
                             >
                                 뒤로
                             </button>

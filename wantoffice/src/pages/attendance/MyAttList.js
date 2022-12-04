@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callMyAttListAPI } from "../../apis/AttendanceAPICalls";
-import AttAndOffCSS from "./AttAndOff.module.css";
 import { decodeJwt } from "../../utils/tokenUtils";
 import { NavLink } from "react-router-dom";
+import MyAttListCSS from "./MyAttList.module.css";
 
 function MyAttList() {
 
@@ -42,12 +42,12 @@ function MyAttList() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={MyAttListCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={MyAttListCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={MyAttListCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -55,22 +55,22 @@ function MyAttList() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={MyAttListCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={MyAttListCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={MyAttListCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
-                <div className={AttAndOffCSS.MyAttListDiv}>
+                <div className={MyAttListCSS.MyAttListDiv}>
                     <span>내 근태 월별 조회</span>
-                    <select value={selectedMonth} onChange={handleSelectMonth} className={AttAndOffCSS.monthSelect}>
+                    <select value={selectedMonth} onChange={handleSelectMonth} className={MyAttListCSS.monthSelect}>
                         <option value="12">12월</option>
                         <option value="11">11월</option>
                         <option value="10">10월</option>
@@ -84,7 +84,7 @@ function MyAttList() {
                         <option value="02">2월</option>
                         <option value="01">1월</option>
                     </select>
-                    <select value={selectedYear} onChange={handleSelectYear} className={AttAndOffCSS.yearSelect}>
+                    <select value={selectedYear} onChange={handleSelectYear} className={MyAttListCSS.yearSelect}>
                         <option value="2022">2022년</option>
                         <option value="2021">2021년</option>
                         <option value="2020">2020년</option>
@@ -94,7 +94,7 @@ function MyAttList() {
                         <option value="2016">2016년</option>
                         <option value="2015">2015년</option>
                     </select>
-                    <table className={AttAndOffCSS.MyAttListTable}>
+                    <table className={MyAttListCSS.MyAttListTable}>
                         <colgroup>
                             <col width="15%"/>
                             <col width="30%"/>
