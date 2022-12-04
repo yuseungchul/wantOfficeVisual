@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { callMyCardAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
 import MyCardDetailModal from "./MyCardDetaillModal";
+import CardCSS from "../card/Card.module.css";
 
 function Card () {
 
@@ -41,40 +42,80 @@ function Card () {
 
     return (
         <>
-            {
-                myCardDetailModal ?
-                <MyCardDetailModal
-                    card={card}
-                    setMyCardDetailModal={ setMyCardDetailModal }
-                />
-                : null
-            }
-            { card &&
             <div>
-                <h3>{ card.memberName }</h3>
-                <div key={ card.memberNo }>
-                    <h5>부서{ card?.dept?.deptName }</h5>
-                    <h5>직책{ card?.position?.positionName }</h5>
-                    <h5>전화번호{ card.memberPhone }</h5>
-                    <h5>이메일{ card.memberEmail }</h5>
+                <section className={CardCSS.submenu}>
+                    <br></br>
+                    <h3>Card</h3>
+                    <div className={CardCSS.submenuDiv}>
+                        <h4>명함</h4>
+                        <ul className={CardCSS.submenuUl} >
+                            <li> <NavLink to="/card/office" style={{ textDecoration: "none", color: "#505050" }}>사내 명함 조회</NavLink></li><br></br>
+                            <li> <NavLink to="/card/customers" style={{ textDecoration: "none", color: "#505050" }}>거래처 명함 조회</NavLink></li>
+                        </ul>
+                    </div>
+                </section>
+                <div>
+                    <span className={CardCSS.text}>내 명함</span>
+                    <button
+                            className={CardCSS.modify}
+                            onClick={ onClickMyCardHandler }
+                        >
+                        수정
+                    </button>
+                    <div className={CardCSS.MyCardDiv}>
+                        {
+                            myCardDetailModal ?
+                            <MyCardDetailModal
+                                card={card}
+                                setMyCardDetailModal={ setMyCardDetailModal }
+                            />
+                            : null
+                        }
+                        { card &&
+                        <div>
+                            <h3>{ card.memberName }</h3>
+                            <hr></hr>
+                            <table className={CardCSS.MyCardTable}>
+                                <colgroup>
+                                    <col width="30%"/>
+                                    <col width="70%"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>부서</th>
+                                        <td>{ card?.dept?.deptName }</td>
+                                    </tr>
+                                    <tr>
+                                        <th>직책</th>
+                                        <td>{ card?.position?.positionName }</td>
+                                    </tr>
+                                    <tr>
+                                        <th>전화번호</th>
+                                        <td>{ card.memberPhone }</td>
+                                    </tr>
+                                    <tr>
+                                        <th>이메일</th>
+                                        <td>{ card.memberEmail }</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        }
+                    </div>
                 </div>
                 <button
-                    onClick={ onClickMyCardHandler }
+                    className={CardCSS.officeBtn}
+                    onClick={ onClickOfficeCardHandler }
                 >
-                수정
+                    사내 명함 조회
+                </button>
+                <button
+                    className={CardCSS.customerBtn}
+                    onClick={ onClickCustomerCardHandler }
+                >
+                    거래처 명함 조회
                 </button>
             </div>
-            }
-            <button
-                onClick={ onClickOfficeCardHandler }
-            >
-                사내 명함 조회
-            </button>
-            <button
-                onClick={ onClickCustomerCardHandler }
-            >
-                거래처 명함 조회
-            </button>
         </>
     );
 

@@ -7,14 +7,14 @@ function AttendanceLayout() {
 
     return (
         <>
-             <div className= { AttendanceLayoutCSS.Attendancebody }>
+            <div className= { AttendanceLayoutCSS.Attendancebody }>
             
                 <Navbar />
                 <AttendanceHeader />
                 <main>
                     <Outlet />
                 </main>
-             </div>
+            </div>
         </>
     );
 }

@@ -446,3 +446,13 @@
     bottom: 40px;
     margin-left: 390px;
 }
+
+.resultSelect {
+    width: 50px;
+    text-align: center;
+    float: right;
+    margin: 35px 50px 25px 0;
+    color: #c4bebe;
+    border: 1px solid #c4bebe;
+    border-radius: 5px;
+}

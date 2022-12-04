@@ -116,7 +116,7 @@ function OffUpdate() {
                     </div>
                 </section>
                 <div className={AttAndOffCSS.offRegistDiv}>
-                    <span>연차 신청 수정</span>
+                    <span>연차 수정</span>
                     { offs.approval &&
                         <div>
                             <table className={AttAndOffCSS.offRegistTable}>
