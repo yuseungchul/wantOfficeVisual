@@ -54,9 +54,10 @@ function MyOffList() {
                         </ul>
                     </div>
                     <br></br>
-                    <h3>Off</h3>
+                    { decoded === "ROLE_MEMBER" && <h3>Off</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>Off</h3> }
                     <div className={MyOffListCSS.submenuDiv}>
-                        { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
+                        { decoded === "ROLE_MEMBER" && <h4>연차</h4> }
                         { decoded === "ROLE_MEMBER" && <ul className={MyOffListCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callOffListForAppAPI } from "../../apis/OffAPICalls";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { decodeJwt } from "../../utils/tokenUtils";
 import OffListForAppCSS from "./OffListForApp.module.css";
 
 function OffListForApp() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const offs = useSelector(state => state.offReducer);
     const offList = offs.data;
@@ -25,6 +26,10 @@ function OffListForApp() {
     const handleSelectResult = (e) => {
         setSelectedResult(e.target.value);
     };
+
+    const onClickOffHandler = (offNo) => {
+        navigate(`/off/${offNo}`);
+    }
 
     useEffect(
         () => {
@@ -55,7 +60,8 @@ function OffListForApp() {
                         </ul>
                     </div>
                     <br></br>
-                    <h3>Off</h3>
+                    { decoded === "ROLE_MEMBER" && <h3>Off</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>Off</h3> }
                     <div className={OffListForAppCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
                         { decoded === "ROLE_MEMBER" && <ul className={OffListForAppCSS.submenuUl} >
@@ -103,6 +109,7 @@ function OffListForApp() {
                                     (off) => (
                                         <tr
                                             key={ off.offNo }
+                                            onClick={ () => onClickOffHandler(off.offNo) }
                                         >
                                             <td>{ off.offNo }</td>
                                             <td>{ off.offTitle }</td>
