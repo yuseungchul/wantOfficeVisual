@@ -34,8 +34,8 @@ function FindId() {
     }
 
     return (
-        <div className={ FindIdCSS.formDiv}>
-            <div>
+        <div className={ FindIdCSS.backgroundDiv}>
+            <div className={ FindIdCSS.formDiv}>
                 <p>이름</p>
                 <input 
                     type="text"
@@ -52,13 +52,15 @@ function FindId() {
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <div>
-                    <button 
-                        className={ FindIdCSS.findBtn} 
-                        onClick={ onClickFindIdResultHandler }>아이디 찾기</button>
-                        { findIdResultModal && <FindIdResultModal setFindIdResultModal = { setFindIdResultModal}/>}
+                <div className={ FindIdCSS.buttonDiv }>
+                    <div>
+                        <button 
+                            className={ FindIdCSS.findBtn} 
+                            onClick={ onClickFindIdResultHandler }>아이디 찾기</button>
+                            { findIdResultModal && <FindIdResultModal setFindIdResultModal = { setFindIdResultModal}/>}
+                    </div>
+                    <button className={ FindIdCSS.cancelBtn } onClick={ onClickBackHandler }>취소</button>
                 </div>
-                <button className={ FindIdCSS.cancelBtn } onClick={ onClickBackHandler }>취소</button>
             </div>
         </div>
     );
