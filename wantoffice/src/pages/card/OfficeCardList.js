@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callCardsAPI } from "../../apis/CardAPICalls";
-import RoomListCSS from "../../pages/room/RoomList.module.css";
+import { decodeJwt } from "../../utils/tokenUtils";
+import { NavLink } from "react-router-dom";
+import CardCSS from "../card/Card.module.css";
 
 function OfficeCardList () {
 
@@ -9,6 +11,14 @@ function OfficeCardList () {
     const members = useSelector(state => state.cardReducer);
     const memberList = members.data;
     const [currentPage, setCurrentPage] = useState();
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
 
     useEffect(
         () => {
@@ -27,56 +37,69 @@ function OfficeCardList () {
     return (
         <>
             <div>
-                <h2>사내 명함</h2>
-            </div>
-            <div>
-                {
-                    Array.isArray(memberList) && memberList.map(
-                        (member) => (
-                            <div key={ member.memberNo }>
-                                <h5>{ member.memberName }</h5>
-                                <h5>부서{ member.dept.deptName }</h5>
-                                <h5>직책{ member.position.positionName }</h5>
-                                <h5>전화번호{ member.memberPhone }</h5>
-                                <h5>이메일{ member.memberEmail }</h5>
-                            </div>
-                        )
-                    )
-                }
-            </div>
-            <div>
-                {
-                    Array.isArray(memberList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage - 1) }
-                        disabled={ currentPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &lt;
-                    </button>
-                }
-                {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={ () => setCurrentPage(num) }>
+                <section className={CardCSS.submenu}>
+                    <br></br>
+                    <h3>Card</h3>
+                    <div className={CardCSS.submenuDiv}>
+                        <h4>명함</h4>
+                        <ul className={CardCSS.submenuUl} >
+                            <li> <NavLink to="/card/office" style={{ textDecoration: "none", color: "#505050" }}>사내 명함 조회</NavLink></li><br></br>
+                            <li> <NavLink to="/card/customers" style={{ textDecoration: "none", color: "#505050" }}>거래처 명함 조회</NavLink></li>
+                        </ul>
+                    </div>
+                </section>
+                <div className={CardCSS.title}>
+                    <span>사내 명함</span>
+                </div>
+                <div className={CardCSS.container}>
+                    <div className={CardCSS.cardContainer}>
+                        {
+                            Array.isArray(memberList) && memberList.map(
+                                (member) => (
+                                    <div key={ member.memberNo } className={CardCSS.CardDiv}>
+                                        <h3>{ member.memberName }</h3><hr></hr>
+                                        <h4>부서　　　　{ member.dept?.deptName }</h4>
+                                        <h4>직책　　　　{ member.position?.positionName }</h4>
+                                        <h4>전화번호　　{ member.memberPhone }</h4>
+                                        <h4>이메일　　　{ member.memberEmail }</h4>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
+                    <div className={CardCSS.adminPageDiv}>
+                        {
+                            Array.isArray(memberList) &&
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(currentPage - 1) }
+                                disabled={ currentPage === 1 }
+                                className={CardCSS.pagingBtn}
                             >
-                                {num}
+                                &lt;
                             </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(memberList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage + 1) }
-                        disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &gt;
-                    </button>
-                }
+                        }
+                        {
+                            pageNumber.map((num) => (
+                                    <button
+                                        onClick={ () => setCurrentPage(num) }
+                                        className={CardCSS.num}
+                                    >
+                                        {num}
+                                    </button>
+                            ))
+                        }
+                        {
+                            Array.isArray(memberList) &&
+                            <button
+                                onClick={ () => setCurrentPage(currentPage + 1) }
+                                disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
+                                className={CardCSS.pagingBtn}
+                            >
+                                &gt;
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
         </>
     );
