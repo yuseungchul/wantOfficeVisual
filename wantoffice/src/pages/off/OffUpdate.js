@@ -134,6 +134,7 @@ function OffUpdate() {
                                             autoComplete='off'
                                             onChange={ onChangeHandler }
                                             value={form.offTitle}
+                                            className={OffUpdateCSS.titleInput}
                                         />
                                         </td>
                                     </tr>

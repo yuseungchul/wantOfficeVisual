@@ -135,6 +135,7 @@ function Off() {
                                             name='offTitle'
                                             autoComplete='off'
                                             onChange={ onChangeHandler }
+                                            className={OffCSS.titleInput}
                                         />
                                         </td>
                                     </tr>

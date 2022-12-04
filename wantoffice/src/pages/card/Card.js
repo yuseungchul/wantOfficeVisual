@@ -54,6 +54,14 @@ function Card () {
                         </ul>
                     </div>
                 </section>
+                {
+                    myCardDetailModal ?
+                    <MyCardDetailModal
+                        card={card}
+                        setMyCardDetailModal={ setMyCardDetailModal }
+                    />
+                    : null
+                }
                 <div>
                     <span className={CardCSS.text}>내 명함</span>
                     <button
@@ -63,14 +71,6 @@ function Card () {
                         수정
                     </button>
                     <div className={CardCSS.MyCardDiv}>
-                        {
-                            myCardDetailModal ?
-                            <MyCardDetailModal
-                                card={card}
-                                setMyCardDetailModal={ setMyCardDetailModal }
-                            />
-                            : null
-                        }
                         { card &&
                         <div>
                             <h3>{ card.memberName }</h3>

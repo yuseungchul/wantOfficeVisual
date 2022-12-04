@@ -97,11 +97,11 @@ function OffDetail() {
                                             <td>{ offs.offTitle }</td>
                                         </tr>
                                         <tr>
-                                            <th>연차기간</th>
+                                            <th>연차 기간</th>
                                             <td>{ offs.offStart }　~　{ offs.offEnd }</td>
                                         </tr>
                                         <tr>
-                                            <th>연차사유</th>
+                                            <th>연차 사유</th>
                                             <td>{ offs.offReason }</td>
                                         </tr>
                                         <tr>
@@ -146,11 +146,11 @@ function OffDetail() {
                                             <td>{ offs.offTitle }</td>
                                         </tr>
                                         <tr>
-                                            <th>연차기간</th>
+                                            <th>연차 기간</th>
                                             <td>{ offs.offStart }~{ offs.offEnd }</td>
                                         </tr>
                                         <tr>
-                                            <th>연차사유</th>
+                                            <th>연차 사유</th>
                                             <td>{ offs.offReason }</td>
                                         </tr>
                                     </tbody>

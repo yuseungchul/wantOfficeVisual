@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callMyCardUpdateAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
+import MyCardDetailCSS from "./MyCardDetailModal.module.css";
 
 function MyCardDetailModal({card, setMyCardDetailModal}) {
 
@@ -46,112 +47,120 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
 
     return (
         <>
-            {
-                card &&
-                <div>
-                    <table>
-                        <colgroup>
-                            <col width="30%"/>
-                            <col width="70%"/>
-                        </colgroup>
-                        <tbody>
-                            <tr>
-                                <th>이름</th>
+            <div className={MyCardDetailCSS.container}>
+                {
+                    card &&
+                    <div>
+                        <span>내 명함 수정</span>
+                    <div className={MyCardDetailCSS.table}>
+                        <table>
+                            <colgroup>
+                                <col width="30%"/>
+                                <col width="70%"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>이름</th>
+                                        <td>
+                                            <input
+                                                name='memberName'
+                                                readOnly={modifyMode ? false : true}
+                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
+                                                onChange={ onChangeHandler }
+                                                value={ (!modifyMode ? card.memberName : form.memberName) || ''}
+                                            />
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <th>부서</th>
                                     <td>
                                         <input
-                                            name='memberName'
-                                            readOnly={modifyMode ? false : true}
-                                            style={ !modifyMode ? { backgroundColor: 'lightgray'} : null}
+                                            name='dept.deptName'
+                                            readOnly={true}
+                                            style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                             onChange={ onChangeHandler }
-                                            value={ (!modifyMode ? card.memberName : form.memberName) || ''}
+                                            value={ card.dept?.deptName }
                                         />
                                     </td>
-                            </tr>
-                            <tr>
-                                <th>부서</th>
-                                <td>
-                                    <input
-                                        name='dept.deptName'
-                                        readOnly={true}
-                                        style={ !modifyMode ? { backgroundColor: 'lightgray'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ card.dept.deptName }
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>직책</th>
-                                <td>
-                                    <input
-                                        name='position.positionName'
-                                        readOnly={true}
-                                        style={ !modifyMode ? { backgroundColor: 'lightgray'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ card.position.positionName }
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>전화번호</th>
+                                </tr>
+                                <tr>
+                                    <th>직책</th>
                                     <td>
                                         <input
-                                            name='memberPhone'
-                                            readOnly={modifyMode ? false : true}
-                                            style={ !modifyMode ? { backgroundColor: 'lightgray'} : null}
+                                            name='position.positionName'
+                                            readOnly={true}
+                                            style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                             onChange={ onChangeHandler }
-                                            value={ (!modifyMode ? card.memberPhone : form.memberPhone) || ''}
+                                            value={ card.position?.positionName }
                                         />
                                     </td>
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                    <td>
-                                        <input
-                                            name='memberEmail'
-                                            readOnly={modifyMode ? false : true}
-                                            style={ !modifyMode ? { backgroundColor: 'lightgray'} : null}
-                                            onChange={ onChangeHandler }
-                                            value={ (!modifyMode ? card.memberEmail : form.memberEmail) || ''}
-                                        />
-                                    </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            }
-            {
-                card &&
-                <div>
-                    <button
-                        onClick={ onClickCloseHandler }
-                    >
-                        뒤로
-                    </button>
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
+                                        <td>
+                                            <input
+                                                name='memberPhone'
+                                                readOnly={modifyMode ? false : true}
+                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
+                                                onChange={ onChangeHandler }
+                                                value={ (!modifyMode ? card.memberPhone : form.memberPhone) || ''}
+                                            />
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <th>이메일</th>
+                                        <td>
+                                            <input
+                                                name='memberEmail'
+                                                readOnly={modifyMode ? false : true}
+                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
+                                                onChange={ onChangeHandler }
+                                                value={ (!modifyMode ? card.memberEmail : form.memberEmail) || ''}
+                                            />
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                }
+                {
+                    card &&
+                    <div>
+                        <button
+                            onClick={ onClickCloseHandler }
+                            className={MyCardDetailCSS.backBtn}
+                        >
+                            뒤로
+                        </button>
 
-                    { token &&
-                        (token.sub === card.memberId)
-                        ?
-                            <div>
-                            {!modifyMode &&
-                                <button
-                                    onClick={ onClickModifyModeHandler }
-                                >
-                                    수정
-                                </button>
-                            }
-                            {modifyMode &&
-                                <button
-                                    onClick={ onClickMyCardUpdateHandler }
-                                >
-                                    수정
-                                </button>
-                            }
-                            </div>
-                        : null
-                    }
+                        { token &&
+                            (token.sub === card.memberId)
+                            ?
+                                <div>
+                                {!modifyMode &&
+                                    <button
+                                        onClick={ onClickModifyModeHandler }
+                                        className={MyCardDetailCSS.modifyBtn}
+                                    >
+                                        수정
+                                    </button>
+                                }
+                                {modifyMode &&
+                                    <button
+                                        onClick={ onClickMyCardUpdateHandler }
+                                        className={MyCardDetailCSS.modifyBtn}
+                                    >
+                                        수정
+                                    </button>
+                                }
+                                </div>
+                            : null
+                        }
 
-                </div>
-            }
+                    </div>
+                }
+            </div>
         </>
     );
 
