@@ -4,6 +4,9 @@ import { callCustomersAPI } from "../../apis/CardAPICalls";
 import CustomerRegistModal from "./CustomerRegistModal";
 import RoomListCSS from "../../pages/room/RoomList.module.css";
 import CustomerDetailModal from "./CustomerDetailModal";
+import { decodeJwt } from "../../utils/tokenUtils";
+import { NavLink } from "react-router-dom";
+import CardCSS from "../card/Card.module.css";
 
 function CustomerList () {
 
@@ -15,6 +18,14 @@ function CustomerList () {
     const [customerDetailModal, setCustomerDetailModal] = useState(false);
 
     const [customer, setCustomer] = useState();
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
 
     useEffect(
         () => {
@@ -43,78 +54,91 @@ function CustomerList () {
 
     return (
         <>
-            {
-                customerRegistModal ?
-                <CustomerRegistModal
-                    setCustomerRegistModal={ setCustomerRegistModal }
-                />
-                : null
-            }
-            {
-                customerDetailModal ?
-                <CustomerDetailModal
-                    customer={customer}
-                    setCustomerDetailModal={ setCustomerDetailModal }
-                />
-                : null
-            }
             <div>
-                <h2>거래처 명함</h2>
-            </div>
-            <div>
+                <section className={CardCSS.submenu}>
+                    <br></br>
+                    <h3>Card</h3>
+                    <div className={CardCSS.submenuDiv}>
+                        <h4>명함</h4>
+                        <ul className={CardCSS.submenuUl} >
+                            <li> <NavLink to="/card/office" style={{ textDecoration: "none", color: "#505050" }}>사내 명함 조회</NavLink></li><br></br>
+                            <li> <NavLink to="/card/customers" style={{ textDecoration: "none", color: "#505050" }}>거래처 명함 조회</NavLink></li>
+                        </ul>
+                        <button
+                            onClick={ onClickCustomerRegistHandler }
+                        >
+                            거래처 명함 등록
+                        </button>
+                    </div>
+                </section>
                 {
-                    Array.isArray(customerList) && customerList.map(
-                        (customer) => (
-                            <div key={ customer.customerNo } onClick={ () => onClickCustomerDetailHandler(customer) }>
-                                <h5>{ customer.customerEmployee }</h5>
-                                <h5>회사명{ customer.customerName }</h5>
-                                <h5>직책{ customer.customerPosition }</h5>
-                                <h5>전화번호{ customer.customerPhone }</h5>
-                                <h5>이메일{ customer.customerEmail }</h5>
-                            </div>
-                        )
-                    )
-                }
-            </div>
-            <div>
-                {
-                    Array.isArray(customerList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage - 1) }
-                        disabled={ currentPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &lt;
-                    </button>
+                    customerRegistModal ?
+                    <CustomerRegistModal
+                        setCustomerRegistModal={ setCustomerRegistModal }
+                    />
+                    : null
                 }
                 {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={ () => setCurrentPage(num) }>
+                    customerDetailModal ?
+                    <CustomerDetailModal
+                        customer={customer}
+                        setCustomerDetailModal={ setCustomerDetailModal }
+                    />
+                    : null
+                }
+                <div className={CardCSS.title}>
+                    <span>거래처 명함</span>
+                </div>
+                <div className={CardCSS.container}>
+                    <div className={CardCSS.cardContainer}>
+                        {
+                            Array.isArray(customerList) && customerList.map(
+                                (customer) => (
+                                    <div key={ customer.customerNo } className={CardCSS.CardDiv} onClick={ () => onClickCustomerDetailHandler(customer) }>
+                                        <h3>{ customer.customerEmployee }</h3><hr></hr>
+                                        <h4>회사명　　　{ customer.customerName }</h4>
+                                        <h4>직책　　　　{ customer.customerPosition }</h4>
+                                        <h4>전화번호　　{ customer.customerPhone }</h4>
+                                        <h4>이메일　　　{ customer.customerEmail }</h4>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
+                    <div className={CardCSS.adminPageDiv}>
+                        {
+                            Array.isArray(customerList) &&
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(currentPage - 1) }
+                                disabled={ currentPage === 1 }
+                                className={CardCSS.pagingBtn}
                             >
-                                {num}
+                                &lt;
                             </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(customerList) &&
-                    <button
-                        onClick={ () => setCurrentPage(currentPage + 1) }
-                        disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                        className={ RoomListCSS.pagingBtn }
-                    >
-                        &gt;
-                    </button>
-                }
+                        }
+                        {
+                            pageNumber.map((num) => (
+                                    <button
+                                        onClick={ () => setCurrentPage(num) }
+                                        className={CardCSS.num}
+                                    >
+                                        {num}
+                                    </button>
+                            ))
+                        }
+                        {
+                            Array.isArray(customerList) &&
+                            <button
+                                onClick={ () => setCurrentPage(currentPage + 1) }
+                                disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
+                                className={CardCSS.pagingBtn}
+                            >
+                                &gt;
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
-            <button
-                onClick={ onClickCustomerRegistHandler }
-            >
-                거래처 명함 등록
-            </button>
         </>
     );
 
