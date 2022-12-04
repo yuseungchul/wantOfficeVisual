@@ -3,7 +3,7 @@ import Room from "../../components/room/Room";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callRoomListAPI } from '../../apis/RoomAPICalls';
-import { Navigate, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { decodeJwt } from '../../utils/tokenUtils';
 
 
@@ -23,7 +23,7 @@ function RoomList(){
     if(isLogin) {
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0].authName;
-    }console.log(decoded);
+    }
 
 
     useEffect(
@@ -53,8 +53,32 @@ function RoomList(){
 
     return(
         <>
-           
-            <div className={RoomListCSS.roomListDiv}>
+            
+                <section className={RoomListCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={RoomListCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={RoomListCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={RoomListCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={RoomListCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>
+                
+                <div className={RoomListCSS.roomListDiv}>
                 <h2>회의실 시설 안내</h2>
                 { 
                     Array.isArray(roomList)

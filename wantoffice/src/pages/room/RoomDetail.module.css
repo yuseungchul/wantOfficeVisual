@@ -1,19 +1,25 @@
 .DetailDiv{
-    float: left;
-    margin: 50px;
-    padding-left: 20px;
-    width: 65%;
+    position: fixed;
+    left: 500px;
+    top: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-weight: bold;
+    width: 1200px;
+    height: 700px;
+    padding-top: 25px;
+    cursor: pointer;
 }
 
 .DetailDiv > h2{
     text-align: center;
+    color:#8d8d8d;
     border-top: 2px solid #8d8d8d;
     border-bottom: 2px solid #8d8d8d;
-    color:#8d8d8d;
-    margin-bottom: 50px;
-    margin-top: 80px;
     padding: 20px;
-} 
+    margin: 20px;
+}
 
 .imgsDiv{
     float: left;
@@ -65,12 +71,39 @@
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-    margin-left: 70px;
+    margin: 10px;
+    
 }
 .roomResBtn:hover {
 	background-color:#739ca5;
 }
 .roomResBtn:active {
+	position:relative;
+	top:1px;
+}
+
+.rmUpdateBtn{
+    
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:24px;
+	font-weight:bold;
+	padding:6px 24px;
+    margin: 10px;
+	text-decoration:none;
+    
+    
+}
+
+.rmUpdateBtn:hover {
+	background-color:#739ca5;
+}
+.rmUpdateBtn:active {
 	position:relative;
 	top:1px;
 }

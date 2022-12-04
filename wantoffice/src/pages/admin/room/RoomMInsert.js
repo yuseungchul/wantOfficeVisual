@@ -1,8 +1,9 @@
 import RoomMInsertCSS from './RoomMInsert.module.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { callRoomMInsertAPI } from '../../../apis/RoomAPICalls';
+import { decodeJwt } from '../../../utils/tokenUtils';
 
 function RoomMInsert(){
 
@@ -79,6 +80,14 @@ function RoomMInsert(){
         window.location.reload();
     }
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
     return(
         <>
             <div>
@@ -88,7 +97,30 @@ function RoomMInsert(){
                 >
                     회의실 등록
                 </button>
-            </div>    
+            </div>  
+            <section className={RoomMInsertCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={RoomMInsertCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={RoomMInsertCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={RoomMInsertCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={RoomMInsertCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>  
             <div className={ RoomMInsertCSS.MInsertDiv }>
             <h2>회의실 시설 안내</h2>
                 <div className= { RoomMInsertCSS.roomInfoDiv }>
