@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callCustomerRegistAPI } from "../../apis/CardAPICalls";
+import CustomerRegistCSS from "./CustomerRegistModal.module.css";
 
 function CustomerRegistModal({setCustomerRegistModal}) {
 
@@ -43,70 +44,93 @@ function CustomerRegistModal({setCustomerRegistModal}) {
     }
 
     return (
-        <div>
+        <div className={CustomerRegistCSS.container}>
             <div>
                 <div>
-                    <h1>거래처 명함 등록</h1>
-                    <div>
-                        <h3>회사명</h3>
-                        <input
-                            type="text"
-                            name='customerName'
-                            autoComplete='off'
-                            onChange={ onChangeHandler }
-                        />
-                    </div>
-                    <div>
-                        <h3>이름</h3>
-                        <input
-                            type="text"
-                            name='customerEmployee'
-                            autoComplete='off'
-                            onChange={ onChangeHandler }
-                        />
-                    </div>
-                    <div>
-                        <h3>전화번호</h3>
-                        <input
-                            type="text"
-                            name='customerPhone'
-                            placeholder="010-0000-0000"
-                            autoComplete='off'
-                            onChange={ onChangeHandler }
-                        />
-                    </div>
-                    <div>
-                        <h3>이메일</h3>
-                        <input
-                            type="text"
-                            name='customerEmail'
-                            autoComplete='off'
-                            onChange={ onChangeHandler }
-                        />
-                    </div>
-                    <div>
-                        <h3>직책</h3>
-                        <input
-                            type="text"
-                            name='customerPosition'
-                            autoComplete='off'
-                            onChange={ onChangeHandler }
-                        />
-                    </div>
-                    <div>
-                        <h3>부서 공유 여부</h3>
-                        <select onChange={ onChangeHandler } name='customerShare'>
-                            <option value="Y">Y</option>
-                            <option value="N">N</option>
-                        </select>
+                    <span>거래처 명함 등록</span>
+                    <div className={CustomerRegistCSS.table}>
+                        <table>
+                            <colgroup>
+                                <col width="30%"/>
+                                <col width="70%"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>회사명</th>
+                                    <td>
+                                    <input
+                                        type="text"
+                                        name='customerName'
+                                        autoComplete='off'
+                                        onChange={ onChangeHandler }
+                                    />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이름</th>
+                                    <td>
+                                    <input
+                                        type="text"
+                                        name='customerEmployee'
+                                        autoComplete='off'
+                                        onChange={ onChangeHandler }
+                                    />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
+                                    <td>
+                                    <input
+                                        type="text"
+                                        name='customerPhone'
+                                        autoComplete='off'
+                                        onChange={ onChangeHandler }
+                                    />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이메일</th>
+                                    <td>
+                                    <input
+                                        type="text"
+                                        name='customerEmail'
+                                        autoComplete='off'
+                                        onChange={ onChangeHandler }
+                                    /> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>직책</th>
+                                    <td>
+                                    <input
+                                        type="text"
+                                        name='customerPosition'
+                                        autoComplete='off'
+                                        onChange={ onChangeHandler }
+                                    />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>부서 공유 여부</th>
+                                    <td>
+                                    <select onChange={ onChangeHandler } name='customerShare'>
+                                        <option value="Y">Y</option>
+                                        <option value="N">N</option>
+                                    </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <button
                         onClick={ onClickCustomerRegistHandler }
+                        className={CustomerRegistCSS.registBtn}
                     >
                         등록
                     </button>
                     <button
                         onClick={ onClickCloseHandler }
+                        className={CustomerRegistCSS.backBtn}
                     >
                         취소
                     </button>
