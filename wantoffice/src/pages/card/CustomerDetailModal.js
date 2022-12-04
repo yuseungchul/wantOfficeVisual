@@ -166,7 +166,7 @@ function CustomerDetailModal({customer, setCustomerDetailModal}) {
                                 {!modifyMode &&
                                     <button
                                         onClick={ onClickModifyModeHandler }
-                                        className={CustomerDetailCSS.modifyBtn}
+                                        className={CustomerDetailCSS.modifyBtn1}
                                     >
                                         수정
                                     </button>
@@ -182,7 +182,7 @@ function CustomerDetailModal({customer, setCustomerDetailModal}) {
                                 {modifyMode &&
                                     <button
                                         onClick={ onClickCustomerUpdateHandler }
-                                        className={CustomerDetailCSS.modifyBtn}
+                                        className={CustomerDetailCSS.modifyBtn2}
                                     >
                                         수정
                                     </button>

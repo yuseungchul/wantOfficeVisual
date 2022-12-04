@@ -65,7 +65,6 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                             <input
                                                 name='memberName'
                                                 readOnly={modifyMode ? false : true}
-                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                                 onChange={ onChangeHandler }
                                                 value={ (!modifyMode ? card.memberName : form.memberName) || ''}
                                             />
@@ -77,7 +76,6 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                         <input
                                             name='dept.deptName'
                                             readOnly={true}
-                                            style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                             onChange={ onChangeHandler }
                                             value={ card.dept?.deptName }
                                         />
@@ -89,7 +87,6 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                         <input
                                             name='position.positionName'
                                             readOnly={true}
-                                            style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                             onChange={ onChangeHandler }
                                             value={ card.position?.positionName }
                                         />
@@ -101,7 +98,6 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                             <input
                                                 name='memberPhone'
                                                 readOnly={modifyMode ? false : true}
-                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                                 onChange={ onChangeHandler }
                                                 value={ (!modifyMode ? card.memberPhone : form.memberPhone) || ''}
                                             />
@@ -113,7 +109,6 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                             <input
                                                 name='memberEmail'
                                                 readOnly={modifyMode ? false : true}
-                                                style={ modifyMode ? { backgroundColor: '#e0d9d9'} : null}
                                                 onChange={ onChangeHandler }
                                                 value={ (!modifyMode ? card.memberEmail : form.memberEmail) || ''}
                                             />
@@ -141,7 +136,7 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                 {!modifyMode &&
                                     <button
                                         onClick={ onClickModifyModeHandler }
-                                        className={MyCardDetailCSS.modifyBtn}
+                                        className={MyCardDetailCSS.modifyBtn1}
                                     >
                                         수정
                                     </button>
@@ -149,7 +144,7 @@ function MyCardDetailModal({card, setMyCardDetailModal}) {
                                 {modifyMode &&
                                     <button
                                         onClick={ onClickMyCardUpdateHandler }
-                                        className={MyCardDetailCSS.modifyBtn}
+                                        className={MyCardDetailCSS.modifyBtn2}
                                     >
                                         수정
                                     </button>
