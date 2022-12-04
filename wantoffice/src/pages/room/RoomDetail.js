@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import RoomDetailCSS from './RoomDetail.module.css';
+import RoomListCSS from './RoomList.module.css';
 import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 import LoginModal from '../../components/common/LoginModal';
@@ -76,26 +77,34 @@ function RoomDetail(){
        navigate(`/room/rooms-managements`, { replace : false });
     }
 
-    /* 예약 삭제 버튼 이벤트 */    
-    // const onClickRoomDeleteHandler = (roomNo) => {
-
-    //     {
-    //         dispatch(callRoomMDeleteAPI({
-    //             roomNo : roomNo
-    //         }));
-    //         console.log("삭제 확인");
-    //         alert('회의실이 삭제 되었습니다.');
-            
-    //     }
-
-    // //    navigate(`/room/rooms-management/${roomNo}`, { replace : true });
-    //    window.location.reload();
-    // }
-
     return(
         <>
             { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
             
+            <section className={RoomListCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={RoomListCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={RoomListCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={RoomListCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={RoomListCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>
+
             <div className={ RoomDetailCSS.DetailDiv }>
             <h2>회의실 상세 보기</h2>
                 <div className={ RoomDetailCSS.imgsDiv }>
@@ -134,13 +143,9 @@ function RoomDetail(){
                         onClick={ onClickRoomPutHandler }
                         className={ RoomDetailCSS.rmUpdateBtn }
                     >
-                        수정하기</button>
-}
-                {/* <button
-                        onClick={ onClickRoomDeleteHandler }
-                        className={ RoomDetailCSS.rmRemoveBtn }
-                    >
-                        삭제하기</button> */}
+                        수정 하기</button>
+                }
+
             </div>
           </div>
         </>

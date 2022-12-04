@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callRoomDetailAPI, callRoomMUpdateAPI } from '../../../apis/RoomAPICalls';
+import { NavLink,useNavigate, useParams } from "react-router-dom";
+import { callRoomMUpdateAPI } from '../../../apis/RoomAPICalls';
 import RoomMUpdateCSS from '../room/RoomMUpdate.module.css';
+import RoomListCSS from '../../../pages/room/RoomList.module.css';
+import { decodeJwt } from '../../../utils/tokenUtils';
+
+
 
 function RoomMUpdate(){
 
@@ -18,12 +22,13 @@ function RoomMUpdate(){
 
     const [modifyMode, setModifyMode] = useState(false);
 
-    // useEffect(() => {
-    //     dispatch(callRoomDetailAPI({
-    //         roomNo : params.roomNo
-    //     }));
-    // }
-    // ,[]);
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
 
     useEffect(() => {
         if(image) {
@@ -110,7 +115,31 @@ function RoomMUpdate(){
                 >수정하기</button>
            }
         </div>
+        <section className={RoomListCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={RoomListCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={RoomListCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={RoomListCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={RoomListCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>
         <div className={ RoomMUpdateCSS.roomSection }>
+        <h2>회의실 시설 안내</h2>
            <div className={ RoomMUpdateCSS.roomInfoDiv }>
               <div className={ RoomMUpdateCSS.roomImgDiv }>
                     { roomDetail && <img
