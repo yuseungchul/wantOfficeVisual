@@ -3,11 +3,13 @@ import { callInOutAPI, callInRegistAPI, callOutRegistAPI } from "../../apis/Atte
 import Clock from "./Clock";
 import AttendanceCSS from './Attendance.module.css';
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Attendance() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const attendance = useSelector(state => state.attendanceReducer);
     const attendanceDetail = attendance.data;
 
@@ -22,7 +24,7 @@ function Attendance() {
     }
 
     const onClickMyInfoHandler = () => {
-        dispatch()
+        navigate('/mypage', { replace : true });
     }
 
     useEffect(() => {

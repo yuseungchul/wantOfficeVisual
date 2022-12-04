@@ -1,4 +1,4 @@
-import { GET_MEMBERS, GET_MEMBER, PATCH_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModules";
+import { GET_MEMBERS, GET_MEMBER, PATCH_MEMBER, POST_LOGIN, POST_REGISTER, POST_FINDID } from "../modules/MemberModules";
 
 /* 로그인 API */
 export const callLoginAPI = ({form}) => {
@@ -38,8 +38,36 @@ export const callLogoutAPI = () => {
     }
 }
 
+/* 아이디 찾기 API */
+export const callFindIdAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/account/find`;
+    
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body : JSON.stringify({
+                memberName : form.memberName,
+                memberEmail : form.memberEmail
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[MemberAPICalls] callFindIdAPI result : ', result);
+            dispatch({ type: POST_FINDID, payload : result });
+        }
+    }
+}
+
 /* 사원 등록 API */
 export const callRegisterAPI = ({form}) => {
+
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/signup`;
 
     return async (dispatch, getState) => {

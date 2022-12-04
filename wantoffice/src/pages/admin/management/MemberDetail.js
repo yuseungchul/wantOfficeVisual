@@ -260,11 +260,6 @@ function MemberDetail() {
                 >
                     뒤로
                 </button>
-                {/* <button
-                    onClick={ onClickMemberDeleteHandler }
-                >
-                    삭제
-                </button> */}
             </div>
 
         </div>

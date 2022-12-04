@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/contents/Login";
 import Error from "./pages/Error";
+import FindId from "./pages/contents/FindId";
 
 import CalendarLayout from "./layouts/CalendarLayout";
 import Calendar from "./pages/calendar/Calendar";
@@ -45,6 +46,7 @@ import OfficeCardList from "./pages/card/OfficeCardList";
 import ScheduleSelect from './pages/calendar/ScheduleSelect';
 import ScheduleRegist from './pages/calendar/ScheduleRegist';
 import MainLayout from "./layouts/attendance/MainLayout";
+import MyPage from "./pages/contents/MyPage";
 
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={ <Login/> }/>
+        <Route path="/findId" element={ <FindId/> }/>
         <Route path="/calendar" element={ <CalendarLayout/> }>
           <Route index element={ <Calendar/> }/>
           <Route path="/calendar/:scheduleNo" element={ <ScheduleSelect/> }/>
@@ -60,6 +63,7 @@ function App() {
         <Route path="/main" element={ <MainLayout/> }>
           <Route index element={ <Attendance/> }/>
         </Route>
+        <Route path="/mypage" element={ <MyPage/> }/>
         <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route path="/attendance/my" element={ <MyAttList/> }/>
           <Route path="/attendance/manage-list" element={ <AttListForAdmin/> }/>

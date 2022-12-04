@@ -40,7 +40,7 @@ function Login() {
     }
 
     const onClickFindHandler = () => {
-        
+        navigate('/findId', { replace : true });
     }
 
     return (
