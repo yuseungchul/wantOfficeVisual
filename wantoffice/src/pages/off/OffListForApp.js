@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { callOffListForAppAPI } from "../../apis/OffAPICalls";
 import { NavLink } from "react-router-dom";
 import { decodeJwt } from "../../utils/tokenUtils";
-import AttAndOffCSS from "../attendance/AttAndOff.module.css";
+import OffListForAppCSS from "./OffListForApp.module.css";
 
 function OffListForApp() {
 
@@ -43,12 +43,12 @@ function OffListForApp() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={OffListForAppCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffListForAppCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={OffListForAppCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -56,29 +56,29 @@ function OffListForApp() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={OffListForAppCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={OffListForAppCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={OffListForAppCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
             </div>
-            <div className={AttAndOffCSS.OffListForAdminDiv}>
+            <div className={OffListForAppCSS.OffListForAdminDiv}>
                 <span>연차 신청 조회</span>
-                <select value={selectedResult} onChange={handleSelectResult} className={AttAndOffCSS.resultSelect}>
+                <select value={selectedResult} onChange={handleSelectResult} className={OffListForAppCSS.resultSelect}>
                     <option value="대기">대기</option>
                     <option value="승인">승인</option>
                     <option value="반려">반려</option>
                 </select>
                 <div>
-                    <table className={AttAndOffCSS.OffListForAdminTable}>
+                    <table className={OffListForAppCSS.OffListForAdminTable}>
                         <colgroup>
                             <col width="10%"/>
                             <col width="20%"/>
@@ -117,13 +117,13 @@ function OffListForApp() {
                         </tbody>
                     </table>
                 </div>
-                <div className={AttAndOffCSS.adminPageDiv}>
+                <div className={OffListForAppCSS.adminPageDiv}>
                     {
                         Array.isArray(offList) &&
                         <button
                             onClick={ () => setCurrentPage(currentPage - 1) }
                             disabled={ currentPage === 1 }
-                            className={AttAndOffCSS.pagingBtn}
+                            className={OffListForAppCSS.pagingBtn}
                         >
                             &lt;
                         </button>
@@ -132,7 +132,7 @@ function OffListForApp() {
                         pageNumber.map((num) => (
                                 <button
                                     onClick={ () => setCurrentPage(num) }
-                                    className={AttAndOffCSS.num}
+                                    className={OffListForAppCSS.num}
                                 >
                                     {num}
                                 </button>
@@ -143,7 +143,7 @@ function OffListForApp() {
                         <button
                             onClick={ () => setCurrentPage(currentPage + 1) }
                             disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                            className={AttAndOffCSS.pagingBtn}
+                            className={OffListForAppCSS.pagingBtn}
                         >
                             &gt;
                         </button>

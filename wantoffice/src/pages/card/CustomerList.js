@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callCustomersAPI } from "../../apis/CardAPICalls";
 import CustomerRegistModal from "./CustomerRegistModal";
-import RoomListCSS from "../../pages/room/RoomList.module.css";
 import CustomerDetailModal from "./CustomerDetailModal";
 import { decodeJwt } from "../../utils/tokenUtils";
 import { NavLink } from "react-router-dom";
-import CardCSS from "../card/Card.module.css";
+import CustomerListCSS from "./CustomerList.module.css";
 
 function CustomerList () {
 
@@ -55,12 +54,12 @@ function CustomerList () {
     return (
         <>
             <div>
-                <section className={CardCSS.submenu}>
+                <section className={CustomerListCSS.submenu}>
                     <br></br>
                     <h3>Card</h3>
-                    <div className={CardCSS.submenuDiv}>
+                    <div className={CustomerListCSS.submenuDiv}>
                         <h4>명함</h4>
-                        <ul className={CardCSS.submenuUl} >
+                        <ul className={CustomerListCSS.submenuUl} >
                             <li> <NavLink to="/card/office" style={{ textDecoration: "none", color: "#505050" }}>사내 명함 조회</NavLink></li><br></br>
                             <li> <NavLink to="/card/customers" style={{ textDecoration: "none", color: "#505050" }}>거래처 명함 조회</NavLink></li>
                         </ul>
@@ -86,15 +85,15 @@ function CustomerList () {
                     />
                     : null
                 }
-                <div className={CardCSS.title}>
+                <div className={CustomerListCSS.title}>
                     <span>거래처 명함</span>
                 </div>
-                <div className={CardCSS.container}>
-                    <div className={CardCSS.cardContainer}>
+                <div className={CustomerListCSS.container}>
+                    <div className={CustomerListCSS.cardContainer}>
                         {
                             Array.isArray(customerList) && customerList.map(
                                 (customer) => (
-                                    <div key={ customer.customerNo } className={CardCSS.CardDiv} onClick={ () => onClickCustomerDetailHandler(customer) }>
+                                    <div key={ customer.customerNo } className={CustomerListCSS.CardDiv} onClick={ () => onClickCustomerDetailHandler(customer) }>
                                         <h3>{ customer.customerEmployee }</h3><hr></hr>
                                         <h4>회사명　　　{ customer.customerName }</h4>
                                         <h4>직책　　　　{ customer.customerPosition }</h4>
@@ -105,13 +104,13 @@ function CustomerList () {
                             )
                         }
                     </div>
-                    <div className={CardCSS.adminPageDiv}>
+                    <div className={CustomerListCSS.pageDiv}>
                         {
                             Array.isArray(customerList) &&
                             <button
                                 onClick={ () => setCurrentPage(currentPage - 1) }
                                 disabled={ currentPage === 1 }
-                                className={CardCSS.pagingBtn}
+                                className={CustomerListCSS.pagingBtn}
                             >
                                 &lt;
                             </button>
@@ -120,7 +119,7 @@ function CustomerList () {
                             pageNumber.map((num) => (
                                     <button
                                         onClick={ () => setCurrentPage(num) }
-                                        className={CardCSS.num}
+                                        className={CustomerListCSS.num}
                                     >
                                         {num}
                                     </button>
@@ -131,7 +130,7 @@ function CustomerList () {
                             <button
                                 onClick={ () => setCurrentPage(currentPage + 1) }
                                 disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                                className={CardCSS.pagingBtn}
+                                className={CustomerListCSS.pagingBtn}
                             >
                                 &gt;
                             </button>

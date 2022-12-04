@@ -4,6 +4,7 @@ import { callCardsAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
 import { NavLink } from "react-router-dom";
 import CardCSS from "../card/Card.module.css";
+import OfficeCardCSS from "./OfficeCard.module.css";
 
 function OfficeCardList () {
 
@@ -37,26 +38,26 @@ function OfficeCardList () {
     return (
         <>
             <div>
-                <section className={CardCSS.submenu}>
+                <section className={OfficeCardCSS.submenu}>
                     <br></br>
                     <h3>Card</h3>
-                    <div className={CardCSS.submenuDiv}>
+                    <div className={OfficeCardCSS.submenuDiv}>
                         <h4>명함</h4>
-                        <ul className={CardCSS.submenuUl} >
+                        <ul className={OfficeCardCSS.submenuUl} >
                             <li> <NavLink to="/card/office" style={{ textDecoration: "none", color: "#505050" }}>사내 명함 조회</NavLink></li><br></br>
                             <li> <NavLink to="/card/customers" style={{ textDecoration: "none", color: "#505050" }}>거래처 명함 조회</NavLink></li>
                         </ul>
                     </div>
                 </section>
-                <div className={CardCSS.title}>
+                <div className={OfficeCardCSS.title}>
                     <span>사내 명함</span>
                 </div>
-                <div className={CardCSS.container}>
-                    <div className={CardCSS.cardContainer}>
+                <div className={OfficeCardCSS.container}>
+                    <div className={OfficeCardCSS.cardContainer}>
                         {
                             Array.isArray(memberList) && memberList.map(
                                 (member) => (
-                                    <div key={ member.memberNo } className={CardCSS.CardDiv}>
+                                    <div key={ member.memberNo } className={OfficeCardCSS.CardDiv}>
                                         <h3>{ member.memberName }</h3><hr></hr>
                                         <h4>부서　　　　{ member.dept?.deptName }</h4>
                                         <h4>직책　　　　{ member.position?.positionName }</h4>
@@ -67,13 +68,13 @@ function OfficeCardList () {
                             )
                         }
                     </div>
-                    <div className={CardCSS.adminPageDiv}>
+                    <div className={OfficeCardCSS.pageDiv}>
                         {
                             Array.isArray(memberList) &&
                             <button
                                 onClick={ () => setCurrentPage(currentPage - 1) }
                                 disabled={ currentPage === 1 }
-                                className={CardCSS.pagingBtn}
+                                className={OfficeCardCSS.pagingBtn}
                             >
                                 &lt;
                             </button>
@@ -82,7 +83,7 @@ function OfficeCardList () {
                             pageNumber.map((num) => (
                                     <button
                                         onClick={ () => setCurrentPage(num) }
-                                        className={CardCSS.num}
+                                        className={OfficeCardCSS.num}
                                     >
                                         {num}
                                     </button>
@@ -93,7 +94,7 @@ function OfficeCardList () {
                             <button
                                 onClick={ () => setCurrentPage(currentPage + 1) }
                                 disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                                className={CardCSS.pagingBtn}
+                                className={OfficeCardCSS.pagingBtn}
                             >
                                 &gt;
                             </button>

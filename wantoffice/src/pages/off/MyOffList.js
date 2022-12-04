@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callOffAPI } from "../../apis/OffAPICalls";
-import AttAndOffCSS from "../attendance/AttAndOff.module.css";
 import { decodeJwt } from "../../utils/tokenUtils";
 import { NavLink, useNavigate } from "react-router-dom";
+import MyOffListCSS from "./MyOffList.module.css";
 
 function MyOffList() {
 
@@ -42,12 +42,12 @@ function MyOffList() {
     return (
         <>
             <div>
-                <section className={AttAndOffCSS.submenu}>
+                <section className={MyOffListCSS.submenu}>
                     <br></br>
                     <h3>Attendance</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={MyOffListCSS.submenuDiv}>
                         <h4>근태</h4>
-                        <ul className={AttAndOffCSS.submenuUl} >
+                        <ul className={MyOffListCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
@@ -55,22 +55,22 @@ function MyOffList() {
                     </div>
                     <br></br>
                     <h3>Off</h3>
-                    <div className={AttAndOffCSS.submenuDiv}>
+                    <div className={MyOffListCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_MEMBER" && <ul className={MyOffListCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
+                        { decoded === "ROLE_APP_AUTH" && <ul className={MyOffListCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
                     </div>
                 </section>
-                <div className={AttAndOffCSS.MyOffListDiv}>
+                <div className={MyOffListCSS.MyOffListDiv}>
                     <span>연차 신청 조회</span>
-                    <table className={AttAndOffCSS.MyOffListTable}>
+                    <table className={MyOffListCSS.MyOffListTable}>
                         <colgroup>
                             <col width="15%"/>
                             <col width="30%"/>
@@ -103,13 +103,13 @@ function MyOffList() {
                             }
                         </tbody>
                     </table>
-                    <div className={AttAndOffCSS.pageDiv}>
+                    <div className={MyOffListCSS.pageDiv}>
                         {
                             Array.isArray(offList) &&
                             <button
                                 onClick={ () => setCurrentPage(currentPage - 1) }
                                 disabled={ currentPage === 1 }
-                                className={AttAndOffCSS.pagingBtn}
+                                className={MyOffListCSS.pagingBtn}
                             >
                                 &lt;
                             </button>
@@ -118,7 +118,7 @@ function MyOffList() {
                             pageNumber.map((num) => (
                                 <button
                                     onClick={ () => setCurrentPage(num) }
-                                    className={AttAndOffCSS.num}
+                                    className={MyOffListCSS.num}
                                 >
                                     {num}
                                 </button>
@@ -129,7 +129,7 @@ function MyOffList() {
                             <button
                                 onClick={ () => setCurrentPage(currentPage + 1) }
                                 disabled={ currentPage === pageBtn.maxPage || pageBtn.endPage === 1 }
-                                className={AttAndOffCSS.pagingBtn}
+                                className={MyOffListCSS.pagingBtn}
                             >
                                 &gt;
                             </button>
