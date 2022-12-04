@@ -1,6 +1,6 @@
 .formBodyDiv{
     position: fixed;
-    left: 750px;
+    left: 38%;
     top: 170px;
     background-color: #fff;
     border-radius: 10px;
@@ -23,7 +23,7 @@
 .modifyBtn {
     padding: 5px;
     margin-top: 720px;
-    margin-left: 1000px;
+    margin-left: 51%;
 }
 
 .backBtn {

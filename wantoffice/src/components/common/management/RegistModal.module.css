@@ -1,0 +1,33 @@
+.backgroundDiv {
+    position: fixed;
+    left: 40%;
+    top: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-weight: bold;
+    width: 600px;
+    height: 730px;
+    padding-top: 50px;
+    z-index: 2;
+}
+
+.backgroundDiv > p {
+    text-align: center;
+    border-top: 2px solid #8d8d8d;
+    border-bottom: 2px solid #8d8d8d;
+    color: #8d8d8d;
+    padding: 20px;
+    font-size: 23px;
+}
+
+.tableDiv {
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+.ImageDiv > img {
+    width: auto;
+    max-height: 150px;
+    margin: 10px 10px 0 240px;
+}
