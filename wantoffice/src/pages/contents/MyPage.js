@@ -72,7 +72,6 @@ function MyPage() {
     const onClickMyInfoUpdateHandler = () => {
 
         const formData = new FormData();
-
         formData.append("memberPhone", form.memberPhone);
         formData.append("memberEmail", form.memberEmail);
         
@@ -84,10 +83,10 @@ function MyPage() {
             form : formData
         }));
 
-        console.log("formData : ", formData);
+        console.log("formData : ", form);
 
-        navigate('/mypage', { replace : true });
-        window.location.reload();
+        // navigate('/mypage', { replace : true });
+        // window.location.reload();
     }
 
     return (
@@ -126,7 +125,7 @@ function MyPage() {
                                 <input
                                     name='memberName'
                                     className={ MyPageCSS.myInfoInput }
-                                    value={ params.memberName || '' }
+                                    value={ myInfo.memberName || '' }
                                     readOnly={ true }
                                 />
                             </td>
@@ -137,7 +136,7 @@ function MyPage() {
                                 <input
                                     name='memberId'
                                     className={ MyPageCSS.myInfoInput }
-                                    value={ params.memberId || '' }
+                                    value={ myInfo.memberId || '' }
                                     readOnly={ true }
                                 />
                             </td>
@@ -150,7 +149,7 @@ function MyPage() {
                                     placeholder='010-0000-0000'
                                     className={ MyPageCSS.myInfoInput }
                                     onChange={ onChangeHandler }
-                                    value={ !modifyMode ? params.memberPhone : form.memberPhone || '' }
+                                    value={ !modifyMode ? myInfo.memberPhone : form.memberPhone || '' }
                                     readOnly={ modifyMode ? false : true }
                                 />
                             </td>
@@ -163,7 +162,7 @@ function MyPage() {
                                     placeholder='이메일'
                                     className={ MyPageCSS.myInfoInput }
                                     onChange={ onChangeHandler }
-                                    value={ !modifyMode ? params.memberEmail : form.memberEmail || '' }
+                                    value={ !modifyMode ? myInfo.memberEmail : form.memberEmail || '' }
                                     readOnly={ modifyMode ? false : true }
                                 />
                             </td>
@@ -174,7 +173,7 @@ function MyPage() {
                                 <input
                                     name='deptName'
                                     className={ MyPageCSS.myInfoInput }
-                                    value={ params.dept?.deptName || '' }
+                                    value={ myInfo.dept?.deptName || '' }
                                     readOnly={ true }
                                 />
                             </td>
@@ -185,7 +184,7 @@ function MyPage() {
                                 <input
                                     name='positionName'
                                     className={ MyPageCSS.myInfoInput }
-                                    value={ params.position?.positionName || '' }
+                                    value={ myInfo.position?.positionName || '' }
                                     readOnly={ true }
                                 />
                             </td>
@@ -196,7 +195,7 @@ function MyPage() {
                                 <input
                                     name='memberJoinDate'
                                     className={ MyPageCSS.myInfoInput }
-                                    value={ params.memberJoinDate || '' }
+                                    value={ myInfo.memberJoinDate || '' }
                                     readOnly={ true }
                                 />
                             </td>
@@ -221,7 +220,7 @@ function MyPage() {
                 }
                 {modifyMode &&
                     <button
-                    onClick={ () => navigate('/mypage')}
+                    onClick={ () => navigate('/main')}
                     >
                     취소
                     </button>

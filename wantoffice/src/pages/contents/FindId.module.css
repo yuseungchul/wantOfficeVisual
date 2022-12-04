@@ -1,0 +1,27 @@
+.backgroundDiv {
+	width: 100%;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	background: linear-gradient(180deg, #71A1BC 0%, rgba(114, 218, 205, 0.5) 100%); 
+}
+
+.formDiv {
+    position: fixed;
+    left: 670px;
+    top: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    width: 500px;
+    height: 400px;
+    padding-top: 25px;
+}
+
+.buttonDiv {
+    display: flex;
+}
+
+.cancelBtn {
+    margin-left: 5px;
+}

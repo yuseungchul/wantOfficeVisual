@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { callDeptListAPI } from "../../../apis/DeptAPICalls";
 import RegistModal from "../../../components/common/management/DeptRegistModal";
+import DeptCSS from './Dept.module.css';
 
 function Dept() {
 
@@ -35,7 +36,14 @@ function Dept() {
     return (
         <>
             <div>
-                <table>
+                <button 
+                className={ DeptCSS.registBtn }
+                onClick={ openModal }>부서 등록</button>
+                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
+            </div>
+
+            <div className={ DeptCSS.deptTableDiv }>
+                <table className={ DeptCSS.deptTableCss }>
                     <colgroup>
                         <col width="10%" />
                         <col width="2%" />
@@ -67,10 +75,7 @@ function Dept() {
                 </table>
             </div>
 
-            <div>
-                <button onClick={ openModal }>부서 등록</button>
-                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
-            </div>
+            
 
         </>
     );

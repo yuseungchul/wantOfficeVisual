@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callMemberDetailAPI, callMemberUpdateAPI } from "../../../apis/MemberAPICalls";
-import memberDetailCSS from "./MemberDetail.module.css";
+import MemberDetailCSS from "./MemberDetail.module.css";
 
 function MemberDetail() {
 
@@ -104,11 +104,11 @@ function MemberDetail() {
     return (
         <div>
             
-            <div>
+            <div className={MemberDetailCSS.formBodyDiv}>
                 <div>
                     <div>
                         { memberDetail && <img
-                            className={ memberDetailCSS.memberImage }
+                            className={ MemberDetailCSS.memberImage }
                             src={ (imageUrl == null) ? memberDetail.memberImageUrl : imageUrl }
                             alt="preview"
                         />}
@@ -121,7 +121,7 @@ function MemberDetail() {
                             ref={ imageInput }
                         />
                         <button
-                            className={ memberDetailCSS.memberImageButton }
+                            className={ MemberDetailCSS.memberImageButton }
                             onClick={ onClickImageUpload }
                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                             disabled={ !modifyMode }
@@ -130,7 +130,7 @@ function MemberDetail() {
                         </button>    
                     </div>
                 </div>
-                <div>
+                <div className={MemberDetailCSS.inputAreaDiv}>
                     <table>
                         <tbody>
                             <tr>
@@ -139,7 +139,7 @@ function MemberDetail() {
                                     <input
                                         name='memberName'
                                         placeholder='이름'
-                                        className={ memberDetailCSS.memberInfoInput }
+                                        className={ MemberDetailCSS.memberInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ !modifyMode ? memberDetail.memberName : form.memberName || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -152,7 +152,7 @@ function MemberDetail() {
                                     <input
                                         name='memberId'
                                         placeholder='아이디'
-                                        className={ memberDetailCSS.memberInfoInput }
+                                        className={ MemberDetailCSS.memberInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ !modifyMode ? memberDetail.memberId : form.memberId || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -165,7 +165,7 @@ function MemberDetail() {
                                     <input
                                         name='memberPhone'
                                         placeholder='010-0000-0000'
-                                        className={ memberDetailCSS.memberInfoInput }
+                                        className={ MemberDetailCSS.memberInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ !modifyMode ? memberDetail.memberPhone : form.memberPhone || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -178,7 +178,7 @@ function MemberDetail() {
                                     <input
                                         name='memberEmail'
                                         placeholder='이메일'
-                                        className={ memberDetailCSS.memberInfoInput }
+                                        className={ MemberDetailCSS.memberInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ !modifyMode ? memberDetail.memberEmail : form.memberEmail || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -243,6 +243,7 @@ function MemberDetail() {
             <div>
                 {!modifyMode &&
                     <button
+                        className={ MemberDetailCSS.modifyBtn }
                         onClick={ onClickModifyModeHandler }
                     >
                         수정
@@ -256,6 +257,7 @@ function MemberDetail() {
                     </button>
                 }
                 <button
+                    className={ MemberDetailCSS.backBtn }
                     onClick={ () => navigate('/member') }
                 >
                     뒤로

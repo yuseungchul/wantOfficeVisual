@@ -1,4 +1,4 @@
-import { GET_MYINFO, PUT_MYINFO } from "../modules/MyModule"; 
+import { GET_MYINFO, PATCH_MYINFO } from "../modules/MyModule"; 
 
 /* 내 정보 조회 API */
 export const callMyInfoAPI = () => {
@@ -33,7 +33,7 @@ export const callMyInfoUpdateAPI = ({form}) => {
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
-            method : "PUT",
+            method : "PATCH",
             headers : {
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
@@ -44,7 +44,7 @@ export const callMyInfoUpdateAPI = ({form}) => {
 
         if(result.status === 200) {
             console.log('[MyAPICalls] callMyInfoUpdateAPI result : ', result);
-            dispatch({ type: PUT_MYINFO, payload: result.data });
+            dispatch({ type: PATCH_MYINFO, payload: result.data });
         }
     }
 }

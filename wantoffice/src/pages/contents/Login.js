@@ -44,37 +44,41 @@ function Login() {
     }
 
     return (
-        <div className={ MainCSS.loginDiv }>
-            <img  src= {process.env.PUBLIC_URL + '/assets/img/logo.png'} alt="로고"/>
+        <div className={MainCSS.backgroundDiv}>
+            <div className={ MainCSS.loginDiv }>
+                <img  src= {process.env.PUBLIC_URL + '/assets/img/logo.png'} alt="로고"/>
 
-            <h3>ID</h3>
-            <input
-                type="text"
-                name="memberId"
-                autoComplete='off'
-                placeholder='아이디를 입력해주세요'
-                onChange={ onChangeHandler }
-            />
-            <h3>PASSWORD</h3>
-            <input
-                type="password"
-                name="memberPassword"
-                autoComplete='off'
-                placeholder='비밀번호를 입력해주세요'
-                onChange={ onChangeHandler }
-            />
-            <br/>
-            <button
-                onClick={ onClickHandler }
-                className={ MainCSS.loginBtn }
-            >
-                로그인
-            </button>
-            <div>
-            <button
-                onClick={ onClickFindHandler }
-                className={ MainCSS.findBtn}
-            >아이디 찾기</button>
+                <h3>ID</h3>
+                <input
+                    type="text"
+                    name="memberId"
+                    autoComplete='off'
+                    placeholder='아이디를 입력해주세요'
+                    onChange={ onChangeHandler }
+                />
+                <h3>PASSWORD</h3>
+                <input
+                    type="password"
+                    name="memberPassword"
+                    autoComplete='off'
+                    placeholder='비밀번호를 입력해주세요'
+                    onChange={ onChangeHandler }
+                />
+                <br/>
+                <div className={ MainCSS.buttonArea }>
+                    <button
+                        onClick={ onClickHandler }
+                        className={ MainCSS.loginBtn }
+                    >
+                        로그인
+                    </button>
+                    <div>
+                    <button
+                        onClick={ onClickFindHandler }
+                        className={ MainCSS.findBtn}
+                    >아이디 찾기</button>
+                    </div>
+                </div>
             </div>
         </div>
     );

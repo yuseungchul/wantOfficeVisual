@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { callPositionListAPI } from "../../../apis/PositionAPICalls";
 import RegistModal from "../../../components/common/management/PositionRegistModal";
+import PositionCSS from './Position.module.css';
 
 function Position() {
 
@@ -34,7 +35,7 @@ function Position() {
 
     return (
         <>
-            <div>
+            <div className={PositionCSS.positionTableDiv}>
                 <table>
                     <colgroup>
                         <col width="10%" />
@@ -71,7 +72,9 @@ function Position() {
             </div>
 
             <div>
-                <button onClick={ openModal }>직책 등록</button>
+                <button 
+                className={ PositionCSS.registBtn }
+                onClick={ openModal }>직책 등록</button>
                 { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
             </div>
         </>

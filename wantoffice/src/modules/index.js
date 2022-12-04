@@ -9,6 +9,7 @@ import deptReducer from './DeptModule';
 import positionReducer from './PositionModule';
 import approvalReducer from './ApprovalModule';
 import cardReducer from './CardModule';
+import myReducer from './MyModule';
 
 const rootReducer = combineReducers({
     roomReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     deptReducer,
     positionReducer,
     approvalReducer,
-    cardReducer
+    cardReducer,
+    myReducer
 });
 
 export default rootReducer;
