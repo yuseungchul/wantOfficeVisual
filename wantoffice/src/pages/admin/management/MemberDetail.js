@@ -11,9 +11,9 @@ function MemberDetail() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const imageInput = useRef();
-    const [image, setImage] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
+    // const imageInput = useRef();
+    // const [image, setImage] = useState(null);
+    // const [imageUrl, setImageUrl] = useState(null);
     const [form, setForm] = useState({});
 
     const [modifyMode, setModifyMode] = useState(false);
@@ -24,19 +24,19 @@ function MemberDetail() {
         }));
     }, []);
 
-    useEffect(() => {
-        if(image) {
-            const fileReader = new FileReader();
-            fileReader.onload = (e) => {
-                const { result } = e.target;
-                if(result) {
-                    setImageUrl(result);
-                }
-            }
-            fileReader.readAsDataURL(image);
-        }
-    },
-    [image]);
+    // useEffect(() => {
+    //     if(image) {
+    //         const fileReader = new FileReader();
+    //         fileReader.onload = (e) => {
+    //             const { result } = e.target;
+    //             if(result) {
+    //                 setImageUrl(result);
+    //             }
+    //         }
+    //         fileReader.readAsDataURL(image);
+    //     }
+    // },
+    // [image]);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -45,16 +45,16 @@ function MemberDetail() {
         });
     }
 
-    const onClickImageUpload = () => {
-        imageInput.current.click();
-    }
+    // const onClickImageUpload = () => {
+    //     imageInput.current.click();
+    // }
 
-    const onChangeImageUpload = (e) => {
+    // const onChangeImageUpload = (e) => {
 
-        const image = e.target.files[0];
+    //     const image = e.target.files[0];
 
-        setImage(image);
-    }
+    //     setImage(image);
+    // }
 
     /* 수정 모드 변경 */
     const onClickModifyModeHandler = () => {
@@ -87,15 +87,15 @@ function MemberDetail() {
         formData.append("auth.authNo", form.authNo);
         formData.append("memberStatus", form.memberStatus);
 
-        if(image) {
-            formData.append("memberImage", image);
-        }
+        // if(image) {
+        //     formData.append("memberImage", image);
+        // }
 
         dispatch(callMemberUpdateAPI({
             form : formData
         }));
 
-        console.log("formData : ", formData);
+        console.log("form : ", form);
 
         navigate('/member', { replace : true });
         window.location.reload();
@@ -105,7 +105,7 @@ function MemberDetail() {
         <div>
             
             <div className={MemberDetailCSS.formBodyDiv}>
-                <div>
+                {/* <div>
                     <div>
                         { memberDetail && <img
                             className={ MemberDetailCSS.memberImage }
@@ -129,7 +129,7 @@ function MemberDetail() {
                             이미지 첨부
                         </button>    
                     </div>
-                </div>
+                </div> */}
                 <div className={MemberDetailCSS.inputAreaDiv}>
                     <table>
                         <tbody>
@@ -240,7 +240,7 @@ function MemberDetail() {
                 </div>
             </div>
 
-            <div>
+            <div className={ MemberDetailCSS.modifyModeBtn }>
                 {!modifyMode &&
                     <button
                         className={ MemberDetailCSS.modifyBtn }
@@ -251,6 +251,7 @@ function MemberDetail() {
                 }
                 {modifyMode &&
                     <button
+                        className={ MemberDetailCSS.modifyBtn }
                         onClick={ onClickMemberUpdateHandler }
                     >
                         저장
