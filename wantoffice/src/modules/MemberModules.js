@@ -7,6 +7,7 @@ export const GET_MEMBER = 'member/GET_MEMBER';
 export const PATCH_MEMBER = 'member/PUT_MEMBER';
 export const POST_LOGIN = 'member/POST_LOGIN';
 export const POST_REGISTER = 'member/POST_REGISTER';
+export const POST_FINDID = 'member/POST_FINDID';
 
 const actions = createActions({
     [GET_MEMBERS]: () => {},
@@ -14,6 +15,7 @@ const actions = createActions({
     [PATCH_MEMBER]: () => {},
     [POST_LOGIN]: () => {},
     [POST_REGISTER]: () => {},
+    [POST_FINDID]: () => {}
 });
 
 const memberReducer = handleActions(
@@ -32,7 +34,10 @@ const memberReducer = handleActions(
         },
         [POST_REGISTER] : (state, { payload }) => {
             return payload;
-        }        
+        } ,
+        [POST_FINDID] : (state, { payload }) => {
+            return payload;
+        }       
     },
     initialState
 );
