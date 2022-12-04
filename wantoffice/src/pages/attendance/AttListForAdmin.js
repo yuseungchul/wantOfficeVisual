@@ -65,20 +65,20 @@ function AttListForAdmin() {
                         <h4>근태</h4>
                         <ul className={AttAndOffCSS.submenuUl} >
                             { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>내 근태 월별 조회</NavLink></li> }
                             { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>날짜별 근태 조회</NavLink></li> }
                         </ul>
                     </div>
                     <br></br>
-                    { decoded === "ROLE_MEMBER" &&<h3>Off</h3> }
+                    <h3>Off</h3>
                     <div className={AttAndOffCSS.submenuDiv}>
-                        { decoded === "ROLE_MEMBER" &&<span>연차</span> }
+                        { decoded === "ROLE_MEMBER" &&<h4>연차</h4> }
                         { decoded === "ROLE_MEMBER" && <ul className={AttAndOffCSS.submenuUl} >
                             <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>연차 신청 조회</NavLink></li>
                             <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>연차 신청</NavLink></li>
-                        </ul>
-                        }
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         { decoded === "ROLE_APP_AUTH" && <h4>연차 관리</h4> }
-                        { decoded === "ROLE_APP_AUTH" && <ul>
+                        { decoded === "ROLE_APP_AUTH" && <ul className={AttAndOffCSS.submenuUl} >
                             <li><NavLink to="/off/result" style={{ textDecoration: "none", color: "#505050" }}>결과별 연차 신청 조회</NavLink></li>
                         </ul>
                         }
