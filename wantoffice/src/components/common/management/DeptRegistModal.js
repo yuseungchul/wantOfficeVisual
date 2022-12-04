@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callDeptRegistAPI } from "../../../apis/DeptAPICalls";
+import DeptRegistModalCSS from './DeptRegistModal.module.css';
 
 function DeptRegistModal({setRegistModal}) {
 
@@ -42,10 +43,9 @@ function DeptRegistModal({setRegistModal}) {
 
 
     return (
-        <div>
-            <div>
-                <h2>부서 등록</h2>
-                <p>*</p>
+        <div className={ DeptRegistModalCSS.backgroundDiv }>
+            <p>부서 등록</p>
+            <div className={ DeptRegistModalCSS.registerDiv }>
                 <input
                     type="text"
                     name='deptName'

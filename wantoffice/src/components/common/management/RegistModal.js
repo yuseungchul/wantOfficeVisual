@@ -56,7 +56,7 @@ function RegistModal({setRegistModal}) {
     }
 
     const onClickCloseHandler = () => {
-        navigate("/member", { replace : true });
+        setRegistModal(false);
     }
 
     /* 사원 등록 API 호출 */
@@ -83,7 +83,7 @@ function RegistModal({setRegistModal}) {
             form : formData
         }));
         
-        //setRegistModal(false);
+        setRegistModal(false);
         console.log('[RegistModal] Regist Process End', formData);
         console.log('[RegistModal] Regist Process End');
         alert('사원 등록이 완료되었습니다.');
@@ -93,8 +93,108 @@ function RegistModal({setRegistModal}) {
 
     return (
         <div className={ RegisteModalCSS.backgroundDiv }>
-            <div className={ RegisteModalCSS.registerDiv }>
-                <h2>사원 등록</h2>
+                <p>사원 등록</p>
+                <div className={ RegisteModalCSS.registerDiv }>
+                
+                <div className={ RegisteModalCSS.tableDiv }>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>이름</th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name='memberName'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name='memberId'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호</th>
+                                <td>
+                                <input
+                                    type="password"
+                                    name='memberPassword'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name='memberEmail'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name='memberPhone'
+                                    autoComplete='off'
+                                    maxLength="13"
+                                    onChange={ onChangeHandler }
+                                />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>직책</th>
+                                <td>
+                                <select name='positionNo' value={ form.positionNo } onChange={ onChangeHandler }>
+                                    <option value="1">대표</option>
+                                    <option value="2">전무</option>
+                                    <option value="3">상무</option>
+                                    <option value="4">부장</option>
+                                    <option value="5">차장</option>
+                                    <option value="6">과장</option>
+                                    <option value="7">대리</option>
+                                    <option value="8">주임</option>
+                                    <option value="9">사원</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>부서</th>
+                                <td>
+                                <select name='deptNo' value={ form.deptNo } onChange={ onChangeHandler }>
+                                    <option value="1">인사팀</option>
+                                    <option value="2">총무팀</option>
+                                    <option value="3">영업팀</option>
+                                    <option value="4">마케팅팀</option>
+                                    <option value="5">개발팀</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>권한</th>
+                                <td>
+                                <select name='authNo' value={ form.authNo } onChange={ onChangeHandler }>
+                                    <option value="3">일반사원</option>
+                                    <option value="2">결재권자</option>
+                                </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div className={ RegisteModalCSS.ImageDiv }>
                     { imageUrl && <img
                         className = { RegisteModalCSS.memberImageDiv }
@@ -116,68 +216,8 @@ function RegistModal({setRegistModal}) {
                         이미지 파일
                     </button>
                 </div>
-                <p>이름</p>
-                <input
-                    type="text"
-                    name='memberName'
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>아이디</p>
-                <input
-                    type="text"
-                    name='memberId'
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>비밀번호</p>
-                <input
-                    type="password"
-                    name='memberPassword'
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>이메일</p>
-                <input
-                    type="text"
-                    name='memberEmail'
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>전화번호</p>
-                <input
-                    type="text"
-                    name='memberPhone'
-                    autoComplete='off'
-                    maxLength="13"
-                    onChange={ onChangeHandler }
-                />
-                <p>직책</p>
-                <select name='positionNo' value={ form.positionNo } onChange={ onChangeHandler }>
-                    <option value="1">대표</option>
-                    <option value="2">전무</option>
-                    <option value="3">상무</option>
-                    <option value="4">부장</option>
-                    <option value="5">차장</option>
-                    <option value="6">과장</option>
-                    <option value="7">대리</option>
-                    <option value="8">주임</option>
-                    <option value="9">사원</option>
-                </select>
-                <p>부서</p>
-                <select name='deptNo' value={ form.deptNo } onChange={ onChangeHandler }>
-                    <option value="1">인사팀</option>
-                    <option value="2">총무팀</option>
-                    <option value="3">영업팀</option>
-                    <option value="4">마케팅팀</option>
-                    <option value="5">개발팀</option>
-                </select>
-                <p>권한</p>
-                <select name='authNo' value={ form.authNo } onChange={ onChangeHandler }>
-                    <option value="3">일반사원</option>
-                    <option value="2">결재권자</option>
-                </select>
-                <button onClick={ onClickRegisterHandler }> 등록 </button>
+                <button onClick={ onClickRegisterHandler } className={ RegisteModalCSS.memberRegistBtn }> 등록 </button>
+                <button onClick={ onClickCloseHandler } className={RegisteModalCSS.registCancelBtn}>취소</button>
             </div>
         </div>
     )
