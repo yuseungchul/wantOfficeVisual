@@ -62,27 +62,13 @@ function Member() {
                     <br/>
                     <h3>MEMBER</h3>
                     <div className={MemberCSS.submenuDiv}>
-                        <h4>회원</h4>
+                        <h4>사원</h4>
                         <ul className={MemberCSS.submenuUl} >
-                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>사원 관리</NavLink></li> }
                         </ul>
                     </div>
                     <br/>
-                    { decoded === "ROLE_MEMBER" && <h3>회원 예약</h3> }
-                    { decoded === "ROLE_APP_AUTH" && <h3>회원 예약</h3> }
-                    <div className={MemberCSS.submenuDiv}>
-                        { decoded === "ROLE_MEMBER" && <h4>회원 예약</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={MemberCSS.submenuUl} >
-                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
-                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
-                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
-                        
-                        </div>
                 </section>
-            <div>
-                </div>
 
             <div className={MemberCSS.memberTableDiv}>
             <button 

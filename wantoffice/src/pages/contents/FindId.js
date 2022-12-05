@@ -36,22 +36,24 @@ function FindId() {
     return (
         <div className={ FindIdCSS.backgroundDiv}>
             <div className={ FindIdCSS.formDiv}>
-                <p>이름</p>
-                <input 
-                    type="text"
-                    name='memberName'
-                    placeholder="이름을 입력하세요."
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>이메일</p>
-                <input 
-                    type="text"
-                    name='memberEmail'
-                    placeholder="이메일을 입력하세요."
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
+                <div className={ FindIdCSS.textDiv }>
+                    <p>이름</p>
+                    <input 
+                        type="text"
+                        name='memberName'
+                        placeholder="이름을 입력하세요."
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    />
+                    <p>이메일</p>
+                    <input 
+                        type="text"
+                        name='memberEmail'
+                        placeholder="이메일을 입력하세요."
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    />
+                </div>
                 <div className={ FindIdCSS.buttonDiv }>
                     <div>
                         <button 

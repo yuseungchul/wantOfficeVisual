@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { callPositionListAPI } from "../../../apis/PositionAPICalls";
 import RegistModal from "../../../components/common/management/PositionRegistModal";
 import PositionCSS from './Position.module.css';
+import { decodeJwt } from '../../../utils/tokenUtils';
 
 function Position() {
 
@@ -21,6 +22,14 @@ function Position() {
         setDetailModal(true);
     }
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
     useEffect(
         () => {
             console.log('useEffect 동작 확인')
@@ -35,6 +44,18 @@ function Position() {
 
     return (
         <>
+            <section className={PositionCSS.submenu}>
+                    <br/>
+                    <h3>MANAGEMENT</h3>
+                    <div className={PositionCSS.submenuDiv}>
+                        <h4>직책</h4>
+                        <ul className={PositionCSS.submenuUl} >
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>직책 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                </section>
+
             <div>
                 <button 
                 className={ PositionCSS.registBtn }

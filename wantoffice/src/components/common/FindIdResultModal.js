@@ -17,7 +17,7 @@ function FindIdResultModal({setFindIdResultModal}) {
         }
     }, []);
 
-    const onClickGoLoginHandler = () => {
+    const onClickLoginHandler = () => {
         navigate("/", {replace : true});
     }
 
@@ -25,13 +25,13 @@ function FindIdResultModal({setFindIdResultModal}) {
         <div className={ FindIdResultCSS.contentDiv }>
 
             { memberDetail && 
-            <p>{ memberDetail.memberName } 님의 아이디 찾기 결과는
-            { memberDetail.memberId } 입니다. </p>
+            <p>{ memberDetail.memberName } 님의 아이디는 
+             { memberDetail.memberId } 입니다. </p>
             }
 
             <button
                 className={ FindIdResultCSS.goLoginBtn }
-                onClick={ onClickGoLoginHandler }
+                onClick={ onClickLoginHandler }
             > 로그인 하기
             </button>
         </div>
