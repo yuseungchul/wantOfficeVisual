@@ -35,6 +35,12 @@ function Position() {
 
     return (
         <>
+            <div>
+                <button 
+                className={ PositionCSS.registBtn }
+                onClick={ openModal }>직책 등록</button>
+                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
+            </div>
             <div className={PositionCSS.positionTableDiv}>
                 <table>
                     <colgroup>
@@ -71,12 +77,7 @@ function Position() {
                 </table>
             </div>
 
-            <div>
-                <button 
-                className={ PositionCSS.registBtn }
-                onClick={ openModal }>직책 등록</button>
-                { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
-            </div>
+            
         </>
     );
 }
