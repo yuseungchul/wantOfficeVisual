@@ -10,9 +10,11 @@ import CalendarCSS from "./Calendar.module.css";
 import { useEffect, useState } from "react";
 import PersnalTitle from './title/PersnalTitle';
 import CompanyTitle from './title/CompanyTitle';
+import { decodeJwt } from '../../utils/tokenUtils';
 import DeptTitle from './title/DeptTitle';
+import OffTitle from './title/OffTitle';
 import moment from 'moment';
-
+import { callCalendarOffAPI } from '../../apis/OffAPICalls';
 
 function Calendar() {
 
@@ -21,9 +23,11 @@ function Calendar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const schedules = useSelector(state => state.calendarReducer);
+    const offList = useSelector(state => state.offReducer);
     const [persnalChecked, setPersnalChecked] = useState(true);
     const [companyChecked, setCompanyChecked] = useState(true);
     const [deptChecked, setDeptChecked] = useState(true);
+    const [offChecked, setOffChecked] = useState(true);
     // const [Modal, setModal] = useState(false);
 
     const schedule = schedules.map(schedule => {
@@ -34,6 +38,15 @@ function Calendar() {
               backgroundColor : schedule.scheduleColor,
               sort : schedule.scheduleSort };
     });
+
+    const offLists = offList.map(offLists => {
+      return { title: offLists.member.memberName,
+              start : offLists.offStart,
+              end : offLists.offEnd
+              };
+    });
+
+    console.log('offLists : ', offLists);
 
     var index;
     for (index = 0; index < schedule.length; index++) {
@@ -78,6 +91,14 @@ function Calendar() {
         setDeptChecked(false);
       }
     }
+    
+    const offTitleListHandler = (e) => {
+      if(e.target.checked) {
+        setOffChecked(true);
+      } else if(!e.target.checked) {
+        setOffChecked(false);
+      }
+    }
 
     // console.log('result : ', result);
 
@@ -89,14 +110,23 @@ function Calendar() {
       , []
   );
 
+    useEffect(
+      () => {
+          dispatch(callCalendarOffAPI({
+        }));
+      }
+      , []
+  );
+
+  console.log('offList : ',offList);
     // const test = JSON.stringify(schedule);
     // const result = JSON.parse(test);
 
     // -------------------------------------------------------- 더티 코드 리팩토링 필요
     var result = [];
-    if(persnalChecked && companyChecked && deptChecked) {               // 셋 다 체크
+    if(persnalChecked && companyChecked && deptChecked && !offChecked) {               // 셋 다 체크
       result = schedule;
-    } else if (persnalChecked && companyChecked && !deptChecked){       // 개인, 회사
+    } else if (persnalChecked && companyChecked && !deptChecked && !offChecked ){       // 개인, 회사
       for(i = 0; i < schedule.length; i++) {
         if(Object.values(schedule[i])[5] === '개인') {
           result.push(schedule[i])
@@ -104,15 +134,15 @@ function Calendar() {
           result.push(schedule[i]);
         }
       }
-    } else if (persnalChecked && !companyChecked && !deptChecked){      // 개인
+    } else if (persnalChecked && !companyChecked && !deptChecked && !offChecked){      // 개인
       result = persnal;
-    } else if (!persnalChecked && !companyChecked && !deptChecked){     // 체크 안함
+    } else if (!persnalChecked && !companyChecked && !deptChecked && !offChecked){     // 체크 안함
       result = null;
-    } else if (!persnalChecked && !companyChecked && deptChecked){      // 부서
+    } else if (!persnalChecked && !companyChecked && deptChecked && !offChecked){      // 부서
       result = dept;
-    } else if (!persnalChecked && companyChecked && !deptChecked) {     // 회사
+    } else if (!persnalChecked && companyChecked && !deptChecked && !offChecked) {     // 회사
       result = company;
-    } else if (!persnalChecked && companyChecked && deptChecked) {      // 회사, 부서
+    } else if (!persnalChecked && companyChecked && deptChecked && !offChecked) {      // 회사, 부서
       for(i = 0; i < schedule.length; i++) {
         if(Object.values(schedule[i])[5] === '부서') {
           result.push(schedule[i])
@@ -120,7 +150,7 @@ function Calendar() {
           result.push(schedule[i]);
         }
       }
-    } else if (persnalChecked && !companyChecked && deptChecked) {      // 개인, 부서
+    } else if (persnalChecked && !companyChecked && deptChecked && !offChecked) {      // 개인, 부서
       for(i = 0; i < schedule.length; i++) {
         if(Object.values(schedule[i])[5] === '개인') {
           result.push(schedule[i])
@@ -128,7 +158,76 @@ function Calendar() {
           result.push(schedule[i]);
         }
       }
+    } else if(persnalChecked && companyChecked && deptChecked && offChecked) {        // 넷 다 체크
+      for(i = 0; i < schedule.length; i++) {
+          result.push(schedule[i])     
     }
+      for(i = 0; i < offLists.length; i++) {
+          result.push(offLists[i])  
+      }
+    } else if (persnalChecked && companyChecked && !deptChecked && offChecked) {      // 개인, 회사, 연차
+      for(i = 0; i < schedule.length; i++) {
+        if(Object.values(schedule[i])[5] === '개인') {
+          result.push(schedule[i])
+        } else if(Object.values(schedule[i])[5] === '회사') {
+          result.push(schedule[i]);
+        }
+      }
+      for(i = 0; i < offLists.length; i++) {
+        result.push(offLists[i])  
+    }
+    } else if (persnalChecked && !companyChecked && !deptChecked && offChecked) {     // 개인, 연차
+      for(i = 0; i < schedule.length; i++) {
+        if(Object.values(schedule[i])[5] === '개인') {
+          result.push(schedule[i])
+        }
+      }
+      for(i = 0; i < offLists.length; i++) {
+        result.push(offLists[i])  
+    }
+    } else if (!persnalChecked && !companyChecked && !deptChecked && offChecked) {    // 연차
+        result = offLists;
+    } else if (!persnalChecked && !companyChecked && deptChecked && offChecked) {     // 부서, 연차
+      for(i = 0; i < schedule.length; i++) {
+        if(Object.values(schedule[i])[5] === '부서') {
+          result.push(schedule[i])
+        }
+      }
+      for(i = 0; i < offLists.length; i++) {
+        result.push(offLists[i])  
+    }
+    } else if (!persnalChecked && companyChecked && !deptChecked && offChecked) {     // 회사, 연차
+      for(i = 0; i < schedule.length; i++) {
+        if(Object.values(schedule[i])[5] === '회사') {
+          result.push(schedule[i])
+        }
+      }
+      for(i = 0; i < offLists.length; i++) {
+        result.push(offLists[i])  
+    }
+    } else if (!persnalChecked && companyChecked && deptChecked && offChecked) {      // 회사, 부서, 연차
+      for(i = 0; i < schedule.length; i++) {
+        if(Object.values(schedule[i])[5] === '부서') {
+          result.push(schedule[i])
+        } else if(Object.values(schedule[i])[5] === '회사') {
+          result.push(schedule[i]);
+        }
+      }
+      for(i = 0; i < offLists.length; i++) {
+        result.push(offLists[i])  
+    }
+    } else if (persnalChecked && !companyChecked && deptChecked && offChecked) {      // 개인, 부서, 연차
+    for(i = 0; i < schedule.length; i++) {
+      if(Object.values(schedule[i])[5] === '개인') {
+        result.push(schedule[i])
+      } else if(Object.values(schedule[i])[5] === '부서') {
+        result.push(schedule[i]);
+      }
+    }
+    for(i = 0; i < offLists.length; i++) {
+      result.push(offLists[i])  
+  }
+  }
     console.log(result);
     // -------------------------------------------------------- 더티 코드 리팩토링 필요
 
@@ -143,7 +242,8 @@ function Calendar() {
             {companyChecked ? <CompanyTitle/> : null }
           <input type='checkbox' defaultChecked='on' name='sort' value='부서' onClick= { deptTitleListHandler }/>부서
             {deptChecked ? <DeptTitle/> : null }
-          <input type='checkbox' defaultChecked='on' name='sort' value='연차' />연차
+          <input type='checkbox' defaultChecked='on' name='sort' value='연차' onClick= { offTitleListHandler }/>연차
+          {offChecked ? <OffTitle/> : null }
               
 
         </div>

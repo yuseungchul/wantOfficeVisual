@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { callScheduleSelectAPI, callScheduleUpdateAPI, callScheduleDeleteAPI } from '../../apis/CalendarAPICalls';
 import ScheduleSelectCSS from './ScheduleSelect.module.css';
 import moment from 'moment';
+import { decodeJwt } from '../../utils/tokenUtils';
+import { preventDefault } from '@fullcalendar/react';
 
 function ScheduleSelect ({}) {
 
@@ -14,13 +16,14 @@ function ScheduleSelect ({}) {
     const scheduleNo = params.scheduleNo;
     const [form, setForm] = useState({});
     const [Modal, setModal] = useState(true);
+    const token = decodeJwt(window.localStorage.getItem('accessToken'));
     
-    console.log('sd', schedules.member.position.positionNo);
+    console.log('token : ', token.auth[0].authName);      // ROLE_ADMIN
 
     const [modifyMode, setModifyMode] = useState(false);
 
-    const End = moment(schedules.scheduleEnd).subtract(1, 'day').format('YYYY-MM-DD');
-    console.log('After : ', End);
+    const end = moment(schedules.scheduleEnd).subtract(1, 'day').format('YYYY-MM-DD');
+    console.log('After : ', end);
     // var scheduleEnd = moment(schedules.scheduleEnd);
     // scheduleEnd.subtract(3, 'days').format("YY-MM-DD");
 
@@ -32,12 +35,13 @@ function ScheduleSelect ({}) {
             scheduleNo : schedules.scheduleNo,
             scheduleTitle : schedules.scheduleTitle,
             scheduleStart : schedules.scheduleStart,
-            scheduleEnd : End,
+            scheduleEnd : end,
             scheduleContent : schedules.scheduleContent,
             schedulePlace : schedules.schedulePlace,
             scheduleSort : schedules.scheduleSort,
             scheduleColor : schedules.scheduleColor
         });
+
     }
 
     const onChangeHandler = (e) => {
@@ -76,7 +80,7 @@ function ScheduleSelect ({}) {
             form : formData
         }));
 
-        navigate('/calendar', { replace : true });
+        navigate('/calendar', { replace : false });
         window.location.reload();
     }
 
@@ -86,13 +90,15 @@ function ScheduleSelect ({}) {
             scheduleNo : schedules.scheduleNo
         }));
 
-        navigate('/calendar', { replace : false });
-        window.location.reload();
+        // navigate('/calendar', { replace : false });
+        // window.location.reload();
+        navigate(-1);
     }
 
     const onClickBackHandler = () => {
-        navigate('/calendar', { replace : false });
-        window.location.reload();
+        // navigate('/calendar', { replace : false });
+        // window.location.reload();
+        navigate(-1);
     }
 
     return(
@@ -100,8 +106,10 @@ function ScheduleSelect ({}) {
         <div className={ScheduleSelectCSS.modal}>
             <div className={ScheduleSelectCSS.modalContainer}>
                 <div className={ScheduleSelectCSS.scheduleModalDiv}>
-                    <input name='scheduleNo' value={ schedules.scheduleNo } style={ {display : 'none'} }/>
-                    <input name='scheduleColor' value={ schedules.scheduleColor } readOnly/>
+                    {/* <input name='scheduleNo' value={ schedules.scheduleNo } style={ {display : 'none'} }/>
+                    <input name='scheduleColor' value={ schedules.scheduleColor } readOnly/> 
+                    uncontrolled 한 input의 경고 이슈로 인해 주석 
+                    */}                    
                     <table>
                         <tbody>
                             <tr>
@@ -142,7 +150,7 @@ function ScheduleSelect ({}) {
                                         placeholder='일정 종료'
                                         // className={ ProductRegistrationCSS.productInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? End : form.scheduleEnd) || '' }
+                                        value={ (!modifyMode ? end : form.scheduleEnd) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                         />
