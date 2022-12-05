@@ -17,7 +17,12 @@
 
 
 .logoDiv {
-   padding: 28%;
+   padding: 26%;
+   padding-bottom: 30px;
+}
+
+.logoDiv > img{
+   width: 100px;
    padding-bottom: 30px;
 }
 
@@ -33,7 +38,7 @@ ul{
 
 .Category > ul > li{
 
-   padding-bottom: 30px;
+   padding-bottom: 40px;
    color: #ffffff;
    font-weight: bold;
 }
