@@ -22,10 +22,18 @@
 
 .submenuUl > li {
     color: #505050;
-    margin-bottom: -29px;
     font-size: 13px;
     font-weight: 200;
     margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
+}
+
+.submenuUl > li > a:hover{
+    color: #99c4ca;
 }
 
 .DetailDiv{
@@ -59,30 +67,45 @@
 }
 
 .rmUpdateBtn {
-    box-shadow:inset 0px 1px 0px 0px #dcecfb;
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
 	background-color:#99c4ca;
-	border-radius:6px;
+	border-radius:12px;
 	border:1px solid #99c4ca;
-	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
+	font-size:24px;
 	font-weight:bold;
 	padding:6px 24px;
-    margin-top: 80px;
-    margin-right: 10px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
+    position: fixed;
+    top:570px;
+    right: 610px;
     z-index: 1;
 }
 
 .rmUpdateBtn:hover {
-    background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
-	background-color:#80b5ea;
+	background-color:#739ca5;
 }
 
-.rmUpdateBtn:active {
-    position:relative;
-	top:1px;
+.rmReturnBtn{
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:24px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    position: fixed;
+    top:570px;
+    right: 430px;
+    z-index: 1;
+}
+
+.rmReturnBtn:hover {
+	background-color:#739ca5;
 }

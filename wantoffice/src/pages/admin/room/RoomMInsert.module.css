@@ -22,12 +22,19 @@
 
 .submenuUl > li {
     color: #505050;
-    margin-bottom: -29px;
     font-size: 13px;
     font-weight: 200;
     margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
 }
 
+.submenuUl > li > a:hover{
+    color: #99c4ca;
+}
 .MInsertDiv{
     position: fixed;
     left: 500px;
@@ -51,10 +58,6 @@
     color:#8d8d8d;
 }
 
-
-
-
-
 .roomBtnDiv{
     box-shadow: 1px 3px 0px 0px #dbdbdb;
 	background-color:#99c4ca;
@@ -74,8 +77,7 @@
 }
 
 .roomBtnDiv:hover{
-    background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-	background-color:#1e62d0;
+    background-color:#739ca5;
 }
 
 .roomImage{
@@ -96,7 +98,7 @@
 	text-decoration:none;
     position: fixed;
     top:570px;
-    left: 570px;
+    left: 520px;
     z-index: 1;
 }
 

@@ -16,10 +16,10 @@ function Header() {
         <>
             <div className={ RoomHeaderCSS.HeaderDiv }>
                 <ul>
-                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/attendance/my">Room</NavLink></li> }                    
-                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/attendance/manage-list">Room</NavLink></li> }
-                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/off">Reservation</NavLink></li> }
-                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/attendance/manage-list">Reservation</NavLink></li> }
+                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/room">ROOM</NavLink></li> }                    
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/room">ROOM</NavLink></li> }
+                    { decoded === "ROLE_MEMBER" && <li><NavLink to="/room">RESERVATION</NavLink></li> }
+                    { decoded === "ROLE_ADMIN" && <li><NavLink to="/room/rvlist/1">RESERVATION</NavLink></li> }
                 </ul>
             </div>
         </>

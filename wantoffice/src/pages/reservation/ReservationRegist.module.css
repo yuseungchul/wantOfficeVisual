@@ -1,12 +1,52 @@
+.submenu {
+    width: 460px;
+    height: 640px;
+    border-right: solid 1px #cfcfcf;
+    }
+
+.submenu > h3 {
+    color: #505050;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+    
+.submenuDiv {
+    margin: 30px;
+    margin-left: 255px;
+}
+
+.submenuDiv h4 {
+    color: #505050;
+    margin-bottom: 10px;
+}
+
+.submenuUl > li {
+    color: #505050;
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
+}
+
+.submenuUl > li > a:hover{
+    color: #99c4ca;
+}
 .reservationDiv{
-    position: fixed;
-    left: 500px;
-    top: 110px;
+	position: fixed;
+    left: 650px;
+    top: 100px;
     background-color: #fff;
-    padding:165px;
     border-radius: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     font-weight: bold;
+    width: 800px;
+    height: 600px;
+    padding: 25px 60px 0 60px;
+    cursor: pointer;
 }
 
 .reservationDiv > h2{
@@ -20,58 +60,45 @@
 } 
 
 .InserBtn{
-    box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-	background-color:#3d94f6;
-	border-radius:6px;
-	border:1px solid #337fed;
-	display:inline-block;
+	box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
-	font-size:20px;
+	font-family:Arial;
+	font-size:24px;
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #1570cd;
-    margin-right: 10px;
-    margin-left: 100px;
-    margin-top: 30px;
+    position: fixed;
+    top:500px;
+    right: 470px;
 }
 .InserBtn:hover {
-	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-	background-color:#1e62d0;
-}
-.InserBtn:active {
-	position:relative;
-	top:1px;
+	background-color:#739ca5;
 }
 
 .BackBtn{
-    box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-	background-color:#3d94f6;
-	border-radius:6px;
-	border:1px solid #337fed;
-	display:inline-block;
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
-	font-size:20px;
+	font-family:Arial;
+	font-size:24px;
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #1570cd;
+    position: fixed;
+    top:500px;
+    right: 300px;
 }
 .BackBtn:hover {
-	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-	background-color:#1e62d0;
-}
-.BackBtn:active {
-	position:relative;
-	top:1px;
+	background-color:#739ca5;
 }
 
 .reservationInfo{
-    /* text-align: center; */
+    margin-left: 240px;
 }

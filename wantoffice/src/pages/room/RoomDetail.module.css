@@ -1,3 +1,41 @@
+.submenu {
+    width: 460px;
+    height: 640px;
+    border-right: solid 1px #cfcfcf;
+    }
+
+.submenu > h3 {
+    color: #505050;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+    
+.submenuDiv {
+    margin: 30px;
+    margin-left: 255px;
+}
+
+.submenuDiv h4 {
+    color: #505050;
+    margin-bottom: 10px;
+}
+
+.submenuUl > li {
+    color: #505050;
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
+}
+
+.submenuUl > li > a:hover{
+    color: #99c4ca;
+}
+
 .DetailDiv{
     position: fixed;
     left: 500px;
@@ -6,8 +44,8 @@
     border-radius: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     font-weight: bold;
-    width: 1200px;
-    height: 700px;
+    width: 1100px;
+    height: 600px;
     padding-top: 25px;
     cursor: pointer;
 }
@@ -24,7 +62,7 @@
 .imgsDiv{
     float: left;
     width: 350px;
-    margin-left: 30px;
+    margin-left: 100px;
 }
 
 .imgsDiv > img{
@@ -43,7 +81,7 @@
 .editDiv{
     float: left;
     width: 340px;
-    margin-left: 280px;
+    margin-left: 200px;
 
 }
 
@@ -69,9 +107,9 @@
 	font-family:Arial;
 	font-size:24px;
 	font-weight:bold;
-	padding:6px 24px;
+	padding:6px 34px;
 	text-decoration:none;
-    margin: 10px;
+    margin: 20px;
     
 }
 .roomResBtn:hover {
@@ -93,8 +131,7 @@
 	font-family:Arial;
 	font-size:24px;
 	font-weight:bold;
-	padding:6px 24px;
-    margin: 10px;
+	padding:6px 34px;
 	text-decoration:none;
     
     

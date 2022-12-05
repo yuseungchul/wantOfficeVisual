@@ -22,12 +22,19 @@
 
 .submenuUl > li {
     color: #505050;
-    margin-bottom: -29px;
     font-size: 13px;
     font-weight: 200;
     margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
 }
 
+.submenuUl > li > a:hover{
+    color: #99c4ca;
+}
 
 .rvListDiv{
     position: fixed;
@@ -55,8 +62,9 @@
 }
 
 .rvListDiv > table{
-    margin-left: 80px;
+    margin-left: 250px;
     margin-top: 20px;
+    padding: 20px;
 }
 
 .TimeDiv{
@@ -71,28 +79,22 @@
 }
 
 .InsertBtn{
-    box-shadow:inset 0px 1px 0px 0px #dcecfb;
-	background:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
-	background-color:#bddbfa;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:12px;
+	border:1px solid #99c4ca;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
+	font-size:24px;
 	font-weight:bold;
 	padding:6px 24px;
-    margin-left: 1060px;
-    margin-top: 280px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
+    position: fixed;
+    top:550px;
+    right: 550px;
 }
 .InsertBtn:hover {
-	background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
-	background-color:#80b5ea;
+	background-color:#739ca5;
 }
-.InsertBtn:active {
-	position:relative;
-	top:1px;
-}
+

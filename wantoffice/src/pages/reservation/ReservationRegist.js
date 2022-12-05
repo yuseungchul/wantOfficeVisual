@@ -6,7 +6,7 @@ import setMinutes from "date-fns/setMinutes";
 import getHours from "date-fns/getHours";
 import getMinutes from "date-fns/getMinutes";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { callReservationRegistAPI } from "../../apis/ReservationAPICalls";
 import ReservationRegistCSS from "./ReservationRegist.module.css";
@@ -57,7 +57,13 @@ function ReservationRegist(){
     }
 
     const token = decodeJwt(window.localStorage.getItem('accessToken'));
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
 
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
     const onClickReservationRegistHandler = () => {
         
         if( 
@@ -84,10 +90,32 @@ function ReservationRegist(){
         }));
 
         navigate(`/room/rvlist/${roomNo}`, { replace : false });
+        window.location.reload();
     }
 
     return(
         <>
+        <section className={ReservationRegistCSS.submenu}>
+                    <br/>
+                    <h3>회의실 예약</h3>
+                    <div className={ReservationRegistCSS.submenuDiv}>
+                    { decoded === "ROLE_ADMIN" && <h4>회의실 예약 관리</h4>}    
+                    { decoded === "ROLE_MEMBER" && <h4>회의실</h4>}
+                        <ul className={ReservationRegistCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements">회의실 예약 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements">회의실 예약 등록</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    <div className={ReservationRegistCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <ul className={ReservationRegistCSS.submenuUl} >
+                            <li><NavLink to="/room">회의실 예약 조회</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> } 
+                    </div>
+                </section>  
             <div className={ ReservationRegistCSS.reservationDiv }>
             <h2>회의실 예약 신청</h2>
                 <div className={ ReservationRegistCSS.reservationInfo }>
