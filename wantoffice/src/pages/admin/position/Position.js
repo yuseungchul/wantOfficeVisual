@@ -50,7 +50,7 @@ function Position() {
                     <div className={PositionCSS.submenuDiv}>
                         <h4>직책</h4>
                         <ul className={PositionCSS.submenuUl} >
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>직책 관리</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/position" style={{ textDecoration: "none", color: "#505050" }}>직책 관리</NavLink></li> }
                         </ul>
                     </div>
                     <br/>

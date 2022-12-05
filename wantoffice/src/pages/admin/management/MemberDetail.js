@@ -130,6 +130,7 @@ function MemberDetail() {
                         </button>    
                     </div>
                 </div> */}
+                <h3>사원 상세 정보</h3>
                 <div className={MemberDetailCSS.inputAreaDiv}>
                     <table>
                         <tbody>
@@ -251,7 +252,7 @@ function MemberDetail() {
                 }
                 {modifyMode &&
                     <button
-                        className={ MemberDetailCSS.modifyBtn }
+                        className={ MemberDetailCSS.modifyBtn1 }
                         onClick={ onClickMemberUpdateHandler }
                     >
                         저장

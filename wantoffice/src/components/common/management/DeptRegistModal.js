@@ -46,6 +46,7 @@ function DeptRegistModal({setRegistModal}) {
         <div className={ DeptRegistModalCSS.backgroundDiv }>
             <p>부서 등록</p>
             <div className={ DeptRegistModalCSS.registerDiv }>
+                <p>부서명</p>
                 <input
                     type="text"
                     name='deptName'
@@ -53,6 +54,8 @@ function DeptRegistModal({setRegistModal}) {
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
+            </div>
+            <div className={DeptRegistModalCSS.btnDiv}>
                 <button
                     onClick={ onClickRegisterHandler }
                     className={ DeptRegistModalCSS.RegistPositionBtn }

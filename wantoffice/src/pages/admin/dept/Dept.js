@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { callDeptListAPI } from "../../../apis/DeptAPICalls";
 import RegistModal from "../../../components/common/management/DeptRegistModal";
 import DeptCSS from './Dept.module.css';
+import { decodeJwt } from '../../../utils/tokenUtils';
 
 function Dept() {
 
@@ -21,6 +22,14 @@ function Dept() {
         setDetailModal(true);
     }
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
     useEffect(
         () => {
             console.log('useEffect 동작 확인')
@@ -35,6 +44,18 @@ function Dept() {
 
     return (
         <>
+            <section className={DeptCSS.submenu}>
+                    <br/>
+                    <h3>MANAGEMENT</h3>
+                    <div className={DeptCSS.submenuDiv}>
+                        <h4>부서</h4>
+                        <ul className={DeptCSS.submenuUl} >
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/dept" style={{ textDecoration: "none", color: "#505050" }}>부서 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                </section>
+
             <div>
                 <button 
                 className={ DeptCSS.registBtn }

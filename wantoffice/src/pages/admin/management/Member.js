@@ -64,7 +64,7 @@ function Member() {
                     <div className={MemberCSS.submenuDiv}>
                         <h4>사원</h4>
                         <ul className={MemberCSS.submenuUl} >
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>사원 관리</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/member" style={{ textDecoration: "none", color: "#505050" }}>사원 관리</NavLink></li> }
                         </ul>
                     </div>
                     <br/>
