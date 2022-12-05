@@ -2,9 +2,10 @@ import ReservationListCSS from "./ReservationList.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { callReservationListAPI } from '../../apis/ReservationAPICalls';
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import RDate from "./RDate";
 import LoginModal from "../../components/common/LoginModal";
+import { decodeJwt } from '../../utils/tokenUtils';
 // import Reservation from "../../components/room/Reservation";
 
 function ReservationList(){
@@ -21,7 +22,13 @@ function ReservationList(){
     // const [currentPage, setCurrentPage] = useState(1);
 
     console.log(reservation);
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
 
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
     
 
     useEffect(
@@ -48,10 +55,35 @@ function ReservationList(){
     return(
         <>
         { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
-            <div className={ReservationListCSS.TimeDiv}><RDate/></div>
-
+        <div className={ReservationListCSS.TimeDiv}><RDate/></div>
+        
+        <section className={ReservationListCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={ReservationListCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={ReservationListCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={ReservationListCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={ReservationListCSS.submenuUl} >
+                            <li><NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="rvlists-in/:roomNo" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>  
+            
+            
             <div className={ReservationListCSS.rvListDiv}>
-                <h2>회의실 예약 안내</h2>
+            <h2>회의실 예약 안내</h2>
                  
                 <table>
                 

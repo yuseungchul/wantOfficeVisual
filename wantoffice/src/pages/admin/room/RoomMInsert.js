@@ -104,9 +104,9 @@ function RoomMInsert(){
                     <div className={RoomMInsertCSS.submenuDiv}>
                         <h4>회의실</h4>
                         <ul className={RoomMInsertCSS.submenuUl} >
-                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
                         </ul>
                     </div>
                     <br/>
@@ -115,8 +115,8 @@ function RoomMInsert(){
                     <div className={RoomMInsertCSS.submenuDiv}>
                         { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
                         { decoded === "ROLE_MEMBER" && <ul className={RoomMInsertCSS.submenuUl} >
-                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
-                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                            <li><NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="rvlists-in/:roomNo" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
                         </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
                         
                         </div>
@@ -167,7 +167,6 @@ function RoomMInsert(){
                                 <td>
                                     <label><input type="radio" name="roomLocation" onChange={ onChangeHandler } value="1"/> 3층</label> &nbsp;
                                     <label><input type="radio" name="roomLocation" onChange={ onChangeHandler } value="2"/> 4층</label> &nbsp;
-                                    <label><input type="radio" name="roomLocation" onChange={ onChangeHandler } value="3"/> 5층</label> &nbsp;
                                 </td>
                             </tr>
                             <tr>

@@ -15,13 +15,6 @@ function ReservationMUpdate(){
 
     const [modifyMode, setModifyMode] = useState(false);
 
-    // useEffect(() => {
-    //     dispatch(callReservationDetailAPI({
-    //         reservationNo : params.reservationNo
-    //     }));
-    // }
-    // ,[]);
-
     const onChangeHandler = (e) => {
         setForm({
             ...form,
@@ -38,25 +31,22 @@ function ReservationMUpdate(){
             reservationUseTime : reservDetail.reservationUseTime,
             reservationPurpose : reservDetail.reservationPurpose,
             reservationStatus : reservDetail.reservationStatus,
+            
         });
     }
 
     const onClickReservationUpdateHandler = () => {
-
-        const formData = new FormData();
- 
-        formData.append("reservationDate", form.reservationDate);
-        formData.append("reservationTimeIn", form.reservationTimeIn);
-        formData.append("reservationTimeOut", form.reservationTimeOut);
-        formData.append("reservationUseTime", form.reservationUseTime);
-        formData.append("reservationPurpose", form.reservationPurpose);
-        formData.append("reservationStatus", form.reservationStatus);
-
-    dispatch(callReservationMUpdateAPI({
-        form : formData
+        dispatch(callReservationMUpdateAPI({
+            form : form, 
+            reservationDate : params.reservationDate,
+            reservationTimeIn : params.reservationTimeIn,
+            reservationTimeOut : params.reservationTimeOut,
+            reservationUseTime : params.reservationUseTime,
+            reservationPurpose : params.reservationPurpose,
+            reservationStatus : params.reservationStatus,
     }));
-    navigate('/room', { replace : true });
-    window.location.reload();
+    alert('예약 수정이 완료되었습니다.');
+    navigate('/room');
 }
     return(
         <>
@@ -102,6 +92,7 @@ function ReservationMUpdate(){
                                     <input
                                         name='reservationUseTime'
                                         disabled={!modifyMode}
+                                        value={ (!modifyMode ? reservDetail.reservationUseTime : form.reservationUseTime) || 0 }
                                         className={ ReservationMUpdateCSS.productInfoInput }
                                         onChange={ onChangeHandler }
                                         readOnly={ !modifyMode ? true : false }
@@ -116,6 +107,7 @@ function ReservationMUpdate(){
                                         name='reservationPurpose'
                                         disabled={!modifyMode}
                                         className={ ReservationMUpdateCSS.productInfoInput }
+                                        value={ (!modifyMode ? reservDetail.reservationPurpose : form.reservationPurpose) || 0 }
                                         onChange={ onChangeHandler }
                                         readOnly={ !modifyMode ? true : false }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
