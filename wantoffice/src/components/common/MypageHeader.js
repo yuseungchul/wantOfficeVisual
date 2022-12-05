@@ -8,7 +8,7 @@ function Header() {
         <>
             <div className={ MypageHeaderCSS.HeaderDiv }>
                 <ul>
-                    <li><NavLink to="/mypage">내 정보</NavLink></li>
+                    <li><NavLink to="/mypage">MY PAGE</NavLink></li>
                 </ul>
 
             </div>

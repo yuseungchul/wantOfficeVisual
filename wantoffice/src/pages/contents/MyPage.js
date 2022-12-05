@@ -89,16 +89,30 @@ function MyPage() {
         window.location.reload();
     }
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
     return (
         <div
             className={ MyPageCSS.backgroundDiv }
         >
-            <div className={ MyPageCSS.contentDiv}>
-                <section className={MyPageCSS.submenu}>
+            <section className={MyPageCSS.submenu}>
                     <br/>
-                    <h3>My Page</h3>
+                    <h3>MY PAGE</h3>
+                    <div className={MyPageCSS.submenuDiv}>
+                        <h4>내 정보</h4>
+                        <ul className={MyPageCSS.submenuUl} >
+                            <li> <NavLink to="/mypage" style={{ textDecoration: "none", color: "#505050" }}>내 정보 관리</NavLink></li>
+                        </ul>
+                    </div>
                     <br/>
                 </section>
+            <div className={ MyPageCSS.contentDiv}>
                 <div className={ MyPageCSS.infoDiv}>
                     <div className={ MyPageCSS.myImageDiv }>
                     { myInfo && <img

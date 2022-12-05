@@ -11,8 +11,8 @@
 }
 
 .registBtn {
-    padding: 5px;
     margin-left: 410px;
+    margin-bottom: 10px;
     bottom: 83%;
     position: fixed;
     background-color:#2F535F;
