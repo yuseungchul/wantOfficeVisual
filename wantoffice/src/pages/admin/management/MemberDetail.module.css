@@ -10,10 +10,24 @@
     padding-top: 25px;
 }
 
+.formBodyDiv > h3 { margin: 10px 0 0 250px;}
+
 .inputAreaDiv {
     padding-left: 150px;
-    padding-top: 50px;
+    padding-top: 25px;
 }
+
+.inputAreaDiv input {
+    padding: 4px;
+    border-color: #75B2C7;
+}
+
+.inputAreaDiv select {
+    padding: 3px 50px;
+    border-color: #75B2C7;
+}
+
+.inputAreaDiv label { font-weight: bold; margin-right: 10px;}
 
 .inputAreaDiv > table > td {
     display: inline-block;
@@ -21,12 +35,46 @@
 }
 
 .modifyBtn {
-    padding: 5px;
-    margin-top: 720px;
-    margin-left: 51%;
+    margin-top: 650px;
+    margin-left: 49%;
+   	background-color:#75B2C7;
+	border-radius:7px;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:12px;
+	padding:10px 18px;
+	text-decoration:none;
+	font-weight: bold;
+}
+
+.modifyBtn1 {
+    margin-top: 650px;
+    margin-left: 49%;
+   	background-color:#2F535F;
+	border-radius:7px;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:12px;
+	padding:10px 18px;
+	text-decoration:none;
+	font-weight: bold;
 }
 
 .backBtn {
-    padding: 5px;
+    margin-top: 650px;
     margin-left: 20px;
+   	background-color:#c4bebe;
+	border-radius:7px;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:12px;
+	padding:10px 18px;
+	text-decoration:none;
+	font-weight: bold;;
 }

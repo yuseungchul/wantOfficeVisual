@@ -43,8 +43,9 @@ function PositionRegistModal({setRegistModal}) {
     return (
         <div className={ PositionRegistModalCSS.backgroundDiv }>
             <div className={ PositionRegistModalCSS.inputDiv }>
+            <h3>직책 등록</h3>
                 <div className={ PositionRegistModalCSS.inputNameDiv }>
-                    <h2>직책 등록</h2>
+                    <p>직책명</p>
                     <input
                         type="text"
                         name='positionName'
