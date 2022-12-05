@@ -16,8 +16,8 @@
 
 .loginDiv{
    position: fixed;
-   left: 41%;
-   top: 17%;
+   left: 45%;
+   top: 25%;
    text-align: center;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .loginDiv h3{
-   text-align: center;
+   text-align: left;
    
 }
 
@@ -43,56 +43,43 @@
 
 .buttonArea {
 	display: flex;
+
 }
 
 .loginBtn{
-   margin: 20px 20px;
-   box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-	background-color:#79bbff;
-	border-radius:6px;
-	border:1px solid #84bbf3;
+  	margin-top: 20px;
+   	background-color:#2F535F;
+	border-radius:7px;
+	border: none;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
+	font-size:12px;
+	font-weight: normal;
+	padding:10px 18px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
 }
 .loginBtn:hover {
-	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background:linear-gradient(to bottom, #2F535F 5%, #79bbff 100%);
 	background-color:#378de5;
-}
-.loginBtn:active {
-	position:relative;
-	top:1px;
 }
 
 .findBtn{
-   margin: 20px 20px;
-   box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-	background-color:#79bbff;
-	border-radius:6px;
-	border:1px solid #84bbf3;
+	
+   	margin: 20px 10px 0 10px;
+   	background-color:#2F535F;
+	border-radius:7px;
+	border: none;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
+	font-size:12px;
+	font-weight: normal;
+	padding:10px 18px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
 }
 .findBtn:hover {
 	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
 	background-color:#378de5;
 }
-.findBtn:active {
-	position:relative;
-	top:1px;
-}
+

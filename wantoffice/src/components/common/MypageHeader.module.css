@@ -1,0 +1,29 @@
+.HeaderDiv {
+    border-bottom: 1px solid  #C6C6C6;
+    width: 80%;
+    margin-left: 20px;
+    position: fixed;
+    left: 220px;
+    
+ }
+ 
+ .HeaderDiv > ul > li {
+    
+    float: left;
+    padding-right: 50px;
+    padding-top: 20px;
+    color: #8D8D8D;
+ 
+ }
+ 
+ .HeaderDiv a{
+    text-decoration: none;
+    color: #8D8D8D;
+ }
+ 
+ .HeaderDiv a:hover{
+    
+    color: #D34C4C;
+ }
+ 
+ 

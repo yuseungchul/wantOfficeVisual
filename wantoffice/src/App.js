@@ -47,7 +47,7 @@ import ScheduleSelect from './pages/calendar/ScheduleSelect';
 import ScheduleRegist from './pages/calendar/ScheduleRegist';
 import MainLayout from "./layouts/attendance/MainLayout";
 import MyPage from "./pages/contents/MyPage";
-
+import MypageLayout from "./layouts/MypageLayout";
 
 function App() {
   return (
@@ -63,7 +63,9 @@ function App() {
         <Route path="/main" element={ <MainLayout/> }>
           <Route index element={ <Attendance/> }/>
         </Route>
-        <Route path="/mypage" element={ <MyPage/> }/>
+        <Route path="/mypage" element={ <MypageLayout/> }>
+          <Route index element={ <MyPage/> }/>
+        </Route>
         <Route path="/attendance" element={ <AttendanceLayout/> }>
           <Route path="/attendance/my" element={ <MyAttList/> }/>
           <Route path="/attendance/manage-list" element={ <AttListForAdmin/> }/>

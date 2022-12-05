@@ -55,11 +55,13 @@ function DeptRegistModal({setRegistModal}) {
                 />
                 <button
                     onClick={ onClickRegisterHandler }
+                    className={ DeptRegistModalCSS.RegistPositionBtn }
                 >
                     등록
                 </button>
                 <button
                     onClick={ onClickBackHandler }
+                    className={ DeptRegistModalCSS.cancelBtn }
                 >
                     취소
                 </button>
