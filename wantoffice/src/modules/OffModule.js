@@ -12,6 +12,7 @@ export const GET_OFF = 'off/GET_OFF';
 export const PATCH_OFF_APP = 'off/PATCH_OFF_APP';
 export const PATCH_OFF_RETURN = 'off/PATCH_OFF_RETURN';
 export const PATCH_OFF = 'off/PATCH_OFF';
+export const GET_CALENDAR_OFF = 'off/GET_CALENDAR_OFF';
 
 const actions = createActions({
     [GET_OFFS]: () => {},
@@ -21,7 +22,8 @@ const actions = createActions({
     [GET_OFF]: () => {},
     [PATCH_OFF_APP]: () => {},
     [PATCH_OFF_RETURN]: () => {},
-    [PATCH_OFF]: () => {}
+    [PATCH_OFF]: () => {},
+    [GET_CALENDAR_OFF]: () => {}
 });
 
 /* 리듀서 */
@@ -49,6 +51,9 @@ const offReducer = handleActions(
             return payload;
         },
         [PATCH_OFF] : (state, { payload }) => {
+            return payload;
+        },
+        [GET_CALENDAR_OFF] : (state, { payload }) => {
             return payload;
         }
     },

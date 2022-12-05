@@ -3,6 +3,7 @@ import { useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../utils/tokenUtils';
 import { callScheduleInsertAPI } from '../../apis/CalendarAPICalls';
+import moment from 'moment';
 
 function ScheduleRegist() {
 
@@ -11,11 +12,12 @@ function ScheduleRegist() {
     const location = useLocation();
     const token = decodeJwt(window.localStorage.getItem('accessToken'));
     const schedules = useSelector(state => state.calendarReducer);
+    const beforeEnd = moment(location.state.end).add(1, 'day').format('YYYY-MM-DD');
 
     const [form, setForm] = useState({
         scheduleTitle : '',
         scheduleStart : location.state.start,
-        scheduleEnd : location.state.end,
+        scheduleEnd : beforeEnd,
         scheduleContent: '',
         schedulePlace : '',
         scheduleSort : '개인',
@@ -49,8 +51,7 @@ function ScheduleRegist() {
             form : formData
         }));
         console.log(formData);
-        // navigate('/calendar/regist', { replace : false });
-        // window.location.reload();
+        navigate('/calendar', { replace : true });
     }
 
     return(
@@ -149,7 +150,6 @@ function ScheduleRegist() {
                                         name='scheduleSort'
                                         // className={ ProductRegistrationCSS.productInfoInput }
                                         onChange={ onChangeHandler }
-                                        defaultValue ='구분'
                                         >
                                             <option value='개인'>개인</option>
                                             <option value='회사'>회사</option>
@@ -164,7 +164,8 @@ function ScheduleRegist() {
                                         placeholder='색상'
                                         type='text'
                                         name='scheduleColor'
-                                        onChange={ onChangeHandler }
+                                        value='#D9D9D9'
+                                        readOnly
                                         // className={ ProductRegistrationCSS.productInfoInput }
                                     />
                                 </td>
