@@ -22,10 +22,18 @@
 
 .submenuUl > li {
     color: #505050;
-    margin-bottom: -29px;
     font-size: 13px;
     font-weight: 200;
     margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
+}
+
+.submenuUl > li > a:hover{
+    color: #99c4ca;
 }
 
 .roomListDiv{
@@ -57,7 +65,8 @@
     justify-content: center;
     position: absolute;
     left: 46%;
-    bottom: 30px;
+    bottom: 20px;
+    list-style: none;
 }
 
 .pagingBtn {
@@ -65,6 +74,7 @@
     border: none;
     font-size: 14px;
     font-weight: bold;
+    list-style: none;
 }
 
 .pagingBtn:hover {
@@ -77,8 +87,6 @@
     background-color: transparent;
     font-size: 15px;
     font-weight: bold;
-    margin-top: 30px;
-    margin-right: 17px
 }
 
 .num:hover {

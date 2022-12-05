@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callReservationDetailAPI, callReservationMUpdateAPI } from '../../../apis/ReservationAPICalls';
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { callReservationMUpdateAPI } from '../../../apis/ReservationAPICalls';
 import ReservationMUpdateCSS from '../reservation/ReservationMUpdate.module.css';
+import { decodeJwt } from '../../../utils/tokenUtils';
 
 function ReservationMUpdate(){
 
@@ -20,6 +21,14 @@ function ReservationMUpdate(){
             ...form,
             [e.target.name] : e.target.value
         });
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
     }
 
     const onClickModifyModeHandler = () => {
@@ -50,7 +59,29 @@ function ReservationMUpdate(){
 }
     return(
         <>
+            <section className={ReservationMUpdateCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={ReservationMUpdateCSS.submenuDiv}>
+                    { decoded === "ROLE_ADMIN" && <h4>회의실 예약 관리</h4>}    
+                    { decoded === "ROLE_MEMBER" && <h4>회의실</h4>}
+                        <ul className={ReservationMUpdateCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements">회의실 예약 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements">회의실 예약 등록</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    <div className={ReservationMUpdateCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <ul className={ReservationMUpdateCSS.submenuUl} >
+                            <li><NavLink to="/room">회의실 예약 조회</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> } 
+                    </div>
+                </section>
             <div className={ ReservationMUpdateCSS.reservedSection }>
+            <h2>회의실 예약 관리</h2>
                 <div className={ ReservationMUpdateCSS.reservedInfoDiv }>
                     <table>
                         <tbody>
@@ -145,11 +176,6 @@ function ReservationMUpdate(){
                 </div>
             </div>
             <div className={ ReservationMUpdateCSS.ReservedBtnDiv }>
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    뒤로가기
-                </button>
             {!modifyMode && 
                 <button
                     onClick={ onClickModifyModeHandler }
@@ -165,6 +191,13 @@ function ReservationMUpdate(){
                 </button>
             }
             </div>
+            <button        
+                    onClick={ () => navigate(-1) }    
+                    className={ ReservationMUpdateCSS.rmReturnBtn }        
+                >
+                    돌아가기
+                </button>
+            
         </>
     );
 

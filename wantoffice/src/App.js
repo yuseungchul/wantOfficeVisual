@@ -24,7 +24,6 @@ import RoomMUpdate from "./pages/admin/room/RoomMUpdate";
 import ReservationList from "./pages/reservation/ReservationList";
 import ReservDetail from "./pages/reservation/ReservDetail";
 import ReservationRegist from "./pages/reservation/ReservationRegist";
-import ReservListM from "./pages/admin/reservation/ReservListM";
 import ReservationMUpdate from "./pages/admin/reservation/ReservationMUpdate";
 
 import Member from "./pages/admin/management/Member";
@@ -85,7 +84,6 @@ function App() {
           <Route path="rvlist/:roomNo" element={ <ReservationList/> }/>
           <Route path="rvlists-in/:roomNo" element={ <ReservationRegist/> }/>
           <Route path="rvlists/:reservationNo" element={ <ReservDetail/> }/>
-          <Route path="rvlist-managements" element={ <ReservListM/> }/>
           <Route path="rvlists-managements" element={ <ReservationMUpdate/> }/>
         </Route>
         <Route path="/member" element={ <MemberLayout/> }>

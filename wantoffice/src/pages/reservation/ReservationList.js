@@ -59,26 +59,24 @@ function ReservationList(){
         
         <section className={ReservationListCSS.submenu}>
                     <br/>
-                    <h3>Room</h3>
+                    <h3>회의실 예약</h3>
                     <div className={ReservationListCSS.submenuDiv}>
-                        <h4>회의실</h4>
+                    { decoded === "ROLE_ADMIN" && <h4>회의실 예약 관리</h4>}    
+                    { decoded === "ROLE_MEMBER" && <h4>회의실</h4>}
                         <ul className={ReservationListCSS.submenuUl} >
-                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/room">회의실 예약 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/room-managements">회의실 예약 등록</NavLink></li> }
                         </ul>
                     </div>
                     <br/>
                     { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
-                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
                     <div className={ReservationListCSS.submenuDiv}>
-                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
                         { decoded === "ROLE_MEMBER" && <ul className={ReservationListCSS.submenuUl} >
-                            <li><NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
-                            <li><NavLink to="rvlists-in/:roomNo" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
-                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
-                        
-                        </div>
+                            <li><NavLink to="/room">회의실 예약 조회</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> } 
+                    </div>
                 </section>  
             
             

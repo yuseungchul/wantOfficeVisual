@@ -1,3 +1,40 @@
+.submenu {
+    width: 460px;
+    height: 640px;
+    border-right: solid 1px #cfcfcf;
+    }
+
+.submenu > h3 {
+    color: #505050;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+    
+.submenuDiv {
+    margin: 30px;
+    margin-left: 255px;
+}
+
+.submenuDiv h4 {
+    color: #505050;
+    margin-bottom: 10px;
+}
+
+.submenuUl > li {
+    color: #505050;
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: -26px;
+    margin-bottom: 10px;
+}
+.submenuUl > li > a{
+    text-decoration: none;
+    color: #505050;
+}
+
+.submenuUl > li > a:hover{
+    color: #99c4ca;
+}
 .roomSection{
     position: fixed;
     left: 500px;
@@ -50,4 +87,26 @@
 
 .roomBtnDiv:hover{
 	background-color:#739ca5;
+}
+
+.roomImageBtn{
+    box-shadow: 1px 3px 0px 0px #dbdbdb;
+	background-color:#99c4ca;
+	border-radius:8px;
+	border:1px solid #99c4ca;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:6px 14px;
+	text-decoration:none;
+    position: fixed;
+    top:580px;
+    right: 550px;
+    z-index: 1;
+}
+
+.roomImage{
+    margin-top: 20px;
 }

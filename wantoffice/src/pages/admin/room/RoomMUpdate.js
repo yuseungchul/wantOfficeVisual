@@ -93,7 +93,8 @@ function RoomMUpdate(){
         dispatch(callRoomMUpdateAPI({
             form : formData
         }));
-
+        
+        alert('회의실이 수정되었습니다.');
         navigate('/room', { replace : true });
         window.location.reload();
     }
@@ -115,54 +116,30 @@ function RoomMUpdate(){
                 >수정하기</button>
            }
         </div>
-        <section className={RoomListCSS.submenu}>
+        <section className={RoomMUpdateCSS.submenu}>
                     <br/>
                     <h3>Room</h3>
-                    <div className={RoomListCSS.submenuDiv}>
-                        <h4>회의실</h4>
-                        <ul className={RoomListCSS.submenuUl} >
-                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
-                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                    <div className={RoomMUpdateCSS.submenuDiv}>
+                    { decoded === "ROLE_ADMIN" && <h4>회의실 관리</h4>}    
+                    { decoded === "ROLE_MEMBER" && <h4>회의실</h4>}
+                    <ul className={RoomMUpdateCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/room">회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/room/rvlist-managements">회의실 예약 조회</NavLink></li> }
                         </ul>
                     </div>
                     <br/>
                     { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
-                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
-                    <div className={RoomListCSS.submenuDiv}>
-                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
-                        { decoded === "ROLE_MEMBER" && <ul className={RoomListCSS.submenuUl} >
-                            <li><NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
-                            <li><NavLink to="rvlists-in/:roomNo" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
-                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
-                        
-                        </div>
+                    <div className={RoomMUpdateCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <ul className={RoomMUpdateCSS.submenuUl} >
+                            <li><NavLink to="/room">회의실 예약 조회</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> } 
+                    </div>
                 </section>
         <div className={ RoomMUpdateCSS.roomSection }>
         <h2>회의실 시설 안내</h2>
-           <div className={ RoomMUpdateCSS.roomInfoDiv }>
-              <div className={ RoomMUpdateCSS.roomImgDiv }>
-                    { roomDetail && <img
-                        className={ RoomMUpdateCSS.roomImage }
-                        src={ (fileUrl == null) ? roomDetail.roomFileUrl : fileUrl }
-                        alt="preview"
-                    />}
-                    <input 
-                        type="file"
-                        name='roomImage'
-                        accept='image/jpg,image/png,image/jpeg,image/gif'
-                        onChange={ onChangeImageUpload }
-                        ref={ imageInput }
-                    />
-                    <button
-                        className={ RoomMUpdateCSS.roomImageBtn }
-                        onClick={ onClickImageUpload }
-                        style={ !modifyMode ? {backgroundColor : 'gray'} : null}
-                        disabled={ !modifyMode }>
-                            이미지 업로드
-                    </button>
-              </div>
-           </div>
+           
            <div className={ RoomMUpdateCSS.roomInfoDiv }>
                 <table>
                     <tbody>
@@ -236,6 +213,29 @@ function RoomMUpdate(){
                             </tr>
                       </tbody>
                 </table>
+                <div className={ RoomMUpdateCSS.roomInfoDiv }>
+              <div className={ RoomMUpdateCSS.roomImgDiv }>
+                    { roomDetail && <img
+                        className={ RoomMUpdateCSS.roomImage }
+                        src={ (fileUrl == null) ? roomDetail.roomFileUrl : fileUrl }
+                        alt="preview"
+                    />}
+                    <input 
+                        type="file"
+                        name='roomImage'
+                        accept='image/jpg,image/png,image/jpeg,image/gif'
+                        onChange={ onChangeImageUpload }
+                        ref={ imageInput }
+                    />
+                    <button
+                        className={ RoomMUpdateCSS.roomImageBtn }
+                        onClick={ onClickImageUpload }
+                        style={ !modifyMode ? {backgroundColor : 'gray'} : null}
+                        disabled={ !modifyMode }>
+                            이미지 업로드
+                    </button>
+              </div>
+           </div>
            </div>
         </div>
        </>
