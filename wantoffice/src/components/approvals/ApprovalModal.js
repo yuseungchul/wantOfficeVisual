@@ -1,13 +1,97 @@
 import modal from './ApprovalModal.module.css'
+import { useParams } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { decodeJwt } from "../../utils/tokenUtils";
+import {callApprovalListAPI, callDocumentInsertAPI } from '../../apis/ApprovalAPICalls';
+import { callMyInfoAPI } from '../../apis/MyAPICalls';
 
 
-function ApprovalModal({ setModalOpen, id, title, content, writer }: PropsType) {
+function ApprovalModal (  { props, setModalOpen }) {
+
+
+    
+    const params = useParams();
+    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [form, setForm] = useState({
+        docTitle : '',
+        docContent : ''
+    });
+
+
+    // const approvals = useSelector(state => state.approvalReducer);
+    // useEffect(()=> {
+    //     dispatch(callApprovalListAPI({
+    //         docNo : params.docNo
+    //     }));
+    // }, []);
+
+
+
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    const myInfo = useSelector(state => state.myReducer);
+    useEffect(() => {
+        if(token) {
+            dispatch(callMyInfoAPI({
+                memberId: token.sub
+            }));
+        }
+    }, []);
+
+
+
+    // useEffect(
+    //     () => {
+    //         dispatch(callApprovalListAPI({
+    //             currentPage : currentPage
+    //         }));
+    //     }
+    //     , [currentPage]
+    // );
+
+
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+
+
+    const onClickProductReviewHandler = () => {
+        console.log('== ApprovalModal : start ==');
+       
+        dispatch(callDocumentInsertAPI({	
+            form: form
+        }));
+
+        setModalOpen(false);
+
+        alert('기안서 등록이 완료되었습니다.');
+
+        console.log('== ApprovalModa : End ==');
+
+    }
+
+
 
     const closeModal = () => {
         setModalOpen(false);
+
+
+        console.log('== ApprovalModa : Close ==');
     };
+
+
+
+    /* 값 */
+    const[date, setDate] = useState((new Date()).toLocaleDateString());
+    
+
 
     return (
         <>
@@ -16,46 +100,41 @@ function ApprovalModal({ setModalOpen, id, title, content, writer }: PropsType) 
                 <table className={modal.modalTable}  >
                 <thead>
                     <tr>
-                        <th colspan="5" >*구매요청서</th>
-                        <th>문서번호</th>
-                        <td>문서번호data</td>
+                        {/* =============== */}
+                        <th colspan="7" ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th >기안부서</th>
-                        <td>부서data</td>
-                        <th rowspan="4" >결재</th>
-                        <td>결재자1 data</td>
-                        <td>결재자2 data</td>
-                        <td>결재자3 data</td>
-                        <td>결재자4 data</td>
-                    </tr>
-                    <tr>
+                        <td> { myInfo.dept?.deptName || '' } </td>
                         <th className={modal.modalTh}>기안자</th>
-                        <td>기안자data</td>
-                        <td rowspan="2" >승인반려버튼</td>
-                        
-                        <td rowspan="2" >승인반려버튼</td>
-                        <td rowspan="2" >승인반려버튼</td>
-                        <td rowspan="2" >승인반려버튼</td>
+                        <td>{ myInfo.memberName || '' } </td>
                     </tr>
+
                     <tr>
                         <th className={modal.modalTh}>기안일자</th>
-                        <td>기안일자data</td>
-                       
-                    </tr>
-                    <tr>
+                        <td>{date}</td>
                         <th className={modal.modalTh}>참조부서</th>
-                        <td>참조부서data</td>
-                        <td>지정버튼</td>
-                        <td>지정버튼</td>
-                        <td>지정버튼</td>
-                        <td>지정버튼</td>
+                        <td><select>
+                                <option>인사팀</option>
+                                <option>개발팀</option>
+                                <option>총무팀</option>
+                                <option>마케팅팀</option>
+                                <option>관리팀</option>
+                                <option>영업팀</option>
+                            </select></td>
                     </tr>
                     <tr>
                         <th>제목</th>
-                        <td colspan="6"><input size="130" type="text" name="docoumtTitle"/></td>
+                        <td colspan="6">
+                            <input 
+                            size="130" 
+                            type="text" 
+                            name="docTitle"
+                            autoComplete='off'
+                            onChange={ onChangeHandler } />
+                        </td>
                     </tr>
                     {/* <tr>
                         <td>코멘트</td>
@@ -71,7 +150,7 @@ function ApprovalModal({ setModalOpen, id, title, content, writer }: PropsType) 
                 initialEditType="markdown" //wysiwyg
                 useCommandShortcut={false}
                 />
-                <button>
+                <button onClick={onClickProductReviewHandler}>
                     제출하기
                 </button>
                 <button className={modal.close} onClick={closeModal}>

@@ -4,13 +4,13 @@ import RoomListCSS from "../../pages/room/RoomList.module.css";
 import { useEffect, useState } from 'react';
 import { callApprovalListAPI  } from '../../apis/ApprovalAPICalls';
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import ApprovalModal from "../../components/approvals/ApprovalModal";
 
 function ApprovalMain () {
 
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     const approvals = useSelector(state => state.approvalReducer);
     const approvalList = approvals.data;
@@ -36,10 +36,10 @@ function ApprovalMain () {
 
 
 /* 결재 등록 이동 */
- const ApprovalInsert = () =>{
-    console.log('결재 등록 페이지');
-    navigate(`/approval/approval-management`, { replace : false })
-}
+//  const ApprovalInsert = () =>{
+//     console.log('결재 등록 페이지');
+//     navigate(`/approval/approval-management`, { replace : false })
+// }
 
 
 /* 결재등록 모달 */
@@ -85,28 +85,41 @@ const showModal = () => {
                 <div  className={ApprovalMainCSS.contentList}> 
                 <p>전체 결재 목록</p>
                 <table className={ApprovalMainCSS.approvalTable }>
+                <colgroup>
+                        <col width="1" />
+                        <col width="10%" />
+                        <col width="30%" />
+                        <col width="10%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                    </colgroup>
                     <thead>
+                        <tr>
                         <th> No </th>
                         <th> 구분 </th>
-                        <th> 제목 </th>
+                        <th align="left"> 제목 </th>
                         <th> 작성자 </th>
                         <th> 작성일자 </th>
                         <th> 결재자 </th>
                         <th> 처리일자 </th>
                         <th> 상태 </th>
+                        </tr>
                     </thead>
                         <tbody>  
                         { Array.isArray(approvalList) && approvalList.map(
                                     (a) => (
                                         <tr 
                                         >
-                                            <th> {a.docNo} </th>
-                                            <th> {a.form.dfTitle} </th>
-                                            <th> {a.docTitle} </th>                                
-                                            <th> {a.member.memberName} </th>
-                                            <th> {a.docDate} </th>
-                                            <th> {a.progress[a.progress.length - 1].member.memberName} </th>
-                                            <th> {a.form.dfNo} </th>
+                                            <td> {a.docNo} </td>
+                                            <td> {a.form.dfTitle} </td>
+                                            <td className={ApprovalMainCSS.approvalTbody}> {a.docTitle} </td>                                
+                                            <td> {a.member.memberName} </td>
+                                            <td> {a.docDate} </td>
+                                            <td> {a.progress[a.progress.length - 1].member.memberName} </td>
+                                            <td> {a.progress[a.progress.length - 1].dpSignDate}  </td>
+                                            <td> {a.progress[a.progress.length - 1].dpStatus} </td>
                                         </tr>
                                     )
                                 )
