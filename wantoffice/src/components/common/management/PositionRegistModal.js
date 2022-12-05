@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callPositionRegistAPI } from "../../../apis/PositionAPICalls";
+import PositionRegistModalCSS from './PositionRegistModal.module.css';
 
 function PositionRegistModal({setRegistModal}) {
 
@@ -37,36 +38,40 @@ function PositionRegistModal({setRegistModal}) {
 
     const onClickBackHandler = () => {
         setRegistModal(false);
-        navigate("/dept", { replace : true });
     }
 
     return (
-        <div>
-            <div>
-                <h2>직책 등록</h2>
-                <p>직책명</p>
-                <input
-                    type="text"
-                    name='positionName'
-                    placeholder="직책명을 입력하세요"
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
-                <p>지급연차일수</p>
-                <input
-                    type="number"
-                    name='positionRest'
-                    placeholder="연차일수를 입력하세요"
-                    autoComplete='off'
-                    onChange={ onChangeHandler }
-                />
+        <div className={ PositionRegistModalCSS.backgroundDiv }>
+            <div className={ PositionRegistModalCSS.inputDiv }>
+                <div className={ PositionRegistModalCSS.inputNameDiv }>
+                    <h2>직책 등록</h2>
+                    <input
+                        type="text"
+                        name='positionName'
+                        placeholder="직책명을 입력하세요"
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    />
+                </div>
+                <div className={ PositionRegistModalCSS.inputRestDiv }>
+                    <p>지급연차일수</p>
+                    <input
+                        type="number"
+                        name='positionRest'
+                        placeholder="연차일수를 입력하세요"
+                        autoComplete='off'
+                        onChange={ onChangeHandler }
+                    />
+                </div>
                 <button
                     onClick={ onClickRegisterHandler }
+                    className={ PositionRegistModalCSS.RegistPositionBtn }
                 >
                     등록
                 </button>
                 <button
                     onClick={ onClickBackHandler }
+                    className={ PositionRegistModalCSS.cancelBtn }
                 >
                     취소
                 </button>

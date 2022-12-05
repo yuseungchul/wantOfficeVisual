@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { callMemberListAPI } from "../../../apis/MemberAPICalls";
 import RegistModal from "../../../components/common/management/RegistModal";
 import MemberCSS from './Member.module.css';
+import { decodeJwt } from '../../../utils/tokenUtils';
 
 function Member() {
 
@@ -25,6 +26,14 @@ function Member() {
         for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
     }
 
     useEffect(
@@ -49,28 +58,51 @@ function Member() {
 
     return (
         <>
-            
+            <section className={MemberCSS.submenu}>
+                    <br/>
+                    <h3>MEMBER</h3>
+                    <div className={MemberCSS.submenuDiv}>
+                        <h4>회원</h4>
+                        <ul className={MemberCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/attendance/my" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="/attendance/manage-list" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회원 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회원 예약</h3> }
+                    <div className={MemberCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회원 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={MemberCSS.submenuUl} >
+                            <li><NavLink to="/off" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="/off/regist" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>
             <div>
-                <button 
+                </div>
+
+            <div className={MemberCSS.memberTableDiv}>
+            <button 
                     className={ MemberCSS.memBtn }
                     onClick={ openModal }>사원 등록</button>
                 { registModal && <RegistModal setRegistModal= {setRegistModal}/> }
-            </div>
-
-            <div className={MemberCSS.memberTableDiv}>
+            
                 <table className={MemberCSS.memberTableCss}>
                     <colgroup>
-                        <col width="2%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
+                        <col width="1%" />
+                        <col width="7%" />
+                        <col width="7%" />
+                        <col width="7%" />
                         <col width="5%" />
-                        <col width="15%" />
                         <col width="10%" />
-                        <col width="10%" />
-                        <col width="5%" />
+                        <col width="9%" />
+                        <col width="7%" />
+                        <col width="4%" />
                     </colgroup>
-                    <thead>
+                    <thead className={MemberCSS.memberTableth}>
                         <tr>
                             <th>번호</th>
                             <th>이름</th>
@@ -124,7 +156,6 @@ function Member() {
                     pageNumber.map((num) => (
                         <li key={num} onClick={() => setCurrentPage(num)}>
                             <button
-                                style={currentPage === num ? { backgroundColor: 'skyblue' } : null}
                                 className={MemberCSS.pagingBtn}
                             >
                                 {num}
