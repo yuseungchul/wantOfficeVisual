@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import ReservDetailCSS from './ReservDetail.module.css';
 import { callReservationDetailAPI } from '../../apis/ReservationAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
@@ -40,6 +40,29 @@ function ReservDetail(){
     return(
         <>
             {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
+            <section className={ReservDetailCSS.submenu}>
+                    <br/>
+                    <h3>Room</h3>
+                    <div className={ReservDetailCSS.submenuDiv}>
+                        <h4>회의실</h4>
+                        <ul className={ReservDetailCSS.submenuUl} >
+                            { decoded === "ROLE_MEMBER" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_APP_AUTH" && <li> <NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 조회</NavLink></li> }
+                            { decoded === "ROLE_ADMIN" && <li> <NavLink to="room-managements" style={{ textDecoration: "none", color: "#505050" }}>회의실 관리</NavLink></li> }
+                        </ul>
+                    </div>
+                    <br/>
+                    { decoded === "ROLE_MEMBER" && <h3>회의실 예약</h3> }
+                    { decoded === "ROLE_APP_AUTH" && <h3>회의실 예약</h3> }
+                    <div className={ReservDetailCSS.submenuDiv}>
+                        { decoded === "ROLE_MEMBER" && <h4>회의실 예약</h4> }
+                        { decoded === "ROLE_MEMBER" && <ul className={ReservDetailCSS.submenuUl} >
+                            <li><NavLink to="/room" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 조회</NavLink></li>
+                            <li><NavLink to="rvlists-in/:roomNo" style={{ textDecoration: "none", color: "#505050" }}>회의실 예약 신청</NavLink></li>
+                        </ul> }{ decoded === "ROLE_MEMBER" && <br></br> }
+                        
+                        </div>
+                </section>  
             
             <div className={ ReservDetailCSS.DetailDiv }>
              <h2>회의실 예약 상세 보기</h2>
@@ -86,15 +109,9 @@ function ReservDetail(){
                     >
                         수정하기</button>
                 }
-                { decoded === "ROLE_ADMIN" && 
-                <button
-                        // onClick={ onClickRoomRemoveHandler }
-                        className={ ReservDetailCSS.rmRemoveBtn }
-                    >
-                        삭제하기</button>
-                }
                 <button        
-                    onClick={ () => navigate(-1) }            
+                    onClick={ () => navigate(-1) }    
+                    className={ ReservDetailCSS.rmUpdateBtn }        
                 >
                     돌아가기
                 </button>

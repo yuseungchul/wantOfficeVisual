@@ -39,17 +39,7 @@ function ReservationRegist(){
         setEndTime(time);
     }
 
-
-    //현재 시간 기준 지나간 시간 선택 불가
-    // const filterPassedTime = () => {
-    //     const currentDate = new Date();
-    //     const selectedDate = new Date();
-    
-    //     return currentDate.getTime() < selectedDate.getTime();
-    // };
-
     const [form, setForm] = useState({
-        // reservationNo : 0,
         roomNo : roomNo,
         memberNo : memberNo,
         reservationDate : '',
@@ -84,10 +74,6 @@ function ReservationRegist(){
                 
         }
 
-        // < DatePicker
-        //                             filterDate={filterPassedTime}
-        //                             />
-
         form.reservationUseTime = parseInt((endTime - startTime) / (1000 * 60 * 60));
 
         dispatch(callReservationRegistAPI({
@@ -97,7 +83,7 @@ function ReservationRegist(){
             memberNo : memberNo
         }));
 
-        // navigate(`/room/rvlist/${roomNo}`, { replace : false });
+        navigate(`/room/rvlist/${roomNo}`, { replace : false });
     }
 
     return(
