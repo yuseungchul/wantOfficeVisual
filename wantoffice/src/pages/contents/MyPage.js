@@ -85,8 +85,8 @@ function MyPage() {
 
         console.log("formData : ", form);
 
-        // navigate('/mypage', { replace : true });
-        // window.location.reload();
+        navigate('/mypage', { replace : true });
+        window.location.reload();
     }
 
     return (
