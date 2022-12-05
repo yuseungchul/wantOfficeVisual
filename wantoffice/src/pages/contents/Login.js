@@ -47,6 +47,7 @@ function Login() {
         <div className={MainCSS.backgroundDiv}>
             <div className={ MainCSS.loginDiv }>
                 <img  src= {process.env.PUBLIC_URL + '/assets/img/logo.png'} alt="로고"/>
+                <h2>GROUPWARE SYSTEM</h2>
 
                 <h3>ID</h3>
                 <input

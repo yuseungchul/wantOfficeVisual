@@ -23,16 +23,27 @@
 
 .loginDiv img{
     width: 180px;
-    margin-bottom: 50px;
+}
+
+.loginDiv > h2 {
+	margin-bottom: 50px;
+	color: white;
+
 }
 
 .loginDiv input{
    margin-bottom: 20px;
    padding: 8px;
+   border-color: #75B2C7;
 }
+
+.loginDiv input:focus { outline: none; background-color: #EEF1F6;}
+.loginDiv input:focus::placeholder { opacity:  0;}
 
 .loginDiv h3{
    text-align: left;
+   margin-left: 33px;
+   margin-bottom: 5px;
    
 }
 
@@ -47,7 +58,7 @@
 }
 
 .loginBtn{
-  	margin-top: 20px;
+  	margin: 10px 0 0 33px;
    	background-color:#2F535F;
 	border-radius:7px;
 	border: none;
@@ -55,18 +66,17 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-size:12px;
-	font-weight: normal;
 	padding:10px 18px;
 	text-decoration:none;
+	font-weight: bold;
 }
 .loginBtn:hover {
-	background:linear-gradient(to bottom, #2F535F 5%, #79bbff 100%);
-	background-color:#378de5;
+	background:linear-gradient(to bottom, #2F535F 5%, #75B2C7 100%);
 }
 
 .findBtn{
 	
-   	margin: 20px 10px 0 10px;
+   	margin: 10px 10px 0 15px;
    	background-color:#2F535F;
 	border-radius:7px;
 	border: none;
@@ -74,12 +84,11 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-size:12px;
-	font-weight: normal;
+	font-weight: bold;
 	padding:10px 18px;
 	text-decoration:none;
 }
 .findBtn:hover {
-	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
-	background-color:#378de5;
+	background:linear-gradient(to bottom, #2F535F 5%, #75B2C7 100%);
 }
 
