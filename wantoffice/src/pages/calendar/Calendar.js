@@ -235,19 +235,21 @@ function Calendar() {
         <>
         <div className={CalendarCSS.calendarContainer}>
         <div className={CalendarCSS.calendarNav}>
-          <h1> Schedule </h1>
-          <input type='checkbox' defaultChecked='on' name='sort' value='개인' onClick= { persnalTitleListHandler }/>개인
+        <br></br>
+          <h3> Schedule List</h3>
+          <div className={CalendarCSS.calendarNavDiv}>
+          <input id='persnal'className={CalendarCSS.caledarInput} type='checkbox' defaultChecked='on' name='sort' value='개인' onClick= { persnalTitleListHandler } /><label htmlFor='persnal'>개인</label>
             {persnalChecked ? <PersnalTitle/> : null }
-          <input type='checkbox' defaultChecked='on' name='sort' value='회사' onClick= { companyTitleListHandler }/>회사
+          <input className={CalendarCSS.caledarInput}  type='checkbox' defaultChecked='on' name='sort' value='회사' onClick= { companyTitleListHandler }/><label htmlFor='company'>회사</label>
             {companyChecked ? <CompanyTitle/> : null }
-          <input type='checkbox' defaultChecked='on' name='sort' value='부서' onClick= { deptTitleListHandler }/>부서
+          <input className={CalendarCSS.caledarInput} type='checkbox' defaultChecked='on' name='sort' value='부서' onClick= { deptTitleListHandler }/><label htmlFor='dept'>부서</label>
             {deptChecked ? <DeptTitle/> : null }
-          <input type='checkbox' defaultChecked='on' name='sort' value='연차' onClick= { offTitleListHandler }/>연차
+          <input className={CalendarCSS.caledarInput} type='checkbox' defaultChecked='on' name='sort' value='연차' onClick= { offTitleListHandler }/><label htmlFor='off'>연차</label>
           {offChecked ? <OffTitle/> : null }
-              
-
+          </div>
         </div>
-           <div className="cal-container">
+           <div className="cal-container" 
+           style={{ marginTop : '60px', marginLeft : '60px'}}>
               <FullCalendar
                 plugins={[dayGridPlugin, googleCalendarPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
@@ -255,7 +257,6 @@ function Calendar() {
                 googleCalendarApiKey={apiKey}
                 select={ function(e) {
                   const clickEnd = moment(e.endStr).subtract(1, 'day').format('YYYY-MM-DD');
-                  alert('selected ' + e.startStr + ' to ' + e.endStr);
                   navigate(`/calendar/regist`, { state : { start : e.startStr, end : clickEnd }});
                 }}
                 events= {
@@ -263,11 +264,8 @@ function Calendar() {
                   // {title: '제목3', content: '내용3', start: '2022-12-24', end: '2022-12-25', backgroundColor: '#C27EE2'}
                 result
                 }
+                height={'800px'}
                 
-                eventDisplay={'block'}
-                eventTextColor={'#FFF'}
-                eventColor={'#F2921D'}
-                height={'660px'}
               />
       
            </div>

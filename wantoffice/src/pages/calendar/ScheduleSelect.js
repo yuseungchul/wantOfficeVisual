@@ -90,15 +90,13 @@ function ScheduleSelect ({}) {
             scheduleNo : schedules.scheduleNo
         }));
 
-        // navigate('/calendar', { replace : false });
-        // window.location.reload();
-        navigate(-1);
+        navigate('/calendar', { replace : false });
+        window.location.reload();
     }
 
     const onClickBackHandler = () => {
-        // navigate('/calendar', { replace : false });
-        // window.location.reload();
-        navigate(-1);
+        navigate('/calendar', { replace : false });
+        window.location.reload();
     }
 
     return(
@@ -113,7 +111,7 @@ function ScheduleSelect ({}) {
                     <table>
                         <tbody>
                             <tr>
-                                <td><label>일정 제목</label></td>
+                                <th>일정 제목</th>
                                     <td>
                                         <input
                                         name='scheduleTitle'
@@ -122,7 +120,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? schedules.scheduleTitle : form.scheduleTitle) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? { readOnly : 'on', border : 'none'} : null }
                                         />
                                     </td>
                             </tr>
@@ -137,7 +135,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? schedules.scheduleStart : form.scheduleStart) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? { readOnly : 'on', border : 'none'} : null }
                                         />
                                     </td>
                             </tr>
@@ -152,7 +150,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? end : form.scheduleEnd) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? {readOnly : 'on', border : 'none'} : null }
                                         />
                                     </td>
                             </tr>
@@ -166,7 +164,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? schedules.scheduleContent : form.scheduleContent) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? {readOnly : 'on', border : 'none'} : null }
                                         />
                                     </td>
                             </tr>
@@ -180,7 +178,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? schedules.schedulePlace : form.schedulePlace) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? {readOnly : 'on', border : 'none'} : null }
                                         />
                                     </td>
                             </tr>
@@ -194,7 +192,7 @@ function ScheduleSelect ({}) {
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? schedules.scheduleSort : form.scheduleSort) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                        style={ !modifyMode ? {readOnly : 'on', border : 'none'} : null }
                                         >
                                             <option value='개인'>개인</option>
                                             <option value='회사'>회사</option>
