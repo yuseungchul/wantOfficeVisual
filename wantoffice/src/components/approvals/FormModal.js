@@ -10,7 +10,7 @@ import { callMyInfoAPI } from '../../apis/MyAPICalls';
 
 
 
-function ApprovalModal (  { props, setModalOpen }) {
+function FormModal (  { props, setFormOpen }) {
 
 
     
@@ -81,7 +81,7 @@ function ApprovalModal (  { props, setModalOpen }) {
             form: form
         }));
 
-        setModalOpen(false);
+        setFormOpen(false);
 
         alert('기안서 등록이 완료되었습니다.');
 
@@ -92,7 +92,9 @@ function ApprovalModal (  { props, setModalOpen }) {
 
 
     const closeModal = () => {
-        setModalOpen(false);
+        setFormOpen(false);
+
+
         console.log('== ApprovalModa : Close ==');
     };
 
@@ -110,7 +112,7 @@ function ApprovalModal (  { props, setModalOpen }) {
                 <table className={modal.modalTable}  >
                 <thead>
                     <tr>
-                        <th colspan="7" >기 안 서</th>
+                        <th colspan="7" >구 매 요 청 서</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,14 +155,14 @@ function ApprovalModal (  { props, setModalOpen }) {
                     
                 </table>
                 <Editor
-                initialValue="<h1>기안서</h1>
-                <h5>아래와 같이 기안서를 제출하니 검토 후 결재해 주시기 바랍니다</h5>"
+                initialValue="<h1>구매 요청서</h1>
+                <h5>아래와 같이 구매요청서를 제출하니 검토 후 결재해 주시기 바랍니다</h5>"
                 previewStyle="vertical"
                 height="600px"
                 initialEditType="wysiwyg" //wysiwyg,markdown
                 useCommandShortcut={false}
                 />
-                <span  className={modal.modalBtn}>
+                 <span  className={modal.modalBtn}>
                 <button  onClick={onClickApprovalInsertHandler}>
                     제출하기
                 </button >
@@ -185,4 +187,4 @@ function ApprovalModal (  { props, setModalOpen }) {
 
 }
 
-export default ApprovalModal;
+export default FormModal;

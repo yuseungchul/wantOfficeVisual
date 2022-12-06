@@ -78,3 +78,19 @@ width: 100px;
   border: solid 1px #cfcfcf;
 
 }
+
+/* 버튼 */
+.modalBtn > button {
+
+  width: 100px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: rgb(91, 91, 91);
+  border: 0px;
+  color: #FFFFFF;
+  margin-top: 30px;
+  border-radius: 3px;
+
+
+}
