@@ -6,20 +6,20 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import RDate from "./RDate";
 import LoginModal from "../../components/common/LoginModal";
 import { decodeJwt } from '../../utils/tokenUtils';
-// import Reservation from "../../components/room/Reservation";
+
 
 function ReservationList(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const reservation = useSelector(state => state.reservationReducer);
-    // const reservationList = reservation.data;
+
     const params = useParams();
     const reservationNo = params.reservationNo; 
     const roomNo = params.roomNo;
     const [loginModal, setLoginModal] = useState(false);
 
-    // const [currentPage, setCurrentPage] = useState(1);
+
 
     console.log(reservation);
     const isLogin = window.localStorage.getItem('accessToken');
@@ -30,7 +30,6 @@ function ReservationList(){
         decoded = temp.auth[0].authName;
     }
     
-
     useEffect(
         () => {
             console.log('useEffect 동작 확인');
@@ -43,12 +42,12 @@ function ReservationList(){
     );
 
     const onClickReservationInsert = () => {
-        console.log('[ReservationList] onClickReservationInsert');
+
         navigate(`/room/rvlists-in/${ roomNo }`, { replace: false })
     }
 
     const onClickReservationDetailer = (reservationNo) => {
-        console.log('[ReservationList] onClickReservationDetailer');
+
         navigate(`/room/rvlists/${ reservationNo }`, { replace: false })
     }
 

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink,useNavigate, useParams } from "react-router-dom";
 import { callRoomMUpdateAPI } from '../../../apis/RoomAPICalls';
 import RoomMUpdateCSS from '../room/RoomMUpdate.module.css';
-import RoomListCSS from '../../../pages/room/RoomList.module.css';
 import { decodeJwt } from '../../../utils/tokenUtils';
 
 
@@ -168,7 +167,7 @@ function RoomMUpdate(){
                                         onClick={ onChangeHandler }
                                         value="3층"
                                         readOnly={ modifyMode ? false : true }
-                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) == '3층' ? true : false }
+                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) === '3층' ? true : false }
                                     />
                                     3층
                                 </label> &nbsp;
@@ -179,7 +178,7 @@ function RoomMUpdate(){
                                         onClick={ onChangeHandler }
                                         value="4층"
                                         readOnly={ modifyMode ? false : true }
-                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) == '4층' ? true : false }
+                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) === '4층' ? true : false }
                                     />
                                     4층
                                 </label> &nbsp;
@@ -190,7 +189,7 @@ function RoomMUpdate(){
                                         onClick={ onChangeHandler }
                                         value="5층"
                                         readOnly={ modifyMode ? false : true }
-                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) == '5층' ? true : false }
+                                        checked={ (!modifyMode ? roomDetail.roomLocation : form.roomLocation) === '5층' ? true : false }
                                     />
                                     5층
                                 </label> 

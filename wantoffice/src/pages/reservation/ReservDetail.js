@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import ReservDetailCSS from './ReservDetail.module.css';
 import { callReservationDetailAPI } from '../../apis/ReservationAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
-// import LoginModal from '../../components/common/LoginModal';
+
 
 function ReservDetail(){
     
@@ -13,7 +13,7 @@ function ReservDetail(){
     const reservation = useSelector(state => state.reservationReducer);
     const params = useParams();
     const reservationNo = params.reservationNo;
-    // const [loginModal, setLoginModal] = useState(false);
+
 
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
@@ -39,7 +39,7 @@ function ReservDetail(){
 
     return(
         <>
-            {/* { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null } */}
+
             <section className={ReservDetailCSS.submenu}>
                     <br/>
                     <h3>회의실 예약</h3>
