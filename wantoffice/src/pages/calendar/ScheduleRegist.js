@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../utils/tokenUtils';
 import { callScheduleInsertAPI } from '../../apis/CalendarAPICalls';
 import moment from 'moment';
+import ScheduleSelectCSS from './ScheduleSelect.module.css';
 
 function ScheduleRegist() {
 
@@ -47,29 +48,25 @@ function ScheduleRegist() {
         formData.append("scheduleSort", form.scheduleSort);
         formData.append("scheduleColor", form.scheduleColor);
 
+        if(form.scheduleTitle!='' && form.scheduleContent!=''){
         dispatch(callScheduleInsertAPI({
             form : formData
         }));
         console.log(formData);
-        navigate('/calendar', { replace : true });
+        navigate('/calendar', { replace : true })
+        window.location.reload();
+    } else if(form.scheduleTitle == '') {
+        alert('제목을 입력해주세요');
+    } else if(form.scheduleContent == '') {
+        alert('내용을 입력해주세요')
+    }
     }
 
     return(
-        <div>
-            <div >
-                <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
-                </button>
-                <button       
-                    onClick={ onClickScheduleInsertHandler }             
-                >
-                    상품 등록
-                </button>
-            </div>        
-            <div >
-                <div >
+        <>                
+            <div className={ScheduleSelectCSS.modal}>
+        <div className={ScheduleSelectCSS.modalContainer}>
+            <div className={ScheduleSelectCSS.scheduleModalDiv}>
                     <table>
                         <tbody>
                             <tr>
@@ -144,7 +141,7 @@ function ScheduleRegist() {
                                 </td>
                             </tr> 
                             <tr>
-                                <th>구분</th>
+                            <td><label>구분</label></td>
                                     <td>
                                     <select                                        
                                         name='scheduleSort'
@@ -158,23 +155,32 @@ function ScheduleRegist() {
                                     </td>
                             </tr>
                             <tr>
-                                <td><label>색상</label></td>
-                                <td>
+                                
                                 <input 
                                         placeholder='색상'
                                         type='text'
                                         name='scheduleColor'
-                                        value='#D9D9D9'
-                                        readOnly
+                                        // value={ sch }
+                                        style= { {display:'none'} }
                                         // className={ ProductRegistrationCSS.productInfoInput }
                                     />
-                                </td>
                             </tr> 
                         </tbody>                        
                     </table>
+                    <button        
+                    onClick={ () => navigate(-1) }            
+                >
+                    돌아가기
+                </button>
+                <button     
+                    onClick={ onClickScheduleInsertHandler }             
+                >
+                    일정 등록
+                </button>
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
