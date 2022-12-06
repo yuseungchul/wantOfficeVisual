@@ -114,7 +114,7 @@ function MyPage() {
                 </section>
             <div className={ MyPageCSS.contentDiv}>
                 <div className={ MyPageCSS.infoDiv}>
-                    <div className={ MyPageCSS.myImageDiv }>
+                    {/* <div className={ MyPageCSS.myImageDiv }>
                     { myInfo && <img
                         className={ MyPageCSS.myImage }
                         src={ (imageUrl == null) ? myInfo.memberImageUrl : imageUrl }
@@ -136,7 +136,7 @@ function MyPage() {
                     >
                         이미지 첨부
                     </button>
-                    </div>
+                    </div> */}
                     <div className={ MyPageCSS.profileDiv }>
                         <table>
                             <tbody>

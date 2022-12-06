@@ -83,7 +83,7 @@ function RegistModal({setRegistModal}) {
             form : formData
         }));
         
-        // setRegistModal(false);
+        setRegistModal(false);
         console.log('[RegistModal] Regist Process End', formData);
         console.log('[RegistModal] Regist Process End');
         alert('사원 등록이 완료되었습니다.');
@@ -195,7 +195,7 @@ function RegistModal({setRegistModal}) {
                         </tbody>
                     </table>
                 </div>
-                {/* <div className={ RegisteModalCSS.ImageDiv }>
+                <div className={ RegisteModalCSS.ImageDiv }>
                     { imageUrl && <img
                         className = { RegisteModalCSS.memberImageDiv }
                         src={ imageUrl }
@@ -215,7 +215,7 @@ function RegistModal({setRegistModal}) {
                     >
                         이미지 파일
                     </button>
-                </div> */}
+                </div>
                 <button onClick={ onClickRegisterHandler } className={ RegisteModalCSS.memberRegistBtn }> 등록 </button>
                 <button onClick={ onClickCloseHandler } className={RegisteModalCSS.registCancelBtn}>취소</button>
             </div>
