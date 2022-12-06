@@ -33,12 +33,11 @@ function RoomList(){
             dispatch(callRoomListAPI({
                 currentPage : currentPage
             }));
-        },
-        [currentPage]
+        },[currentPage]
     );
 
     const onClickRoomMInsert = () =>{
-        console.log('[RoomList] onClickRoomMInsert');
+
         navigate(`/room/room-managements`, { replace : false })
     }
 

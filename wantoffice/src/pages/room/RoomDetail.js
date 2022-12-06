@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import RoomDetailCSS from './RoomDetail.module.css';
-import RoomListCSS from './RoomList.module.css';
 import { callRoomDetailAPI } from '../../apis/RoomAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 import LoginModal from '../../components/common/LoginModal';
@@ -60,7 +59,6 @@ function RoomDetail(){
 
         // 로그인 상태 확인
         const token = decodeJwt(window.localStorage.getItem("accessToken"));
-        console.log('[onClickRoomPutHandler] token : ', token);
 
         if(!token) {
             alert("신청 전 로그인 확인이 필요합니다.");
