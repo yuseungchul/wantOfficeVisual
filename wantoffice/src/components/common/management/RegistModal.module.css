@@ -1,7 +1,7 @@
 .backgroundDiv {
     position: fixed;
     left: 27%;
-    margin-top: -50px;
+    margin-top: -80px;
     background-color: #fff;
     border-radius: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -24,23 +24,33 @@
     margin-left: 150px;
 }
 
-/* .tableDiv > tbody > input {
-    padding: 4px;
-    border-color: #75B2C7;
-    margin-left: 17px;
+.ImageDiv {
+    margin-right: 70px;
 }
 
-.tableDiv > tbody > input:focus { outline: none; background-color: #EEF1F6;}
-.tableDiv > tbody >input:focus::placeholder { opacity:  0;} */
-
 .ImageDiv > img {
-    width: auto;
-    max-height: 150px;
-    margin: 10px 10px 0 240px;
+    width: 100px;
+    margin: 10px 10px 0 257px;
+}
+
+.ImageDiv > button {
+    bottom: 140px;
+    right: 245px;
+    position: fixed;
+    background-color:#99C4CA;
+	border-radius:7px;
+	border: none;
+    display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:12px;
+	font-weight: normal;
+	padding:10px 13px;
+	text-decoration:none;
 }
 
 .memberRegistBtn {
-    background-color:#99C4CA;
+    background-color:#2F535F;
 	border-radius:7px;
 	border: none;
 	display:inline-block;

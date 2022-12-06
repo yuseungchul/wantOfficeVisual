@@ -18,7 +18,8 @@ function FindIdResultModal({setFindIdResultModal}) {
     }, []);
 
     const onClickLoginHandler = () => {
-        navigate("/", {replace : true});
+        setFindIdResultModal(false);
+        navigate(-1);
     }
 
     return (

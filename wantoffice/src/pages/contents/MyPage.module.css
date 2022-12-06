@@ -53,7 +53,7 @@
 }
 
 .infoDiv table {
-    margin: 10px 0 0 60px;
+    margin: 100px 0 0 60px;
 }
 
 .modifyInfoBtn {
@@ -68,7 +68,7 @@
 	padding:10px 18px;
 	text-decoration:none;
     position: absolute;
-    bottom: 65px;
+    bottom: 105px;
     left: 65%;
 }
 
@@ -126,4 +126,13 @@
     width: auto;
     max-height: 150px;
     margin: 30px 10px 0 170px;
+}
+
+.profileDiv > table > tbody > tr > td > label {
+    font-weight: bold;
+}
+
+.profileDiv > table > tbody > tr > td > input {
+    font-weight: bold;
+
 }

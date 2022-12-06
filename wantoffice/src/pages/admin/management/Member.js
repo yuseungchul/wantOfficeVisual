@@ -46,10 +46,6 @@ function Member() {
         , [currentPage]
     )
 
-    const onClickRegisterHandler = () => {
-        setRegistModal(true);
-    }
-
     const onClickTableTr = (memberNo) => {
         navigate(`/member/${memberNo}`, { replace: true });
     }
@@ -124,8 +120,7 @@ function Member() {
                         }
                     </tbody>
                 </table>
-            </div>
-            <br/>
+                <br/>
             <div 
                 className={ MemberCSS.PagenDiv }>
                 {
@@ -160,6 +155,8 @@ function Member() {
                     </button>
                 }
             </div>
+            </div>
+            
         </>
     );
 }
