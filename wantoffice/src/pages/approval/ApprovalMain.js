@@ -6,6 +6,7 @@ import { callApprovalListAPI  } from '../../apis/ApprovalAPICalls';
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 import ApprovalModal from "../../components/approvals/ApprovalModal";
+import FormModal from '../../components/approvals/FormModal';
 
 function ApprovalMain () {
 
@@ -48,6 +49,11 @@ const [modalOpen, setModalOpen] = useState(false);
 const showModal = () => {
     setModalOpen(true);
     };
+
+const [formOpen, setFormOpen] = useState(false);
+const showModal_form = () => {
+    setFormOpen(true)
+}
   
 
 
@@ -80,6 +86,17 @@ const showModal = () => {
             <section  className={ApprovalMainCSS.mainCantent}>
                 <div className={ApprovalMainCSS.contentForm}>
                     <p>자주쓰는 결재 </p>
+                    <span><button onClick={showModal_form} ><img src= {process.env.PUBLIC_URL + '/assets/img/icon_1.png'}/><pre>구매요청서</pre></button>
+                    {formOpen && <FormModal setFormOpen={setFormOpen} />}</span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_2.png'}/><pre>업무보고서</pre></span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_3.png'}/><pre>외근신청서</pre></span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_4.png'}/><pre>협조문</pre></span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_5.png'}/><pre>품의서</pre></span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_6.png'}/><pre>휴가신청서</pre></span>
+                    <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_7.png'}/><pre>지출결의서</pre></span>
+                    
+
+
                 </div>
 
                 <div  className={ApprovalMainCSS.contentList}> 
@@ -110,8 +127,7 @@ const showModal = () => {
                         <tbody>  
                         { Array.isArray(approvalList) && approvalList.map(
                                     (a) => (
-                                        <tr 
-                                        >
+                                        <tr >
                                             <td> {a.docNo} </td>
                                             <td> {a.form.dfTitle} </td>
                                             <td className={ApprovalMainCSS.approvalTbody}> {a.docTitle} </td>                                
@@ -126,9 +142,8 @@ const showModal = () => {
                             }
                         </tbody>
                     </table>
-                </div>
-                
-            </section>
+
+{/*                    
             <div className={ RoomListCSS.roomPgs }>
                 {
                     Array.isArray(approvalList) &&
@@ -144,8 +159,8 @@ const showModal = () => {
                     pageNumber.map((num) => (
                         <li key={num} onClick={ () => setCurrentPage(num) }>
                             <button
-                                style={ currentPage === num ? { backgroundColor : 'red' } : null }
-                                className= { RoomListCSS.pagingBtn }
+                                onClick={ () => setCurrentPage(num) }
+                                className= { RoomListCSS.num }
                             >
                                 {num}
                             </button>
@@ -162,7 +177,11 @@ const showModal = () => {
                         &gt;
                     </button>
                 }
-            </div>
+                </div> */}
+                </div>
+                
+            </section>
+          
 
            
 

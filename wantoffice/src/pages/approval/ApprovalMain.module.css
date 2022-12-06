@@ -35,7 +35,7 @@
     
     .submenuUl > li {
         color: #505050;
-        margin-bottom: -29px;
+        /* margin-bottom: -29px; */
         font-size:x-small;
         font-weight: 200;
         margin-left: -26px;
@@ -57,25 +57,54 @@
         margin-right: 50px;
         padding: 20px;
         padding-top: 15px;
+
+        
     } 
     
     /* 자주쓰는결재 */
     
     .contentForm {
-        margin-top: -850px;
+        margin-top: -1030px;
         width: 1130px;
-        height: 100px;
+        height: 130px;
     }  
     
+    .contentForm > pre {
+        padding-top: 15px; 
+        border-radius: 8px;
+
+    }
+
+        /* 아이콘 */
+        .contentForm > span {
+            padding: 20px;
+            padding-right: 50px;
+            padding-left:80px; 
+            /* background-color: #cfcfcf; */
+            float: left;
+            text-align: center;
+            
+    
+        }
+
+        .contentForm > span > button {
+         border : 0px;
+         background-color: #FFFFFF;
+            
+    
+        }
+
     .mainCantent > div {
-        width: 1130px;
+        width: 1300px;
         background: #FFFFFF;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
         padding: 20px;
         padding-top: 15px; 
         border-radius: 8px;
-    
+        /* background-color: antiquewhite; */
     }
+
+
     
     .mainCantent > div > p {
         border-bottom: solid 1px #cfcfcf;

@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import ApprovalModal from "../../components/approvals/ApprovalModal";
 import { useEffect, useState } from 'react';
 
+import { decodeJwt } from '../../utils/tokenUtils';
 
 function ApproverList() {
 
@@ -10,6 +11,14 @@ function ApproverList() {
     const ApprovalInsert = () =>{
         console.log('결재 등록 페이지');
         navigate(`/approval/approval-management`, { replace : false })
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
     }
 
     /* 결재 등록 버튼 */
