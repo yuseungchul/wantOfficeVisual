@@ -25,31 +25,6 @@ export const callMyCardAPI = () => {
 
 }
 
-export const callMyCardDetailAPI = () => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/my/card/detail`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[CardAPICalls] callMyCardDetailAPI result : ', result);
-            dispatch({ type: GET_MY_CARD_DETAIL, payload: result.data });
-        }
-
-    }
-
-}
-
 export const callMyCardUpdateAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/my/card`;
@@ -82,7 +57,7 @@ export const callMyCardUpdateAPI = ({form}) => {
 
 export const callCardsAPI = ({currentPage = 1}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/my/members`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/my/members?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 

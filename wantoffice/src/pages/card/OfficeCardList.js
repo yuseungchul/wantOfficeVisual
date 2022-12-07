@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { callCardsAPI } from "../../apis/CardAPICalls";
 import { decodeJwt } from "../../utils/tokenUtils";
 import { NavLink } from "react-router-dom";
-import CardCSS from "../card/Card.module.css";
 import OfficeCardCSS from "./OfficeCard.module.css";
 
 function OfficeCardList () {
