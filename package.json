@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/google-calendar": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/react": "^5.11.3",
+    "@toast-ui/react-editor": "^3.2.2",
+    "css-loader": "^6.7.2",
+    "date-fns": "^2.29.3",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
+    "node-sass": "^8.0.0",
+    "react-datepicker": "^4.8.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.4",
+    "redux": "^4.2.0",
+    "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1"
+  }
+}

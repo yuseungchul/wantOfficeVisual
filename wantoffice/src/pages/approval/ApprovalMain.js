@@ -4,6 +4,7 @@ import RoomListCSS from "../../pages/room/RoomList.module.css";
 import { useEffect, useState } from 'react';
 import { callApprovalListAPI  } from '../../apis/ApprovalAPICalls';
 import React from "react";
+import { decodeJwt } from "../../utils/tokenUtils";
 // import { useNavigate } from "react-router-dom";
 import ApprovalModal from "../../components/approvals/ApprovalModal";
 import FormModal from '../../components/approvals/FormModal';
@@ -16,7 +17,16 @@ function ApprovalMain () {
     const approvals = useSelector(state => state.approvalReducer);
     const approvalList = approvals.data;
     const [currentPage, setCurrentPage] = useState(1);
-    
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0].authName;
+    }
+
 
     useEffect(
         () => {
@@ -36,12 +46,6 @@ function ApprovalMain () {
     }
 
 
-/* 결재 등록 이동 */
-//  const ApprovalInsert = () =>{
-//     console.log('결재 등록 페이지');
-//     navigate(`/approval/approval-management`, { replace : false })
-// }
-
 
 /* 결재등록 모달 */
 const [modalOpen, setModalOpen] = useState(false);
@@ -54,11 +58,14 @@ const [formOpen, setFormOpen] = useState(false);
 const showModal_form = () => {
     setFormOpen(true)
 }
-  
+
+
+
 
 
     return (
         <>
+
             <div>
             {/* 서브메뉴 */}
             <section className={ApprovalMainCSS.submenu}>
@@ -69,9 +76,9 @@ const showModal_form = () => {
             <button onClick={showModal}>New Document</button>
             {modalOpen && <ApprovalModal setModalOpen={setModalOpen} />}
              </div>
-            
+
             <div className={ApprovalMainCSS.submenuDiv}>
-            <h6>▶ 요청 결재 목록</h6>
+            <h6>:arrow_forward: 요청 결재 목록</h6>
             <ul className={ApprovalMainCSS.submenuUl} >
                 <li>ㆍ전체 결재함</li>
                 <li>ㆍ대기 결재함</li>
@@ -94,12 +101,9 @@ const showModal_form = () => {
                     <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_5.png'}/><pre>품의서</pre></span>
                     <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_6.png'}/><pre>휴가신청서</pre></span>
                     <span><img src= {process.env.PUBLIC_URL + '/assets/img/icon_7.png'}/><pre>지출결의서</pre></span>
-                    
-
-
                 </div>
 
-                <div  className={ApprovalMainCSS.contentList}> 
+                <div  className={ApprovalMainCSS.contentList}>
                 <p>전체 결재 목록</p>
                 <table className={ApprovalMainCSS.approvalTable }>
                 <colgroup>
@@ -124,23 +128,23 @@ const showModal_form = () => {
                         <th> 상태 </th>
                         </tr>
                     </thead>
-                        <tbody>  
-                        { Array.isArray(approvalList) && approvalList.map(
-                                    (a) => (
-                                        <tr >
-                                            <td> {a.docNo} </td>
-                                            <td> {a.form.dfTitle} </td>
-                                            <td className={ApprovalMainCSS.approvalTbody}> {a.docTitle} </td>                                
-                                            <td> {a.member.memberName} </td>
-                                            <td> {a.docDate} </td>
-                                            <td> {a.progress[a.progress.length - 1].member.memberName} </td>
-                                            <td> {a.progress[a.progress.length - 1].dpSignDate}  </td>
-                                            <td> {a.progress[a.progress.length - 1].dpStatus} </td>
-                                        </tr>
-                                    )
-                                )
-                            }
+
+                        <tbody>
+                        {Array.isArray(approvalList) && approvalList.map(
+                        (a) => (
+                        <tr>
+                        <td> {a.docNo} </td>
+                        <td> {a.form.dfTitle} </td>
+                        <td className={ApprovalMainCSS.approvalTbody}> {a.docTitle} </td>
+                        <td> {a.member.memberName} </td>
+                        <td> {a.docDate} </td>
+                        {/* <td> {a.progress[a.progress.length - 1].member.memberName} </td>
+                        <td> {a.progress[a.progress.length - 1].dpSignDate}  </td>
+                        <td> {a.progress[a.progress.length - 1].dpStatus} </td> */}
+                    </tr>
+                        ))}
                         </tbody>
+
                     </table>
 
 {/*                    
@@ -179,23 +183,23 @@ const showModal_form = () => {
                 }
                 </div> */}
                 </div>
-                
+
             </section>
-          
 
-           
 
-            
-     
+
+
+
+
 
 
 
 
         </>
 
-        
 
-        
+
+
     );
 
 }

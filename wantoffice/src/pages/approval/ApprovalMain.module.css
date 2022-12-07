@@ -64,7 +64,7 @@
     /* 자주쓰는결재 */
     
     .contentForm {
-        margin-top: -1030px;
+        margin-top: -900px;
         width: 1130px;
         height: 130px;
     }  
@@ -78,7 +78,7 @@
         /* 아이콘 */
         .contentForm > span {
             padding: 20px;
-            padding-right: 50px;
+            padding-right: 35px;
             padding-left:80px; 
             /* background-color: #cfcfcf; */
             float: left;

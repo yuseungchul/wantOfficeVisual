@@ -1,7 +1,7 @@
 import modal from './ApprovalModal.module.css'
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { decodeJwt } from "../../utils/tokenUtils";
@@ -13,24 +13,12 @@ import { callMyInfoAPI } from '../../apis/MyAPICalls';
 function ApprovalModal (  { props, setModalOpen }) {
 
 
-    
     const params = useParams();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [form, setForm] = useState({
-        docTitle : '',
-        docContent : ''
-    });
-
-
-    // const approvals = useSelector(state => state.approvalReducer);
-    // useEffect(()=> {
-    //     dispatch(callApprovalListAPI({
-    //         docNo : params.docNo
-    //     }));
-    // }, []);
-
-
+    const[date, setDate] = useState((new Date()).toLocaleDateString());
+    // const [docContent, setdocContent] = useState(editorRef.current?.getInstance().getHTML());
+    const approvals = useSelector(state => state.approvalReducer);
 
     const token = decodeJwt(window.localStorage.getItem("accessToken"));
     const myInfo = useSelector(state => state.myReducer);
@@ -43,16 +31,21 @@ function ApprovalModal (  { props, setModalOpen }) {
     }, []);
 
 
+  // Toast-UI Editor DOM
+  const editorRef = useRef();
 
-    // useEffect(
-    //     () => {
-    //         dispatch(callApprovalListAPI({
-    //             currentPage : currentPage
-    //         }));
-    //     }
-    //     , [currentPage]
-    // );
+  useEffect(() => {
+    const htmlString = '';
 
+    editorRef.current?.getInstance().setHTML(htmlString);
+  }, []);
+
+    const [form, setForm] = useState({
+        docTitle : '',
+        docContent : '',
+        memberNo : '',
+        dfNo : ''
+    });
 
     const onChangeHandler = (e) => {
         setForm({
@@ -66,26 +59,34 @@ function ApprovalModal (  { props, setModalOpen }) {
     const onClickApprovalInsertHandler = () => {
         console.log('== ApprovalModal : start ==');
 
-        
+        console.log(editorRef.current?.getInstance().getHTML());
+      
         const formData = new FormData();
-
-        formData.append("productName", form.productName);
-        formData.append("productPrice", form.productPrice);
-        formData.append("productOrderable", form.productOrderable);
-        formData.append("productStock", form.productStock);
-        formData.append("productDescription", form.productDescription);
         
-        formData.append("category.categoryCode", form.categoryCode);
+        for (let key of formData.keys()) {
+            console.log(key);
+         }  
+
+
+        formData.append("docTitle", form.docTitle);
+        formData.append("docContent",form.docContent);
+        formData.append("form.dfNo", form.dfNo);
+        formData.append("member.memberNo", form.memberNo);
        
-        dispatch(callDocumentInsertAPI({	
-            form: form
+        console.log("formData : ", formData);
+
+        dispatch(callDocumentInsertAPI({    
+            form: formData
         }));
 
         setModalOpen(false);
 
         alert('기안서 등록이 완료되었습니다.');
+        // window.location.reload();
 
-        console.log('== ApprovalModa : End ==');
+        console.log("form :", form);
+        console.log('== ApprovalModa : End ==', formData);
+        console.log("End form :", form);
 
     }
 
@@ -97,10 +98,7 @@ function ApprovalModal (  { props, setModalOpen }) {
     };
 
 
-
-    /* 값 */
-    const[date, setDate] = useState((new Date()).toLocaleDateString());
-    
+    console.log("form :", form);
 
 
     return (
@@ -110,12 +108,15 @@ function ApprovalModal (  { props, setModalOpen }) {
                 <table className={modal.modalTable}  >
                 <thead>
                     <tr>
-                        <th colspan="7" >기 안 서</th>
+                    <th colspan="7" ><select name='dfNo'  onChange={ onChangeHandler }>
+                        <option value="1" >기 안 서  </option>
+                        <option value="2" >구매 요청서  </option>
+                    </select></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th >기안부서</th>
+                        <th>기안부서</th>
                         <td> { myInfo.dept?.deptName || '' } </td>
                         <th className={modal.modalTh}>기안자</th>
                         <td>{ myInfo.memberName || '' } </td>
@@ -137,9 +138,9 @@ function ApprovalModal (  { props, setModalOpen }) {
                     <tr>
                         <th>제목</th>
                         <td colspan="6">
-                            <input 
-                            size="130" 
-                            type="text" 
+                            <input
+                            size="130"
+                            type="text"
                             name="docTitle"
                             autoComplete='off'
                             onChange={ onChangeHandler } />
@@ -149,12 +150,25 @@ function ApprovalModal (  { props, setModalOpen }) {
                         <td>코멘트</td>
                         <td colspan="6"><input size="80" type="text" name="comment"/></td>
                     </tr> */}
-                </tbody>   
-                    
+                    <input
+                                    type="text"
+                                    name='docContent'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                                <input
+                                    type="text"
+                                    name='memberNo'
+                                    autoComplete='off'
+                                    onChange={ onChangeHandler }
+                                />
+                </tbody>
+
                 </table>
                 <Editor
-                initialValue="<h1>기안서</h1>
-                <h5>아래와 같이 기안서를 제출하니 검토 후 결재해 주시기 바랍니다</h5>"
+                ref={editorRef} // useRef로 DOM 연결
+                // initialValue="<h1>기안서</h1>
+                // <h5>아래와 같이 기안서를 제출하니 검토 후 결재해 주시기 바랍니다</h5>"
                 previewStyle="vertical"
                 height="600px"
                 initialEditType="wysiwyg" //wysiwyg,markdown
@@ -170,14 +184,14 @@ function ApprovalModal (  { props, setModalOpen }) {
                 </span>
             </from>
 
-            
 
 
-            
-          
+
+
+
         </div>
 
-      
+
 
         </>
     );
